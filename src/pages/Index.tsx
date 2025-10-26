@@ -102,7 +102,7 @@ const Index = () => {
     if (state.answers.pain_other_dogs >= 4) problems.push("Reatividade com outros cães");
     if (state.answers.pain_ignores >= 4) problems.push("Ignorar comandos");
 
-    return { tensionLevel, problems };
+    return { tensionLevel, mainProblems: problems };
   };
 
   const getEstimatedDate = () => {
