@@ -4,6 +4,7 @@ import ProgressBar from "@/components/ProgressBar";
 import QuizIntro from "@/components/QuizIntro";
 import QuestionCard from "@/components/QuestionCard";
 import MultipleChoice from "@/components/MultipleChoice";
+import MultipleChoiceCheckbox from "@/components/MultipleChoiceCheckbox";
 import ScaleQuestion from "@/components/ScaleQuestion";
 import SocialProof from "@/components/SocialProof";
 import LoadingScreen from "@/components/LoadingScreen";
@@ -335,19 +336,247 @@ const Index = () => {
           </QuestionCard>
         )}
 
-        {/* Steps 8-16: More pain questions */}
+        {/* Step 8: Pain question - Other dogs */}
         {state.currentStep === 8 && (
-          <QuestionCard key="pain4" title="Meu cachorro fica louco ao ver outros cães" subtitle="Você se identifica com essa situação?" onBack={prevStep}>
-            <ScaleQuestion selected={state.answers.pain_other_dogs} onSelect={(v) => handleAnswer("pain_other_dogs", v)} />
-            {state.answers.pain_other_dogs !== undefined && <div className="flex justify-center pt-6"><Button onClick={nextStep} size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8">Próximo</Button></div>}
+          <QuestionCard
+            key="pain_other_dogs"
+            title="Meu cachorro fica louco ao ver outros cães"
+            subtitle="Você se identifica com essa situação?"
+            onBack={prevStep}
+          >
+            <ScaleQuestion
+              selected={state.answers.pain_other_dogs}
+              onSelect={(value) => handleAnswer("pain_other_dogs", value)}
+            />
+            {state.answers.pain_other_dogs !== undefined && (
+              <div className="flex justify-center pt-6">
+                <Button
+                  onClick={nextStep}
+                  size="lg"
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8"
+                >
+                  Próximo
+                </Button>
+              </div>
+            )}
           </QuestionCard>
         )}
 
-        {[9, 10, 11, 12, 13, 14, 15, 16].map((step) => state.currentStep === step && (
-          <QuestionCard key={`step${step}`} title={`Pergunta ${step}`} onBack={prevStep}>
+        {/* Step 9: Digestion */}
+        {state.currentStep === 9 && (
+          <QuestionCard
+            key="pain_digestion"
+            title="Você tem notado a digestão do seu cachorro desbalanceada ultimamente?"
+            onBack={prevStep}
+          >
+            <MultipleChoice
+              options={[
+                { value: "yes", label: "Sim, às vezes", emoji: "😔" },
+                { value: "unsure", label: "Não tenho certeza", emoji: "🤔" },
+                { value: "no", label: "Não, não notei", emoji: "😊" },
+              ]}
+              selected={state.answers.pain_digestion}
+              onSelect={(value) => {
+                handleAnswer("pain_digestion", value);
+                setTimeout(nextStep, 300);
+              }}
+            />
+          </QuestionCard>
+        )}
+
+        {/* Step 10: Physical changes */}
+        {state.currentStep === 10 && (
+          <QuestionCard
+            key="pain_physical"
+            title="Você já notou mudanças físicas no comportamento do seu cachorro, como aumento do tempo de sono?"
+            onBack={prevStep}
+          >
+            <MultipleChoice
+              options={[
+                { value: "yes", label: "Sim, às vezes", emoji: "😬" },
+                { value: "unsure", label: "Não tenho certeza", emoji: "🤔" },
+                { value: "no", label: "Não, não notei mudanças", emoji: "🤗" },
+              ]}
+              selected={state.answers.pain_physical}
+              onSelect={(value) => {
+                handleAnswer("pain_physical", value);
+                setTimeout(nextStep, 300);
+              }}
+            />
+          </QuestionCard>
+        )}
+
+        {/* Step 11: Unexplained behavior changes */}
+        {state.currentStep === 11 && (
+          <QuestionCard
+            key="pain_unexplained"
+            title="Sinto que o comportamento do meu cachorro muda às vezes sem nenhuma razão clara"
+            subtitle="Você se identifica com essa situação?"
+            onBack={prevStep}
+          >
+            <ScaleQuestion
+              selected={state.answers.pain_unexplained}
+              onSelect={(value) => handleAnswer("pain_unexplained", value)}
+            />
+            {state.answers.pain_unexplained !== undefined && (
+              <div className="flex justify-center pt-6">
+                <Button
+                  onClick={nextStep}
+                  size="lg"
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8"
+                >
+                  Próximo
+                </Button>
+              </div>
+            )}
+            {state.answers.pain_unexplained >= 4 && (
+              <div className="mt-6 p-4 bg-warning/10 border border-warning/20 rounded-xl">
+                <p className="text-sm">
+                  <strong>Sabemos como isso pode parecer...</strong>
+                  <br />
+                  O estresse e um nervo vago desequilibrado podem afetar o comportamento de um cachorro de várias maneiras. Analisamos mais de 500 estudos científicos para identificar os mais eficazes.
+                </p>
+              </div>
+            )}
+          </QuestionCard>
+        )}
+
+        {/* Step 12: Coming home reaction */}
+        {state.currentStep === 12 && (
+          <QuestionCard
+            key="pain_coming_home"
+            title="Como seu cachorro reage quando você chega em casa?"
+            subtitle="Escolha todas que se aplicam:"
+            onBack={prevStep}
+          >
+            <MultipleChoiceCheckbox
+              options={[
+                { value: "scratches", label: "Arranha a porta antes mesmo de eu abrir", emoji: "🚪" },
+                { value: "jumps", label: "Extremamente empolgado, pulando e lambendo", emoji: "🚀" },
+                { value: "pees", label: "Tão empolgado que faz xixi", emoji: "✨" },
+                { value: "barks", label: "Late muito", emoji: "📢" },
+                { value: "hides", label: "Se esconde ou fica acuado", emoji: "🙈" },
+                { value: "calm", label: "Me cumprimenta calmamente", emoji: "☺️" },
+              ]}
+              selected={state.answers.pain_coming_home || []}
+              onSelect={(value) => handleAnswer("pain_coming_home", value)}
+            />
+            {state.answers.pain_coming_home?.length > 0 && (
+              <div className="flex justify-center pt-6">
+                <Button
+                  onClick={nextStep}
+                  size="lg"
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8"
+                >
+                  Próximo
+                </Button>
+              </div>
+            )}
+          </QuestionCard>
+        )}
+
+        {/* Step 13: Behavioral issues */}
+        {state.currentStep === 13 && (
+          <QuestionCard
+            key="pain_behaviors"
+            title="Quais destes problemas comportamentais ou tendências você observa no seu cachorro?"
+            subtitle="Escolha todas que se aplicam:"
+            onBack={prevStep}
+          >
+            <MultipleChoiceCheckbox
+              options={[
+                { value: "energy", label: "Energia excessiva e falta de controle", emoji: "⚡" },
+                { value: "aggression", label: "Agressividade com pessoas ou outros animais", emoji: "😤" },
+                { value: "pulling", label: "Puxar a coleira", emoji: "🐕" },
+                { value: "separation", label: "Ansiedade de separação", emoji: "😰" },
+                { value: "barking", label: "Latidos excessivos", emoji: "🔊" },
+                { value: "destructive", label: "Comportamento destrutivo", emoji: "💥" },
+                { value: "soiling", label: "Fazer xixi/cocô em casa", emoji: "🏠" },
+              ]}
+              selected={state.answers.pain_behaviors || []}
+              onSelect={(value) => handleAnswer("pain_behaviors", value)}
+            />
+            {state.answers.pain_behaviors?.length > 0 && (
+              <div className="flex justify-center pt-6">
+                <Button
+                  onClick={nextStep}
+                  size="lg"
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8"
+                >
+                  Próximo
+                </Button>
+              </div>
+            )}
+          </QuestionCard>
+        )}
+
+        {/* Step 14: Stress */}
+        {state.currentStep === 14 && (
+          <QuestionCard
+            key="pain_stress"
+            title="Seu cachorro fica estressado ou assustado facilmente?"
+            onBack={prevStep}
+          >
+            <MultipleChoice
+              options={[
+                { value: "yes", label: "Sim", emoji: "✅" },
+                { value: "sometimes", label: "Nem sempre", emoji: "🤔" },
+                { value: "no", label: "Não", emoji: "❌" },
+              ]}
+              selected={state.answers.pain_stress}
+              onSelect={(value) => {
+                handleAnswer("pain_stress", value);
+                setTimeout(nextStep, 300);
+              }}
+            />
+          </QuestionCard>
+        )}
+
+        {/* Step 15: Stress triggers */}
+        {state.currentStep === 15 && (
+          <QuestionCard
+            key="pain_triggers"
+            title="O que desencadeia o medo ou estresse do seu cachorro?"
+            subtitle="Escolha todas que se aplicam:"
+            onBack={prevStep}
+          >
+            <MultipleChoiceCheckbox
+              options={[
+                { value: "other_dogs", label: "Outros cachorros", emoji: "🐶" },
+                { value: "new_people", label: "Pessoas novas", emoji: "🙋" },
+                { value: "loud_noises", label: "Trovões ou barulhos altos", emoji: "🌪️" },
+                { value: "touch", label: "Toque ou manuseio inesperado", emoji: "👋" },
+                { value: "alone", label: "Ficar sozinho", emoji: "🏠" },
+                { value: "vet", label: "Visitas ao veterinário", emoji: "💉" },
+                { value: "grooming", label: "Banho e tosa", emoji: "✂️" },
+                { value: "animals", label: "Ver outros animais", emoji: "🦊" },
+                { value: "travel", label: "Viagens de carro", emoji: "🚗" },
+                { value: "fireworks", label: "Fogos de artifício ou celebrações", emoji: "🎆" },
+                { value: "other", label: "Outro", emoji: "➕" },
+              ]}
+              selected={state.answers.pain_triggers || []}
+              onSelect={(value) => handleAnswer("pain_triggers", value)}
+            />
+            {state.answers.pain_triggers?.length > 0 && (
+              <div className="flex justify-center pt-6">
+                <Button
+                  onClick={nextStep}
+                  size="lg"
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8"
+                >
+                  Próximo
+                </Button>
+              </div>
+            )}
+          </QuestionCard>
+        )}
+
+        {/* Step 16: Placeholder */}
+        {state.currentStep === 16 && (
+          <QuestionCard key="step16" title="Pergunta 16" onBack={prevStep}>
             <Button onClick={nextStep} size="lg" className="bg-accent hover:bg-accent/90">Próximo</Button>
           </QuestionCard>
-        ))}
+        )}
 
         {/* Step 17: Micro Result */}
         {state.currentStep === 17 && <MicroResult key="micro" triggers={getTriggers()} onContinue={nextStep} />}
