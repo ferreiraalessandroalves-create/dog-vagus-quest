@@ -21,7 +21,7 @@ export default function ProgressChart({ dogName, onContinue }: ProgressChartProp
           </div>
           
           <h1 className="text-3xl md:text-4xl font-bold">
-            Tom vagal de <span className="text-accent">{dogName}</span>
+            Tom vagal de {dogName}
           </h1>
         </div>
 
@@ -142,9 +142,10 @@ export default function ProgressChart({ dogName, onContinue }: ProgressChartProp
             etapas listadas em nosso plano
           </p>
           
-          <h3 className="text-2xl font-bold mb-2">
-            <span className="text-accent">Desafio de Reinicialização do Nervo Vago</span>{" "}
-            personalizado de {dogName} está pronto
+          <h3 className="text-xl md:text-2xl font-bold mb-2">
+            <span className="text-foreground">{dogName}'s personalized</span>{" "}
+            <span className="text-accent">Vagus Nerve Reset Challenge</span>{" "}
+            <span className="text-foreground">is ready</span>
           </h3>
         </div>
 

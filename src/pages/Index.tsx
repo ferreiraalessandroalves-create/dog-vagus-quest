@@ -880,37 +880,114 @@ const Index = () => {
           />
         )}
 
-        {/* Step 36: Discount popup */}
-        {state.currentStep === 36 && (
-          <div className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-b from-background to-accent/5">
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              className="text-center space-y-6 max-w-md"
+        {/* Step 36: Discount popup (moved to ScratchCard) */}
+        
+        {/* Step 37: Final offer */}
+        {state.currentStep >= 36 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden"
+            style={{
+              background: "linear-gradient(135deg, #FF6B6B 0%, #EE5A6F 100%)",
+            }}
+          >
+            {/* Close button */}
+            <button
+              onClick={() => window.history.back()}
+              className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 transition-colors flex items-center justify-center text-white text-2xl"
             >
-              <div className="text-6xl mb-4">🎉</div>
-              <h1 className="text-3xl font-bold">Você ganhou 60% de desconto!</h1>
-              <p className="text-lg text-muted-foreground">
-                Esta é uma oferta exclusiva para você!
-              </p>
-              <Button
-                size="lg"
-                className="w-full text-lg"
-                onClick={() =>
-                  (window.location.href = "https://checkout.example.com")
-                }
-              >
-                Resgatar Desconto
-              </Button>
-            </motion.div>
-          </div>
-        )}
+              ×
+            </button>
 
-        {/* Step 37: Redirect */}
-        {state.currentStep >= 37 && (
-          <div className="min-h-screen flex items-center justify-center">
-            <p>Redirecionando para checkout...</p>
-          </div>
+            <div className="max-w-2xl w-full text-center space-y-8 relative z-10">
+              {/* Dog image with balloons */}
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.2, type: "spring" }}
+                className="relative inline-block"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1529472119196-cb724127a98e?w=400&h=400&fit=crop"
+                  alt="Happy dog"
+                  className="w-64 h-64 md:w-80 md:h-80 object-cover rounded-t-full mx-auto"
+                  style={{
+                    filter: "brightness(0.95) contrast(1.1)",
+                  }}
+                />
+                {/* Gold balloons */}
+                <motion.div
+                  initial={{ y: 50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                  className="absolute -top-8 -right-4 text-6xl md:text-8xl"
+                  style={{ filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.2))" }}
+                >
+                  🎈
+                </motion.div>
+                <motion.div
+                  initial={{ y: 50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.6 }}
+                  className="absolute -top-12 right-12 text-7xl md:text-9xl"
+                  style={{ filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.2))" }}
+                >
+                  61%
+                </motion.div>
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.7 }}
+                  className="absolute -top-4 right-20 text-4xl"
+                >
+                  ✨
+                </motion.div>
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.8 }}
+                  className="absolute top-8 -right-8 text-3xl"
+                >
+                  ✨
+                </motion.div>
+              </motion.div>
+
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.9 }}
+                className="space-y-6"
+              >
+                <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                  Oferta limitada
+                </h1>
+                
+                <div className="space-y-2">
+                  <p className="text-white text-lg md:text-xl font-medium">
+                    VOCÊ fornece seu e-mail
+                  </p>
+                  <p className="text-white text-lg md:text-xl font-medium">
+                    NÓS oferecemos um desconto para
+                  </p>
+                  <p className="text-white text-lg md:text-xl font-medium">
+                    você testar um plano de adestramento
+                  </p>
+                  <p className="text-white text-lg md:text-xl font-medium">
+                    personalizado
+                  </p>
+                </div>
+
+                <Button
+                  size="lg"
+                  onClick={() => window.location.href = "https://checkout.example.com"}
+                  className="bg-white text-foreground hover:bg-white/90 rounded-full px-12 py-6 text-lg font-bold shadow-2xl"
+                >
+                  Obter 61% de desconto →
+                </Button>
+              </motion.div>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>

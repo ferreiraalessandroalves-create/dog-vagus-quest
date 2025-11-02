@@ -33,9 +33,10 @@ export default function ScratchCard({ dogName, onReveal }: ScratchCardProps) {
     ctx.textAlign = "center";
     ctx.fillText("60%", canvas.width / 2, canvas.height / 2 - 20);
     
-    ctx.font = "16px Arial";
-    ctx.fillText(`off no desafio personalizado de`, canvas.width / 2, canvas.height / 2 + 30);
-    ctx.fillText(`reinicialização do nervo vago de ${dogName}`, canvas.width / 2, canvas.height / 2 + 55);
+    ctx.font = "14px Arial";
+    ctx.fillText(`off ${dogName}'s personalized`, canvas.width / 2, canvas.height / 2 + 30);
+    ctx.fillText(`vagus nerve reset`, canvas.width / 2, canvas.height / 2 + 50);
+    ctx.fillText(`challenge`, canvas.width / 2, canvas.height / 2 + 70);
   }, [dogName]);
 
   const scratch = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
@@ -99,12 +100,12 @@ export default function ScratchCard({ dogName, onReveal }: ScratchCardProps) {
           </div>
           
           <h1 className="text-2xl md:text-3xl font-bold">
-            <span className="text-accent">Raspe & Economize</span> no Desafio de
-            Reinicialização do Nervo Vago personalizado de {dogName}!
+            <span className="text-accent">Scratch & Save</span> on {dogName}'s personalized
+            Vagus Nerve Reset Challenge!
           </h1>
           
           <p className="text-lg text-muted-foreground">
-            Ajude seu cachorro a se tornar Calmo&Focado hoje!
+            Help your dog to become Calm&Focused today!
           </p>
         </div>
 
@@ -112,12 +113,15 @@ export default function ScratchCard({ dogName, onReveal }: ScratchCardProps) {
           <div className="relative">
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div className="text-center p-8 bg-gradient-to-br from-accent/20 to-secondary/20 rounded-2xl w-[400px] h-[300px] flex flex-col items-center justify-center">
-                <p className="text-6xl font-bold text-accent mb-4">60%</p>
-                <p className="text-sm text-muted-foreground">
-                  off no desafio personalizado de
+                <p className="text-6xl font-bold text-success mb-4">60%</p>
+                <p className="text-sm text-foreground">
+                  off {dogName}'s personalized
                 </p>
-                <p className="text-sm text-muted-foreground">
-                  reinicialização do nervo vago de {dogName}
+                <p className="text-sm text-foreground">
+                  vagus nerve reset
+                </p>
+                <p className="text-sm text-foreground">
+                  challenge
                 </p>
               </div>
             </div>
