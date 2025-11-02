@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import ProgressBar from "@/components/ProgressBar";
 import QuizIntro from "@/components/QuizIntro";
 import QuestionCard from "@/components/QuestionCard";
@@ -133,7 +133,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
-      {state.currentStep > 0 && state.currentStep < 27 && (
+      {state.currentStep > 0 && state.currentStep < 29 && (
         <ProgressBar percent={progressPercent} />
       )}
 
@@ -571,58 +571,347 @@ const Index = () => {
           </QuestionCard>
         )}
 
-        {/* Step 16: Placeholder */}
+        {/* Step 16: Excitement */}
         {state.currentStep === 16 && (
-          <QuestionCard key="step16" title="Pergunta 16" onBack={prevStep}>
-            <Button onClick={nextStep} size="lg" className="bg-accent hover:bg-accent/90">Próximo</Button>
+          <QuestionCard
+            key="q16"
+            title="Seu cão se excita facilmente?"
+            onBack={prevStep}
+          >
+            <MultipleChoice
+              options={[
+                { value: "yes", label: "Sim", emoji: "😬" },
+                { value: "not_always", label: "Nem sempre", emoji: "🤔" },
+                { value: "no", label: "Não", emoji: "😐" },
+              ]}
+              selected={state.answers.q16}
+              onSelect={(value) => {
+                handleAnswer("q16", value);
+                setTimeout(nextStep, 300);
+              }}
+            />
           </QuestionCard>
         )}
 
-        {/* Step 17: Micro Result */}
-        {state.currentStep === 17 && <MicroResult key="micro" triggers={getTriggers()} onContinue={nextStep} />}
-
-        {/* Step 18: Education */}
-        {state.currentStep === 18 && <Education key="education" onContinue={nextStep} />}
-
-        {/* Step 19-21: More questions */}
-        {[19, 20, 21].map((step) => state.currentStep === step && (
-          <QuestionCard key={`step${step}`} title={`Pergunta ${step}`} onBack={prevStep}>
-            <Button onClick={nextStep}>Próximo</Button>
+        {/* Step 17: Excitement triggers */}
+        {state.currentStep === 17 && (
+          <QuestionCard
+            key="q17"
+            title="O que desencadeia a excitação do seu cão?"
+            subtitle="Escolha todos que se aplicam:"
+            onBack={prevStep}
+          >
+            <div className="mb-8 flex justify-center">
+              <img
+                src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=400&fit=crop"
+                alt="Cachorro animado"
+                className="w-48 h-48 rounded-full object-cover border-4 border-accent/20"
+              />
+            </div>
+            <MultipleChoiceCheckbox
+              options={[
+                { value: "other_dogs", label: "Outros cães", emoji: "🐶" },
+                { value: "new_people", label: "Pessoas novas", emoji: "🙋" },
+                { value: "toys", label: "Brinquedos", emoji: "🎾" },
+                { value: "food", label: "Comida", emoji: "🍖" },
+                { value: "walks", label: "Passeios ou atividades ao ar livre", emoji: "🏡" },
+                { value: "family", label: "Ver membros da família", emoji: "👨‍👩‍👧" },
+                { value: "small_animals", label: "Pequenos animais (como esquilos ou gatos)", emoji: "🐿️" },
+                { value: "other", label: "Outro", emoji: "➕" },
+              ]}
+              selected={state.answers.q17 || []}
+              onSelect={(value) => handleAnswer("q17", value)}
+            />
+            {state.answers.q17?.length > 0 && (
+              <div className="flex justify-center pt-6">
+                <Button
+                  onClick={nextStep}
+                  size="lg"
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8"
+                >
+                  Próximo
+                </Button>
+              </div>
+            )}
           </QuestionCard>
-        ))}
+        )}
 
-        {/* Step 22: Authority */}
-        {state.currentStep === 22 && <Authority key="authority" onContinue={nextStep} />}
+        {/* Step 18: Micro Result */}
+        {state.currentStep === 18 && <MicroResult key="micro" triggers={getTriggers()} onContinue={nextStep} />}
 
-        {/* Step 23: Dog Name */}
-        {state.currentStep === 23 && <InputQuestion key="name" title="Qual o nome do seu cachorro?" placeholder="Nome" value={state.dogName} onChange={(v) => setState((p) => ({ ...p, dogName: v }))} onNext={nextStep} onBack={prevStep} />}
+        {/* Step 19: Vagus nerve knowledge */}
+        {state.currentStep === 19 && (
+          <QuestionCard
+            key="q19"
+            title="Você já ouviu falar sobre o nervo vago de um cão?"
+            onBack={prevStep}
+          >
+            <MultipleChoice
+              options={[
+                { value: "nothing", label: "Nada mesmo", emoji: "😬" },
+                { value: "maybe", label: "Talvez uma ou duas coisas", emoji: "🤔" },
+                { value: "expert", label: "Sou um especialista", emoji: "😎" },
+              ]}
+              selected={state.answers.q19}
+              onSelect={(value) => {
+                handleAnswer("q19", value);
+                setTimeout(nextStep, 300);
+              }}
+            />
+          </QuestionCard>
+        )}
 
-        {/* Step 24: Diagnosis */}
-        {state.currentStep === 24 && <Diagnosis key="diagnosis" dogName={state.dogName || "seu cachorro"} {...calculateResults()} onContinue={nextStep} />}
+        {/* Step 20: Education */}
+        {state.currentStep === 20 && <Education key="education" onContinue={nextStep} />}
 
-        {/* Step 25-26 */}
-        {state.currentStep === 25 && <QuestionCard key="time" title="Tempo disponível" onBack={prevStep}><Button onClick={nextStep}>Próximo</Button></QuestionCard>}
-        {state.currentStep === 26 && <SpeedProof key="speed" dogName={state.dogName || "seu cachorro"} estimatedDate={getEstimatedDate()} onContinue={nextStep} />}
+        {/* Step 21: Motivation */}
+        {state.currentStep === 21 && (
+          <QuestionCard
+            key="q21"
+            title="Qual é a sua motivação para iniciar a jornada de resetar o nervo vago do seu filhote?"
+            subtitle="Escolha todos que se aplicam:"
+            onBack={prevStep}
+          >
+            <MultipleChoiceCheckbox
+              options={[
+                { value: "love", label: "Meu amor pelo meu filhote", emoji: "❤️" },
+                { value: "longevity", label: "Desejo de tornar a vida do filhote mais longa e feliz", emoji: "🥰" },
+                { value: "easier_life", label: "Desejando uma vida mais fácil com meu cão", emoji: "☺️" },
+                { value: "other", label: "Outro", emoji: "➕" },
+              ]}
+              selected={state.answers.q21 || []}
+              onSelect={(value) => handleAnswer("q21", value)}
+            />
+            {state.answers.q21?.length > 0 && (
+              <div className="flex justify-center pt-6">
+                <Button
+                  onClick={nextStep}
+                  size="lg"
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8"
+                >
+                  Próximo
+                </Button>
+              </div>
+            )}
+          </QuestionCard>
+        )}
 
-        {/* Steps 27-31: Loading & Popups */}
-        {state.currentStep === 27 && <LoadingScreen key="load1" progress={32} text="Preparando..." showPopup popupQuestion="Treino anterior?" popupOptions={["Não", "Sim"]} onPopupAnswer={() => {}} onComplete={nextStep} />}
-        {[28, 29, 30].map((step) => state.currentStep === step && <LoadingScreen key={`load${step}`} progress={step === 28 ? 32 : step === 29 ? 82 : 100} text="Carregando..." showConfetti={step === 30} onComplete={nextStep} />)}
-        {state.currentStep === 31 && <LoadingScreen key="load31" progress={100} text="Plano pronto!" showConfetti onComplete={nextStep} />}
+        {/* Step 22: Main goal */}
+        {state.currentStep === 22 && (
+          <QuestionCard
+            key="q22"
+            title="Vamos definir seu objetivo principal para iniciar o Desafio de Reset do Nervo Vago!"
+            subtitle="Escolha sua prioridade:"
+            onBack={prevStep}
+          >
+            <MultipleChoice
+              options={[
+                { value: "learn", label: "Conhecer mais sobre o nervo vago", emoji: "🤔" },
+                { value: "calmer", label: "Tornar meu cão reativo mais calmo", emoji: "📢" },
+                { value: "bond", label: "Construir um vínculo muito mais forte com meu cão", emoji: "❤️" },
+              ]}
+              selected={state.answers.q22}
+              onSelect={(value) => {
+                handleAnswer("q22", value);
+                setTimeout(nextStep, 300);
+              }}
+            />
+          </QuestionCard>
+        )}
+
+        {/* Step 23: Referral */}
+        {state.currentStep === 23 && (
+          <QuestionCard
+            key="q23"
+            title="Você soube do PawChamp através de um treinador de cães?"
+            onBack={prevStep}
+          >
+            <MultipleChoice
+              options={[
+                { value: "yes", label: "Sim", emoji: "✅" },
+                { value: "no", label: "Não", emoji: "❌" },
+              ]}
+              selected={state.answers.q23}
+              onSelect={(value) => {
+                handleAnswer("q23", value);
+                setTimeout(nextStep, 300);
+              }}
+            />
+          </QuestionCard>
+        )}
+
+        {/* Step 24: Authority */}
+        {state.currentStep === 24 && <Authority key="authority" onContinue={nextStep} />}
+
+        {/* Step 25: Dog Name */}
+        {state.currentStep === 25 && (
+          <InputQuestion
+            key="name"
+            title="Qual é o nome do seu cachorro?"
+            placeholder="Digite o nome aqui..."
+            value={state.dogName}
+            onChange={(value) => setState((p) => ({ ...p, dogName: value }))}
+            onNext={nextStep}
+            onBack={prevStep}
+          />
+        )}
+
+        {/* Step 26: Diagnosis */}
+        {state.currentStep === 26 && (
+          <Diagnosis
+            key="diagnosis"
+            dogName={state.dogName || "seu cachorro"}
+            {...calculateResults()}
+            onContinue={nextStep}
+          />
+        )}
+
+        {/* Step 27: Time available */}
+        {state.currentStep === 27 && (
+          <QuestionCard
+            key="time"
+            title="Quanto tempo você pode dedicar por dia ao treinamento?"
+            onBack={prevStep}
+          >
+            <MultipleChoice
+              options={[
+                { value: "5-10", label: "5-10 minutos", emoji: "⏱️" },
+                { value: "10-20", label: "10-20 minutos", emoji: "⏰" },
+                { value: "20+", label: "Mais de 20 minutos", emoji: "🕐" },
+              ]}
+              selected={state.answers.time}
+              onSelect={(value) => {
+                handleAnswer("time", value);
+                setTimeout(nextStep, 300);
+              }}
+            />
+          </QuestionCard>
+        )}
+
+        {/* Step 28: Speed proof */}
+        {state.currentStep === 28 && (
+          <SpeedProof
+            key="speed"
+            dogName={state.dogName || "seu cachorro"}
+            estimatedDate={getEstimatedDate()}
+            onContinue={nextStep}
+          />
+        )}
+
+        {/* Step 29: Loading with popup 1 */}
+        {state.currentStep === 29 && (
+          <LoadingScreen
+            key="loading-1"
+            progress={32}
+            text="Analisando as respostas..."
+            showPopup={true}
+            popupQuestion="Você já tentou treinar seu cão antes?"
+            popupOptions={[
+              "Sim, mas não funcionou",
+              "Não, é minha primeira vez",
+            ]}
+            onPopupAnswer={(value) => {
+              handleAnswer("previousTraining", value);
+            }}
+            onComplete={nextStep}
+          />
+        )}
+
+        {/* Step 30: Loading with popup 2 */}
+        {state.currentStep === 30 && (
+          <LoadingScreen
+            key="loading-2"
+            progress={82}
+            text="Preparando seu plano personalizado..."
+            showPopup={true}
+            popupQuestion="Pronto para finalizar o que começou? Muitos donos começam mas desistem. Você está comprometido?"
+            popupOptions={[
+              "Sim, estou comprometido!",
+              "Ainda pensando...",
+            ]}
+            onPopupAnswer={(value) => {
+              handleAnswer("commitment", value);
+            }}
+            onComplete={nextStep}
+          />
+        )}
+
+        {/* Step 31: Loading 100% with confetti */}
+        {state.currentStep === 31 && (
+          <LoadingScreen
+            key="loading-3"
+            progress={100}
+            text="Plano pronto! 🎉"
+            showConfetti={true}
+            onComplete={nextStep}
+          />
+        )}
 
         {/* Step 32: Testimonial */}
         {state.currentStep === 32 && <Testimonial key="testimonial" onContinue={nextStep} />}
 
         {/* Step 33: Email */}
-        {state.currentStep === 33 && <EmailCapture key="email" dogName={state.dogName || "seu cachorro"} onSubmit={(email) => { setState((p) => ({ ...p, userEmail: email })); nextStep(); }} />}
+        {state.currentStep === 33 && (
+          <EmailCapture
+            key="email"
+            dogName={state.dogName || "seu cachorro"}
+            onSubmit={(email) => {
+              setState((p) => ({ ...p, userEmail: email }));
+              nextStep();
+            }}
+          />
+        )}
 
         {/* Step 34: Chart */}
-        {state.currentStep === 34 && <ProgressChart key="chart" dogName={state.dogName || "seu cachorro"} onContinue={nextStep} />}
+        {state.currentStep === 34 && (
+          <ProgressChart
+            key="chart"
+            dogName={state.dogName || "seu cachorro"}
+            onContinue={nextStep}
+          />
+        )}
 
         {/* Step 35: Scratch */}
-        {state.currentStep === 35 && <ScratchCard key="scratch" dogName={state.dogName || "seu cachorro"} onReveal={() => setTimeout(() => window.location.href = "/checkout", 2000)} />}
+        {state.currentStep === 35 && (
+          <ScratchCard
+            key="scratch"
+            dogName={state.dogName || "seu cachorro"}
+            onReveal={nextStep}
+          />
+        )}
 
-        {/* Step 36-37: Final redirect */}
-        {state.currentStep >= 36 && <div className="min-h-screen flex items-center justify-center"><p>Redirecionando para checkout...</p></div>}
+        {/* Step 36: Discount popup */}
+        {state.currentStep === 36 && (
+          <div className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-b from-background to-accent/5">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              className="text-center space-y-6 max-w-md"
+            >
+              <div className="text-6xl mb-4">🎉</div>
+              <h1 className="text-3xl font-bold">Você ganhou 60% de desconto!</h1>
+              <p className="text-lg text-muted-foreground">
+                Esta é uma oferta exclusiva para você!
+              </p>
+              <Button
+                size="lg"
+                className="w-full text-lg"
+                onClick={() =>
+                  (window.location.href = "https://checkout.example.com")
+                }
+              >
+                Resgatar Desconto
+              </Button>
+            </motion.div>
+          </div>
+        )}
+
+        {/* Step 37: Redirect */}
+        {state.currentStep >= 37 && (
+          <div className="min-h-screen flex items-center justify-center">
+            <p>Redirecionando para checkout...</p>
+          </div>
+        )}
       </AnimatePresence>
     </div>
   );
