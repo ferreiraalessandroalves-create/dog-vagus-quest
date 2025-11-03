@@ -893,14 +893,6 @@ const Index = () => {
               background: "linear-gradient(135deg, #FF6B6B 0%, #EE5A6F 100%)",
             }}
           >
-            {/* Close button */}
-            <button
-              onClick={() => window.history.back()}
-              className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 transition-colors flex items-center justify-center text-white text-2xl"
-            >
-              ×
-            </button>
-
             <div className="max-w-2xl w-full px-4 md:px-0 relative z-10 flex items-center justify-center">
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
