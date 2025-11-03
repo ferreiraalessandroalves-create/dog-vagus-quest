@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Award, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import awardSeal from "@/assets/award-seal.png";
 interface SocialProofProps {
   onContinue: () => void;
 }
@@ -69,8 +70,8 @@ export default function SocialProof({
       }} transition={{
         delay: 0.6
       }} className="flex items-center justify-center gap-4 p-6 bg-card rounded-2xl border">
-          <div className="flex items-center justify-center w-16 h-16 rounded-full bg-warning/10">
-            <Award className="w-8 h-8 text-warning" />
+          <div className="flex items-center justify-center w-20 h-20">
+            <img src={awardSeal} alt="Selo Acadêmico" className="w-full h-full object-contain" />
           </div>
           <div className="text-left">
             <p className="font-semibold text-foreground">
