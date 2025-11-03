@@ -24,6 +24,7 @@ import puppyImg from "@/assets/puppy.png";
 import adolescentImg from "@/assets/adolescent.png";
 import adultImg from "@/assets/adult.png";
 import seniorImg from "@/assets/senior.png";
+import ofertaLimitada from "@/assets/oferta-limitada.png";
 
 interface QuizState {
   currentStep: number;
@@ -900,93 +901,31 @@ const Index = () => {
               ×
             </button>
 
-            <div className="max-w-2xl w-full text-center space-y-8 relative z-10">
-              {/* Dog image with balloons */}
+            <div className="max-w-2xl w-full relative z-10">
               <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.2, type: "spring" }}
-                className="relative inline-block"
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className="relative"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1529472119196-cb724127a98e?w=400&h=400&fit=crop"
-                  alt="Happy dog"
-                  className="w-64 h-64 md:w-80 md:h-80 object-cover rounded-t-full mx-auto"
-                  style={{
-                    filter: "brightness(0.95) contrast(1.1)",
-                  }}
+                  src={ofertaLimitada}
+                  alt="Oferta limitada - 61% de desconto"
+                  className="w-full rounded-3xl shadow-2xl"
                 />
-                {/* Gold balloons */}
-                <motion.div
-                  initial={{ y: 50, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.5 }}
-                  className="absolute -top-8 -right-4 text-6xl md:text-8xl"
-                  style={{ filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.2))" }}
-                >
-                  🎈
-                </motion.div>
-                <motion.div
-                  initial={{ y: 50, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.6 }}
-                  className="absolute -top-12 right-12 text-7xl md:text-9xl"
-                  style={{ filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.2))" }}
-                >
-                  61%
-                </motion.div>
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.7 }}
-                  className="absolute -top-4 right-20 text-4xl"
-                >
-                  ✨
-                </motion.div>
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.8 }}
-                  className="absolute top-8 -right-8 text-3xl"
-                >
-                  ✨
-                </motion.div>
-              </motion.div>
-
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.9 }}
-                className="space-y-6"
-              >
-                <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                  Oferta limitada
-                </h1>
                 
-                <div className="space-y-2">
-                  <p className="text-white text-lg md:text-xl font-medium">
-                    VOCÊ fornece seu e-mail
-                  </p>
-                  <p className="text-white text-lg md:text-xl font-medium">
-                    NÓS oferecemos um desconto para
-                  </p>
-                  <p className="text-white text-lg md:text-xl font-medium">
-                    você testar um plano de adestramento
-                  </p>
-                  <p className="text-white text-lg md:text-xl font-medium">
-                    personalizado
-                  </p>
+                {/* Clickable button overlay positioned over the button in the image */}
+                <div className="absolute bottom-[8%] left-1/2 -translate-x-1/2 w-[85%]">
+                  <Button
+                    size="lg"
+                    asChild
+                    className="w-full bg-transparent hover:bg-white/10 rounded-full py-8 text-lg font-bold border-2 border-transparent hover:border-white/20 transition-all"
+                  >
+                    <a href="https://pay.kiwify.com.br/ANFvpl3" target="_blank" rel="noopener noreferrer">
+                      <span className="sr-only">Obter 60% de desconto</span>
+                    </a>
+                  </Button>
                 </div>
-
-                <Button
-                  size="lg"
-                  asChild
-                  className="bg-white text-foreground hover:bg-white/90 rounded-full px-12 py-6 text-lg font-bold shadow-2xl"
-                >
-                  <a href="https://pay.kiwify.com.br/ANFvpl3" target="_blank" rel="noopener noreferrer">
-                    Obter 61% de desconto →
-                  </a>
-                </Button>
               </motion.div>
             </div>
           </motion.div>
