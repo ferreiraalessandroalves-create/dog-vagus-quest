@@ -901,25 +901,25 @@ const Index = () => {
               ×
             </button>
 
-            <div className="max-w-2xl w-full relative z-10">
+            <div className="max-w-2xl w-full px-4 md:px-0 relative z-10 flex items-center justify-center">
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="relative"
+                className="relative w-full max-w-md md:max-w-2xl mx-auto"
               >
                 <img
                   src={ofertaLimitada}
                   alt="Oferta limitada - 61% de desconto"
-                  className="w-full rounded-3xl shadow-2xl"
+                  className="w-full rounded-2xl md:rounded-3xl shadow-2xl"
                 />
                 
                 {/* Clickable button overlay positioned over the button in the image */}
-                <div className="absolute bottom-[8%] left-1/2 -translate-x-1/2 w-[85%]">
+                <div className="absolute bottom-[6%] md:bottom-[8%] left-1/2 -translate-x-1/2 w-[88%] md:w-[85%]">
                   <Button
                     size="lg"
                     asChild
-                    className="w-full bg-transparent hover:bg-white/10 rounded-full py-8 text-lg font-bold border-2 border-transparent hover:border-white/20 transition-all"
+                    className="w-full bg-transparent hover:bg-white/10 rounded-full py-6 md:py-8 text-base md:text-lg font-bold border-2 border-transparent hover:border-white/20 transition-all"
                   >
                     <a href="https://pay.kiwify.com.br/ANFvpl3" target="_blank" rel="noopener noreferrer">
                       <span className="sr-only">Obter 60% de desconto</span>
