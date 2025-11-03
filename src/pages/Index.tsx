@@ -980,7 +980,7 @@ const Index = () => {
 
                 <Button
                   size="lg"
-                  onClick={() => window.location.href = "https://checkout.example.com"}
+                  onClick={() => window.location.href = "https://pay.kiwify.com.br/ANFvpl3"}
                   className="bg-white text-foreground hover:bg-white/90 rounded-full px-12 py-6 text-lg font-bold shadow-2xl"
                 >
                   Obter 61% de desconto →
