@@ -980,10 +980,12 @@ const Index = () => {
 
                 <Button
                   size="lg"
-                  onClick={() => window.location.href = "https://pay.kiwify.com.br/ANFvpl3"}
+                  asChild
                   className="bg-white text-foreground hover:bg-white/90 rounded-full px-12 py-6 text-lg font-bold shadow-2xl"
                 >
-                  Obter 61% de desconto →
+                  <a href="https://pay.kiwify.com.br/ANFvpl3" target="_blank" rel="noopener noreferrer">
+                    Obter 61% de desconto →
+                  </a>
                 </Button>
               </motion.div>
             </div>
