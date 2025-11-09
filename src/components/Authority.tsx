@@ -46,8 +46,12 @@ export default function Authority({ onContinue }: AuthorityProps) {
 
         <div className="bg-card p-6 rounded-2xl border-2 border-border space-y-4">
           <div className="flex items-start gap-4">
-            <Avatar className="w-16 h-16">
-              <AvatarImage src={drCarlosImage} alt="Dr. Carlos Mendes" />
+            <Avatar className="w-16 h-16 border-2 border-accent/20 shadow-lg">
+              <AvatarImage 
+                src={drCarlosImage} 
+                alt="Dr. Carlos Mendes" 
+                className="object-cover object-top"
+              />
               <AvatarFallback>CM</AvatarFallback>
             </Avatar>
             <div>
