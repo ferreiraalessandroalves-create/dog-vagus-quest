@@ -58,9 +58,13 @@ const Index = () => {
         // Only load if less than 24 hours old
         if (timeDiff < 86400000) {
           setState(data);
+        } else {
+          // Clear expired data
+          localStorage.removeItem("quiz_progress");
         }
       } catch (e) {
         console.error("Error loading saved progress", e);
+        localStorage.removeItem("quiz_progress");
       }
     }
   }, []);
@@ -83,6 +87,17 @@ const Index = () => {
       ...prev,
       currentStep: Math.max(0, prev.currentStep - 1),
     }));
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const resetQuiz = () => {
+    localStorage.removeItem("quiz_progress");
+    setState({
+      currentStep: 0,
+      answers: {},
+      dogName: "",
+      userEmail: "",
+    });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -141,6 +156,24 @@ const Index = () => {
       <AnimatePresence mode="wait">
         {/* Step 0: Intro */}
         {state.currentStep === 0 && <QuizIntro key="intro" onStart={nextStep} />}
+        
+        {/* Reset button - visible on all steps except intro */}
+        {state.currentStep > 0 && state.currentStep < 28 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="fixed bottom-4 left-4 z-50"
+          >
+            <Button
+              onClick={resetQuiz}
+              variant="outline"
+              size="sm"
+              className="bg-background/80 backdrop-blur-sm hover:bg-background"
+            >
+              Reiniciar Quiz
+            </Button>
+          </motion.div>
+        )}
 
         {/* Step 1: Dog age */}
         {state.currentStep === 1 && (
