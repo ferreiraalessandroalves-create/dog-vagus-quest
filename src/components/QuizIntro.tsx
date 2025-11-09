@@ -113,9 +113,7 @@ export default function QuizIntro({
         opacity: 1
       }} transition={{
         delay: 0.8
-      }} className="text-center text-sm text-muted-foreground">
-          Junte-se a mais de 250.000 donos de cães que transformaram a vida de seus pets
-        </motion.p>
+      }} className="text-center text-sm text-muted-foreground">Junte-se a mais de 25.000 donos de cães que transformaram a vida de seus pets</motion.p>
       </div>
     </motion.div>;
 }
