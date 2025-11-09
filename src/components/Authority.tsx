@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import drCarlosImage from "@/assets/dr-carlos-mendes.png";
 
 interface AuthorityProps {
   onContinue: () => void;
@@ -44,9 +46,10 @@ export default function Authority({ onContinue }: AuthorityProps) {
 
         <div className="bg-card p-6 rounded-2xl border-2 border-border space-y-4">
           <div className="flex items-start gap-4">
-            <div className="w-16 h-16 rounded-full bg-accent/20 flex items-center justify-center text-2xl">
-              👨‍⚕️
-            </div>
+            <Avatar className="w-16 h-16">
+              <AvatarImage src={drCarlosImage} alt="Dr. Carlos Mendes" />
+              <AvatarFallback>CM</AvatarFallback>
+            </Avatar>
             <div>
               <h3 className="text-lg font-bold mb-2">
                 Dr. Carlos Mendes, DVM
