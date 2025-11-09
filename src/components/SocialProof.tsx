@@ -27,7 +27,7 @@ export default function SocialProof({
       }} transition={{
         delay: 0.1
       }} className="rounded-3xl overflow-hidden border-2 border-accent/20 shadow-2xl">
-          <img src={vagusNerveDog} alt="Nervo Vago Canino" className="w-full h-auto" />
+          
         </motion.div>
 
         {/* Main stat */}
