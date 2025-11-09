@@ -674,7 +674,7 @@ const Index = () => {
         {state.currentStep === 21 && (
           <QuestionCard
             key="q21"
-            title="Qual é a sua motivação para iniciar a jornada de resetar o nervo vago do seu filhote?"
+            title="Qual é a sua motivação para iniciar a jornada de resetar o nervo vago do seu cachorro??"
             subtitle="Escolha todos que se aplicam:"
             onBack={prevStep}
           >
