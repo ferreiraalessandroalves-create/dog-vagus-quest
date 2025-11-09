@@ -872,12 +872,12 @@ const Index = () => {
               background: "linear-gradient(135deg, #FF6B6B 0%, #EE5A6F 100%)",
             }}
           >
-            <div className="max-w-2xl w-full px-4 md:px-0 relative z-10 flex items-center justify-center">
+            <div className="w-full px-4 md:px-8 relative z-10 flex items-center justify-center">
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="relative w-full max-w-md md:max-w-2xl mx-auto"
+                className="relative w-full max-w-4xl mx-auto"
               >
                 <img
                   src={ofertaLimitada}
