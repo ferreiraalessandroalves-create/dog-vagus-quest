@@ -59,7 +59,7 @@ export default function LoadingScreen({
     >
       {/* Logo */}
       <div className="mb-8">
-        <h2 className="text-xl font-bold text-primary">PawChamp</h2>
+        <h2 className="text-xl font-bold text-primary">Canino Obediente 360°</h2>
       </div>
 
       {/* Circular Progress */}
@@ -101,7 +101,7 @@ export default function LoadingScreen({
         <p className="text-2xl font-bold text-accent mb-2">
           Mais de 250.000 donos de cães
         </p>
-        <p className="text-muted-foreground">escolheram PawChamp</p>
+        <p className="text-muted-foreground">escolheram Canino Obediente 360°</p>
       </div>
 
       {/* Confetti Effect */}
