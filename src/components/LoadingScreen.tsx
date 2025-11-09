@@ -99,7 +99,7 @@ export default function LoadingScreen({
       {/* Social Proof */}
       <div className="text-center">
         <p className="text-2xl font-bold text-accent mb-2">
-          Mais de 250.000 donos de cães
+          Mais de 25.000 donos de cães
         </p>
         <p className="text-muted-foreground">escolheram Canino Obediente 360°</p>
       </div>
