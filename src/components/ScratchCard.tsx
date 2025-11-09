@@ -1,21 +1,20 @@
 import { motion } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
-
 interface ScratchCardProps {
   dogName: string;
   onReveal: () => void;
 }
-
-export default function ScratchCard({ dogName, onReveal }: ScratchCardProps) {
+export default function ScratchCard({
+  dogName,
+  onReveal
+}: ScratchCardProps) {
   const [isScratched, setIsScratched] = useState(false);
   const [scratchProgress, setScratchProgress] = useState(0);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
-
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
@@ -32,22 +31,17 @@ export default function ScratchCard({ dogName, onReveal }: ScratchCardProps) {
     ctx.font = "bold 48px Arial";
     ctx.textAlign = "center";
     ctx.fillText("60%", canvas.width / 2, canvas.height / 2 - 20);
-    
     ctx.font = "14px Arial";
     ctx.fillText(`de desconto no desafio`, canvas.width / 2, canvas.height / 2 + 30);
     ctx.fillText(`personalizado de ${dogName}`, canvas.width / 2, canvas.height / 2 + 50);
   }, [dogName]);
-
   const scratch = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
     if (!canvas || !isDrawing) return;
-
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-
     const rect = canvas.getBoundingClientRect();
     let x, y;
-
     if ('touches' in e) {
       x = e.touches[0].clientX - rect.left;
       y = e.touches[0].clientY - rect.top;
@@ -61,7 +55,6 @@ export default function ScratchCard({ dogName, onReveal }: ScratchCardProps) {
     const scaleY = canvas.height / rect.height;
     x *= scaleX;
     y *= scaleY;
-
     ctx.globalCompositeOperation = "destination-out";
     ctx.beginPath();
     ctx.arc(x, y, 30, 0, Math.PI * 2);
@@ -71,31 +64,30 @@ export default function ScratchCard({ dogName, onReveal }: ScratchCardProps) {
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     const pixels = imageData.data;
     let transparent = 0;
-
     for (let i = 3; i < pixels.length; i += 4) {
       if (pixels[i] === 0) transparent++;
     }
-
-    const progress = (transparent / (pixels.length / 4)) * 100;
+    const progress = transparent / (pixels.length / 4) * 100;
     setScratchProgress(progress);
-
     if (progress > 60 && !isScratched) {
       setIsScratched(true);
       setTimeout(onReveal, 1000);
     }
   };
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      className="min-h-screen flex flex-col items-center justify-center px-4 py-20"
-    >
+  return <motion.div initial={{
+    opacity: 0,
+    y: 20
+  }} animate={{
+    opacity: 1,
+    y: 0
+  }} exit={{
+    opacity: 0,
+    y: -20
+  }} className="min-h-screen flex flex-col items-center justify-center px-4 py-20">
       <div className="max-w-2xl w-full space-y-8">
         <div className="text-center space-y-4">
           <div className="mb-4">
-            <h2 className="text-xl font-bold text-primary">PawChamp</h2>
+            <h2 className="text-xl font-bold text-primary">Canino Obediente 360°</h2>
           </div>
           
           <h1 className="text-2xl md:text-3xl font-bold">
@@ -121,33 +113,24 @@ export default function ScratchCard({ dogName, onReveal }: ScratchCardProps) {
               </div>
             </div>
             
-            <canvas
-              ref={canvasRef}
-              onMouseDown={() => setIsDrawing(true)}
-              onMouseUp={() => setIsDrawing(false)}
-              onMouseMove={scratch}
-              onMouseLeave={() => setIsDrawing(false)}
-              onTouchStart={() => setIsDrawing(true)}
-              onTouchEnd={() => setIsDrawing(false)}
-              onTouchMove={scratch}
-              className="cursor-pointer rounded-2xl shadow-lg touch-none"
-              style={{ width: "400px", height: "300px" }}
-            />
+            <canvas ref={canvasRef} onMouseDown={() => setIsDrawing(true)} onMouseUp={() => setIsDrawing(false)} onMouseMove={scratch} onMouseLeave={() => setIsDrawing(false)} onTouchStart={() => setIsDrawing(true)} onTouchEnd={() => setIsDrawing(false)} onTouchMove={scratch} className="cursor-pointer rounded-2xl shadow-lg touch-none" style={{
+            width: "400px",
+            height: "300px"
+          }} />
           </div>
         </div>
 
-        {!isScratched && (
-          <p className="text-center text-sm text-muted-foreground">
+        {!isScratched && <p className="text-center text-sm text-muted-foreground">
             👆 Raspe com o dedo ou mouse para revelar seu desconto!
-          </p>
-        )}
+          </p>}
 
-        {isScratched && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="fixed inset-0 bg-background/95 backdrop-blur-sm flex items-center justify-center z-50 p-4"
-          >
+        {isScratched && <motion.div initial={{
+        opacity: 0,
+        scale: 0.9
+      }} animate={{
+        opacity: 1,
+        scale: 1
+      }} className="fixed inset-0 bg-background/95 backdrop-blur-sm flex items-center justify-center z-50 p-4">
             <div className="bg-card p-8 rounded-2xl shadow-xl max-w-md w-full border-2 border-accent text-center space-y-6">
               <div className="text-6xl">🤩</div>
               <h2 className="text-3xl font-bold">Woo hoo!</h2>
@@ -157,9 +140,7 @@ export default function ScratchCard({ dogName, onReveal }: ScratchCardProps) {
                 *Este desconto será aplicado automaticamente
               </p>
             </div>
-          </motion.div>
-        )}
+          </motion.div>}
       </div>
-    </motion.div>
-  );
+    </motion.div>;
 }
