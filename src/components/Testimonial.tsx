@@ -57,7 +57,7 @@ export default function Testimonial({
         <div className="bg-accent/10 p-6 rounded-2xl border-2 border-accent/20 text-center">
           <p className="text-2xl font-bold text-accent mb-2">Mais de 25.000 donos de cães</p>
           <p className="text-muted-foreground">
-            escolheram PawChamp para transformar o comportamento dos seus cachorros
+            escolheram Canino Obediente 360° para transformar o comportamento dos seus cachorros
           </p>
         </div>
 
