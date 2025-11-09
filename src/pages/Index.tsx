@@ -24,7 +24,7 @@ import puppyImg from "@/assets/puppy.png";
 import adolescentImg from "@/assets/adolescent.png";
 import adultImg from "@/assets/adult.png";
 import seniorImg from "@/assets/senior.png";
-import ofertaLimitada from "@/assets/oferta-limitada.png";
+import ofertaLimitada from "@/assets/oferta-desconto.png";
 
 interface QuizState {
   currentStep: number;
@@ -893,7 +893,7 @@ const Index = () => {
                     className="w-full bg-transparent hover:bg-white/10 rounded-full py-6 md:py-8 text-base md:text-lg font-bold border-2 border-transparent hover:border-white/20 transition-all"
                   >
                     <a href="https://pay.kiwify.com.br/ANFvpl3" target="_blank" rel="noopener noreferrer">
-                      <span className="sr-only">Obter 60% de desconto</span>
+                      <span className="sr-only">Obter 61% de desconto</span>
                     </a>
                   </Button>
                 </div>
