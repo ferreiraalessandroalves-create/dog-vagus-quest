@@ -720,27 +720,6 @@ const Index = () => {
           </QuestionCard>
         )}
 
-        {/* Step 23: Referral */}
-        {state.currentStep === 23 && (
-          <QuestionCard
-            key="q23"
-            title="Você soube do PawChamp através de um treinador de cães?"
-            onBack={prevStep}
-          >
-            <MultipleChoice
-              options={[
-                { value: "yes", label: "Sim", emoji: "✅" },
-                { value: "no", label: "Não", emoji: "❌" },
-              ]}
-              selected={state.answers.q23}
-              onSelect={(value) => {
-                handleAnswer("q23", value);
-                setTimeout(nextStep, 300);
-              }}
-            />
-          </QuestionCard>
-        )}
-
         {/* Step 24: Authority */}
         {state.currentStep === 24 && <Authority key="authority" onContinue={nextStep} />}
 
