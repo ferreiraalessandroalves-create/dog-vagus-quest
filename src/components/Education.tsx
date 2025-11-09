@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import vagusNerveIllustration from "@/assets/vagus-nerve-illustration.jpg";
 
 interface EducationProps {
   onContinue: () => void;
@@ -26,6 +27,19 @@ export default function Education({ onContinue }: EducationProps) {
           <p className="text-lg text-muted-foreground">
             Entenda a ciência por trás do comportamento do seu cachorro
           </p>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2 }}
+            className="mt-8"
+          >
+            <img
+              src={vagusNerveIllustration}
+              alt="Ilustração do nervo vago em cachorro"
+              className="w-full max-w-2xl mx-auto rounded-2xl shadow-lg"
+            />
+          </motion.div>
         </div>
 
         <div className="space-y-6">
