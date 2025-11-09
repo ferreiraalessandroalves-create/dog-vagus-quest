@@ -41,30 +41,23 @@ const Index = () => {
     userEmail: "",
   });
 
-  // Save progress to localStorage
+  // Save progress to localStorage (within same session only)
   useEffect(() => {
     if (state.currentStep > 0) {
-      localStorage.setItem("quiz_progress", JSON.stringify(state));
+      sessionStorage.setItem("quiz_progress", JSON.stringify(state));
     }
   }, [state]);
 
-  // Load saved progress
+  // Load saved progress from same session only
   useEffect(() => {
-    const saved = localStorage.getItem("quiz_progress");
+    const saved = sessionStorage.getItem("quiz_progress");
     if (saved) {
       try {
         const data = JSON.parse(saved);
-        const timeDiff = Date.now() - (data.timestamp || 0);
-        // Only load if less than 24 hours old
-        if (timeDiff < 86400000) {
-          setState(data);
-        } else {
-          // Clear expired data
-          localStorage.removeItem("quiz_progress");
-        }
+        setState(data);
       } catch (e) {
         console.error("Error loading saved progress", e);
-        localStorage.removeItem("quiz_progress");
+        sessionStorage.removeItem("quiz_progress");
       }
     }
   }, []);
@@ -91,7 +84,7 @@ const Index = () => {
   };
 
   const resetQuiz = () => {
-    localStorage.removeItem("quiz_progress");
+    sessionStorage.removeItem("quiz_progress");
     setState({
       currentStep: 0,
       answers: {},
