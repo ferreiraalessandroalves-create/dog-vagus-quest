@@ -99,7 +99,7 @@ export default function ScratchCard({ dogName, onReveal }: ScratchCardProps) {
           </div>
           
           <h1 className="text-2xl md:text-3xl font-bold">
-            <span className="text-accent">Raspe & Economize</span> no Desafio de Reequilíbrio do Nervo Vago personalizado de {dogName}!
+            <span className="text-accent">Raspe & Economize</span> no Desafio de Reequilíbrio do Nervo Vago personalizado de <span className="text-primary">{dogName}</span>!
           </h1>
           
           <p className="text-lg text-muted-foreground">
@@ -116,7 +116,7 @@ export default function ScratchCard({ dogName, onReveal }: ScratchCardProps) {
                   de desconto no desafio
                 </p>
                 <p className="text-sm text-foreground">
-                  personalizado de {dogName}
+                  personalizado de <span className="text-primary font-bold">{dogName}</span>
                 </p>
               </div>
             </div>
