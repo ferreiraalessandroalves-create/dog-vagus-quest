@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import awardSeal from "@/assets/award-seal.png";
+import vagusNerveDog from "@/assets/vagus-nerve-dog.jpg";
 interface SocialProofProps {
   onContinue: () => void;
 }
@@ -16,6 +17,19 @@ export default function SocialProof({
     opacity: 0
   }} className="min-h-screen flex flex-col items-center justify-center px-4 py-12">
       <div className="max-w-2xl w-full space-y-8 text-center">
+        {/* Hero Image */}
+        <motion.div initial={{
+        scale: 0.9,
+        opacity: 0
+      }} animate={{
+        scale: 1,
+        opacity: 1
+      }} transition={{
+        delay: 0.1
+      }} className="rounded-3xl overflow-hidden border-2 border-accent/20 shadow-2xl">
+          <img src={vagusNerveDog} alt="Nervo Vago Canino" className="w-full h-auto" />
+        </motion.div>
+
         {/* Main stat */}
         <motion.div initial={{
         scale: 0.9,
