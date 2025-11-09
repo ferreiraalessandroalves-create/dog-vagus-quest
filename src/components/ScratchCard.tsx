@@ -22,18 +22,20 @@ export default function ScratchCard({
     canvas.width = 400;
     canvas.height = 300;
 
-    // Draw scratch-off layer
-    ctx.fillStyle = "#A8E6CF";
+    // Draw scratch-off layer with gradient
+    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+    gradient.addColorStop(0, "#A8E6CF");
+    gradient.addColorStop(1, "#7ED6B0");
+    ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Add text
+    // Add scratch instruction
     ctx.fillStyle = "#2C3E50";
-    ctx.font = "bold 48px Arial";
+    ctx.font = "bold 24px Arial";
     ctx.textAlign = "center";
-    ctx.fillText("60%", canvas.width / 2, canvas.height / 2 - 20);
-    ctx.font = "14px Arial";
-    ctx.fillText(`de desconto no desafio`, canvas.width / 2, canvas.height / 2 + 30);
-    ctx.fillText(`personalizado de ${dogName}`, canvas.width / 2, canvas.height / 2 + 50);
+    ctx.fillText("🔓 RASPE AQUI", canvas.width / 2, canvas.height / 2 - 10);
+    ctx.font = "16px Arial";
+    ctx.fillText("para revelar seu desconto", canvas.width / 2, canvas.height / 2 + 20);
   }, [dogName]);
   const scratch = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
@@ -99,17 +101,12 @@ export default function ScratchCard({
           </p>
         </div>
 
-        <div className="flex justify-center">
+        <div className="flex flex-col items-center space-y-6">
           <div className="relative">
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="text-center p-8 bg-gradient-to-br from-accent/20 to-secondary/20 rounded-2xl w-[400px] h-[300px] flex flex-col items-center justify-center">
-                <p className="text-6xl font-bold text-success mb-4">60%</p>
-                <p className="text-sm text-foreground">
-                  de desconto no desafio
-                </p>
-                <p className="text-sm text-foreground">
-                  personalizado de <span className="text-warning font-bold">{dogName}</span>
-                </p>
+              <div className="text-center p-8 rounded-2xl w-[400px] h-[300px] flex flex-col items-center justify-center">
+                <p className="text-8xl font-bold text-success mb-2">60%</p>
+                <p className="text-xl font-semibold text-accent">OFF</p>
               </div>
             </div>
             
@@ -117,6 +114,15 @@ export default function ScratchCard({
             width: "400px",
             height: "300px"
           }} />
+          </div>
+
+          <div className="text-center space-y-2 max-w-md">
+            <p className="text-lg font-semibold text-foreground">
+              Desconto no Desafio de Reequilíbrio do Nervo Vago
+            </p>
+            <p className="text-base text-muted-foreground">
+              Personalizado para <span className="text-warning font-bold">{dogName}</span>
+            </p>
           </div>
         </div>
 
