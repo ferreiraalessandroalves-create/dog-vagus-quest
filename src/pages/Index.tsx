@@ -680,10 +680,10 @@ const Index = () => {
           >
             <MultipleChoiceCheckbox
               options={[
-                { value: "love", label: "Meu amor pelo meu filhote", emoji: "❤️" },
-                { value: "longevity", label: "Desejo de tornar a vida do filhote mais longa e feliz", emoji: "🥰" },
-                { value: "easier_life", label: "Desejando uma vida mais fácil com meu cão", emoji: "☺️" },
-                { value: "other", label: "Outro", emoji: "➕" },
+                { value: "amor", label: "Meu amor pelo meu cachorro e o desejo de vê-lo mais calmo e feliz", emoji: "❤️" },
+                { value: "longevidade", label: "Quero que ele tenha uma vida mais longa, saudável e equilibrada", emoji: "💪" },
+                { value: "harmonia", label: "Busco uma convivência mais tranquila e harmoniosa no dia a dia", emoji: "🏡" },
+                { value: "outro", label: "Outro", emoji: "💭" },
               ]}
               selected={state.answers.q21 || []}
               onSelect={(value) => handleAnswer("q21", value)}
