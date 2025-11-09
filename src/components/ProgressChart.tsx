@@ -21,7 +21,7 @@ export default function ProgressChart({
       <div className="max-w-2xl w-full space-y-8">
         <div className="text-center space-y-4">
           <div className="mb-4">
-            <h2 className="text-xl font-bold text-primary">​CANINO oBEDIENTE 360°</h2>
+            <h2 className="text-xl font-bold text-primary">Canino Obediente 360°</h2>
           </div>
           
           <h1 className="text-3xl md:text-4xl font-bold">
