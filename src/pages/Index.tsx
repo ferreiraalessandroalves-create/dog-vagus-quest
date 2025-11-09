@@ -41,26 +41,6 @@ const Index = () => {
     userEmail: "",
   });
 
-  // Save progress to localStorage (within same session only)
-  useEffect(() => {
-    if (state.currentStep > 0) {
-      sessionStorage.setItem("quiz_progress", JSON.stringify(state));
-    }
-  }, [state]);
-
-  // Load saved progress from same session only
-  useEffect(() => {
-    const saved = sessionStorage.getItem("quiz_progress");
-    if (saved) {
-      try {
-        const data = JSON.parse(saved);
-        setState(data);
-      } catch (e) {
-        console.error("Error loading saved progress", e);
-        sessionStorage.removeItem("quiz_progress");
-      }
-    }
-  }, []);
 
   const handleAnswer = (questionId: string, value: any) => {
     setState((prev) => ({
@@ -84,7 +64,6 @@ const Index = () => {
   };
 
   const resetQuiz = () => {
-    sessionStorage.removeItem("quiz_progress");
     setState({
       currentStep: 0,
       answers: {},
