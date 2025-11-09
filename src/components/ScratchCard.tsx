@@ -34,9 +34,8 @@ export default function ScratchCard({ dogName, onReveal }: ScratchCardProps) {
     ctx.fillText("60%", canvas.width / 2, canvas.height / 2 - 20);
     
     ctx.font = "14px Arial";
-    ctx.fillText(`off ${dogName}'s personalized`, canvas.width / 2, canvas.height / 2 + 30);
-    ctx.fillText(`vagus nerve reset`, canvas.width / 2, canvas.height / 2 + 50);
-    ctx.fillText(`challenge`, canvas.width / 2, canvas.height / 2 + 70);
+    ctx.fillText(`de desconto no desafio`, canvas.width / 2, canvas.height / 2 + 30);
+    ctx.fillText(`personalizado de ${dogName}`, canvas.width / 2, canvas.height / 2 + 50);
   }, [dogName]);
 
   const scratch = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
@@ -100,12 +99,11 @@ export default function ScratchCard({ dogName, onReveal }: ScratchCardProps) {
           </div>
           
           <h1 className="text-2xl md:text-3xl font-bold">
-            <span className="text-accent">Scratch & Save</span> on {dogName}'s personalized
-            Vagus Nerve Reset Challenge!
+            <span className="text-accent">Raspe & Economize</span> no Desafio de Reequilíbrio do Nervo Vago personalizado de {dogName}!
           </h1>
           
           <p className="text-lg text-muted-foreground">
-            Help your dog to become Calm&Focused today!
+            Ajude seu cachorro a ficar Calmo e Focado hoje!
           </p>
         </div>
 
@@ -115,13 +113,10 @@ export default function ScratchCard({ dogName, onReveal }: ScratchCardProps) {
               <div className="text-center p-8 bg-gradient-to-br from-accent/20 to-secondary/20 rounded-2xl w-[400px] h-[300px] flex flex-col items-center justify-center">
                 <p className="text-6xl font-bold text-success mb-4">60%</p>
                 <p className="text-sm text-foreground">
-                  off {dogName}'s personalized
+                  de desconto no desafio
                 </p>
                 <p className="text-sm text-foreground">
-                  vagus nerve reset
-                </p>
-                <p className="text-sm text-foreground">
-                  challenge
+                  personalizado de {dogName}
                 </p>
               </div>
             </div>

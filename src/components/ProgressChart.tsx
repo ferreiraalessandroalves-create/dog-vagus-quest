@@ -143,9 +143,9 @@ export default function ProgressChart({ dogName, onContinue }: ProgressChartProp
           </p>
           
           <h3 className="text-xl md:text-2xl font-bold mb-2">
-            <span className="text-foreground">{dogName}'s personalized</span>{" "}
-            <span className="text-accent">Vagus Nerve Reset Challenge</span>{" "}
-            <span className="text-foreground">is ready</span>
+            <span className="text-foreground">O </span>
+            <span className="text-accent">Desafio de Reequilíbrio do Nervo Vago</span>
+            <span className="text-foreground"> personalizado de {dogName} está pronto</span>
           </h3>
         </div>
 
