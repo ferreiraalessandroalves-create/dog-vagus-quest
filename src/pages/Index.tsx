@@ -129,12 +129,12 @@ const Index = () => {
     return triggers;
   };
 
-  const totalSteps = 37;
+  const totalSteps = 36;
   const progressPercent = (state.currentStep / totalSteps) * 100;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
-      {state.currentStep > 0 && state.currentStep < 29 && (
+      {state.currentStep > 0 && state.currentStep < 28 && (
         <ProgressBar percent={progressPercent} />
       )}
 
@@ -720,11 +720,11 @@ const Index = () => {
           </QuestionCard>
         )}
 
-        {/* Step 24: Authority */}
-        {state.currentStep === 24 && <Authority key="authority" onContinue={nextStep} />}
+        {/* Step 23: Authority */}
+        {state.currentStep === 23 && <Authority key="authority" onContinue={nextStep} />}
 
-        {/* Step 25: Dog Name */}
-        {state.currentStep === 25 && (
+        {/* Step 24: Dog Name */}
+        {state.currentStep === 24 && (
           <InputQuestion
             key="name"
             title="Qual é o nome do seu cachorro?"
@@ -736,8 +736,8 @@ const Index = () => {
           />
         )}
 
-        {/* Step 26: Diagnosis */}
-        {state.currentStep === 26 && (
+        {/* Step 25: Diagnosis */}
+        {state.currentStep === 25 && (
           <Diagnosis
             key="diagnosis"
             dogName={state.dogName || "seu cachorro"}
@@ -746,8 +746,8 @@ const Index = () => {
           />
         )}
 
-        {/* Step 27: Time available */}
-        {state.currentStep === 27 && (
+        {/* Step 26: Time available */}
+        {state.currentStep === 26 && (
           <QuestionCard
             key="time"
             title="Quanto tempo você pode dedicar por dia ao treinamento?"
@@ -768,8 +768,8 @@ const Index = () => {
           </QuestionCard>
         )}
 
-        {/* Step 28: Speed proof */}
-        {state.currentStep === 28 && (
+        {/* Step 27: Speed proof */}
+        {state.currentStep === 27 && (
           <SpeedProof
             key="speed"
             dogName={state.dogName || "seu cachorro"}
@@ -778,8 +778,8 @@ const Index = () => {
           />
         )}
 
-        {/* Step 29: Loading with popup 1 */}
-        {state.currentStep === 29 && (
+        {/* Step 28: Loading with popup 1 */}
+        {state.currentStep === 28 && (
           <LoadingScreen
             key="loading-1"
             progress={32}
@@ -797,8 +797,8 @@ const Index = () => {
           />
         )}
 
-        {/* Step 30: Loading with popup 2 */}
-        {state.currentStep === 30 && (
+        {/* Step 29: Loading with popup 2 */}
+        {state.currentStep === 29 && (
           <LoadingScreen
             key="loading-2"
             progress={82}
@@ -816,8 +816,8 @@ const Index = () => {
           />
         )}
 
-        {/* Step 31: Loading 100% with confetti */}
-        {state.currentStep === 31 && (
+        {/* Step 30: Loading 100% with confetti */}
+        {state.currentStep === 30 && (
           <LoadingScreen
             key="loading-3"
             progress={100}
@@ -827,11 +827,11 @@ const Index = () => {
           />
         )}
 
-        {/* Step 32: Testimonial */}
-        {state.currentStep === 32 && <Testimonial key="testimonial" onContinue={nextStep} />}
+        {/* Step 31: Testimonial */}
+        {state.currentStep === 31 && <Testimonial key="testimonial" onContinue={nextStep} />}
 
-        {/* Step 33: Email */}
-        {state.currentStep === 33 && (
+        {/* Step 32: Email */}
+        {state.currentStep === 32 && (
           <EmailCapture
             key="email"
             dogName={state.dogName || "seu cachorro"}
@@ -842,8 +842,8 @@ const Index = () => {
           />
         )}
 
-        {/* Step 34: Chart */}
-        {state.currentStep === 34 && (
+        {/* Step 33: Chart */}
+        {state.currentStep === 33 && (
           <ProgressChart
             key="chart"
             dogName={state.dogName || "seu cachorro"}
@@ -851,8 +851,8 @@ const Index = () => {
           />
         )}
 
-        {/* Step 35: Scratch */}
-        {state.currentStep === 35 && (
+        {/* Step 34: Scratch */}
+        {state.currentStep === 34 && (
           <ScratchCard
             key="scratch"
             dogName={state.dogName || "seu cachorro"}
@@ -860,10 +860,10 @@ const Index = () => {
           />
         )}
 
-        {/* Step 36: Discount popup (moved to ScratchCard) */}
+        {/* Step 35: Discount popup (moved to ScratchCard) */}
         
-        {/* Step 37: Final offer */}
-        {state.currentStep >= 36 && (
+        {/* Step 36: Final offer */}
+        {state.currentStep >= 35 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
