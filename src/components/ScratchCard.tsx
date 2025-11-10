@@ -150,9 +150,10 @@ export default function ScratchCard({
                 <img 
                   src={coinCursor} 
                   alt="Cursor moeda" 
-                  className="w-full h-full object-contain drop-shadow-lg"
+                  className="w-full h-full object-contain"
                   style={{
-                    filter: 'brightness(1.3) contrast(1.2) saturate(1.4)'
+                    filter: 'brightness(1.4) contrast(1.3) saturate(1.5) drop-shadow(0 2px 4px rgba(0,0,0,0.3))',
+                    mixBlendMode: 'normal'
                   }}
                 />
               </div>
