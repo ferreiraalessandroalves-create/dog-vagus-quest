@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
-import coinCursor from "@/assets/coin-cursor.jpg";
+import coinCursor from "@/assets/coin-cursor.png";
 
 interface ScratchCardProps {
   dogName: string;
