@@ -14,6 +14,8 @@ export default function ScratchCard({
   const [scratchProgress, setScratchProgress] = useState(0);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [showCursor, setShowCursor] = useState(false);
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -58,6 +60,17 @@ export default function ScratchCard({
     ctx.font = "16px Arial";
     ctx.fillText("para revelar seu desconto", canvas.width / 2, canvas.height / 2 + 20);
   }, [dogName]);
+  const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX,
+      y: e.clientY
+    });
+    scratch(e);
+  };
+
   const scratch = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
     if (!canvas || !isDrawing) return;
@@ -124,8 +137,39 @@ export default function ScratchCard({
 
         <div className="flex flex-col items-center space-y-6">
           <div className="relative">
-            <canvas ref={canvasRef} onMouseDown={() => setIsDrawing(true)} onMouseUp={() => setIsDrawing(false)} onMouseMove={scratch} onMouseLeave={() => setIsDrawing(false)} onTouchStart={() => setIsDrawing(true)} onTouchEnd={() => setIsDrawing(false)} onTouchMove={scratch} className="rounded-2xl shadow-lg touch-none" style={{
-            cursor: `url(${coinCursor}) 16 16, auto`,
+            {showCursor && (
+              <div 
+                className="fixed pointer-events-none z-50"
+                style={{
+                  left: mousePos.x - 24,
+                  top: mousePos.y - 24,
+                  width: '48px',
+                  height: '48px',
+                }}
+              >
+                <img 
+                  src={coinCursor} 
+                  alt="Cursor moeda" 
+                  className="w-full h-full object-contain drop-shadow-lg"
+                />
+              </div>
+            )}
+            <canvas 
+              ref={canvasRef} 
+              onMouseDown={() => setIsDrawing(true)} 
+              onMouseUp={() => setIsDrawing(false)} 
+              onMouseMove={handleMouseMove} 
+              onMouseEnter={() => setShowCursor(true)}
+              onMouseLeave={() => {
+                setIsDrawing(false);
+                setShowCursor(false);
+              }} 
+              onTouchStart={() => setIsDrawing(true)} 
+              onTouchEnd={() => setIsDrawing(false)} 
+              onTouchMove={scratch} 
+              className="rounded-2xl shadow-lg touch-none" 
+              style={{
+            cursor: 'none',
             width: "400px",
             height: "300px"
           }} />
