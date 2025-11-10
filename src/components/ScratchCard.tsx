@@ -151,6 +151,9 @@ export default function ScratchCard({
                   src={coinCursor} 
                   alt="Cursor moeda" 
                   className="w-full h-full object-contain drop-shadow-lg"
+                  style={{
+                    filter: 'brightness(1.3) contrast(1.2) saturate(1.4)'
+                  }}
                 />
               </div>
             )}
