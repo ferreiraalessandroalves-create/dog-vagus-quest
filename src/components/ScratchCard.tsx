@@ -122,13 +122,6 @@ export default function ScratchCard({
 
         <div className="flex flex-col items-center space-y-6">
           <div className="relative">
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="text-center p-8 rounded-2xl w-[400px] h-[300px] flex flex-col items-center justify-center">
-                <p className="text-8xl font-bold text-success mb-2">60%</p>
-                <p className="text-xl font-semibold text-accent">OFF</p>
-              </div>
-            </div>
-            
             <canvas ref={canvasRef} onMouseDown={() => setIsDrawing(true)} onMouseUp={() => setIsDrawing(false)} onMouseMove={scratch} onMouseLeave={() => setIsDrawing(false)} onTouchStart={() => setIsDrawing(true)} onTouchEnd={() => setIsDrawing(false)} onTouchMove={scratch} className="cursor-pointer rounded-2xl shadow-lg touch-none" style={{
             width: "400px",
             height: "300px"
