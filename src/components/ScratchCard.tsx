@@ -137,6 +137,14 @@ export default function ScratchCard({
 
         <div className="flex flex-col items-center space-y-6">
           <div className="relative">
+            {/* Conteúdo revelado ao raspar */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="text-center">
+                <p className="text-8xl font-bold text-success mb-2">61%</p>
+                <p className="text-2xl font-semibold text-accent">DE DESCONTO</p>
+              </div>
+            </div>
+            
             {showCursor && (
               <div 
                 className="fixed pointer-events-none z-50"
@@ -204,7 +212,7 @@ export default function ScratchCard({
               <div className="text-6xl">🤩</div>
               <h2 className="text-3xl font-bold">Woo hoo!</h2>
               <p className="text-muted-foreground">Você ganhou um desconto</p>
-              <p className="text-5xl font-bold text-accent">60% off</p>
+              <p className="text-5xl font-bold text-accent">61% off</p>
               <p className="text-sm text-muted-foreground">
                 *Este desconto será aplicado automaticamente
               </p>
