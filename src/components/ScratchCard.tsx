@@ -122,7 +122,8 @@ export default function ScratchCard({
 
         <div className="flex flex-col items-center space-y-6">
           <div className="relative">
-            <canvas ref={canvasRef} onMouseDown={() => setIsDrawing(true)} onMouseUp={() => setIsDrawing(false)} onMouseMove={scratch} onMouseLeave={() => setIsDrawing(false)} onTouchStart={() => setIsDrawing(true)} onTouchEnd={() => setIsDrawing(false)} onTouchMove={scratch} className="cursor-pointer rounded-2xl shadow-lg touch-none" style={{
+            <canvas ref={canvasRef} onMouseDown={() => setIsDrawing(true)} onMouseUp={() => setIsDrawing(false)} onMouseMove={scratch} onMouseLeave={() => setIsDrawing(false)} onTouchStart={() => setIsDrawing(true)} onTouchEnd={() => setIsDrawing(false)} onTouchMove={scratch} className="rounded-2xl shadow-lg touch-none" style={{
+            cursor: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"0 0 32 32\"><circle cx=\"16\" cy=\"16\" r=\"14\" fill=\"%23FFD700\" stroke=\"%23DAA520\" stroke-width=\"2\"/><text x=\"16\" y=\"20\" font-size=\"16\" text-anchor=\"middle\" fill=\"%23B8860B\" font-weight=\"bold\">₿</text></svg>') 16 16, auto",
             width: "400px",
             height: "300px"
           }} />
