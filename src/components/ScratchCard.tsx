@@ -22,12 +22,31 @@ export default function ScratchCard({
     canvas.width = 400;
     canvas.height = 300;
 
-    // Draw scratch-off layer with gradient
+    // Draw scratch-off layer with golden gradient
     const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-    gradient.addColorStop(0, "#A8E6CF");
-    gradient.addColorStop(1, "#7ED6B0");
+    gradient.addColorStop(0, "#F4C430");
+    gradient.addColorStop(0.5, "#DAA520");
+    gradient.addColorStop(1, "#B8860B");
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Add watermark text pattern
+    ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
+    ctx.font = "bold 16px Arial";
+    ctx.textAlign = "left";
+    
+    // Create repeating watermark pattern
+    const watermarkText = "Canino Obediente 360°";
+    const spacing = 180;
+    for (let y = 0; y < canvas.height + 50; y += 50) {
+      for (let x = 0; x < canvas.width + spacing; x += spacing) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(-20 * Math.PI / 180);
+        ctx.fillText(watermarkText, 0, 0);
+        ctx.restore();
+      }
+    }
 
     // Add scratch instruction
     ctx.fillStyle = "#2C3E50";
