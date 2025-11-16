@@ -130,24 +130,6 @@ const Index = () => {
       <AnimatePresence mode="wait">
         {/* Step 0: Intro */}
         {state.currentStep === 0 && <QuizIntro key="intro" onStart={nextStep} />}
-        
-        {/* Reset button - visible on all steps except intro */}
-        {state.currentStep > 0 && state.currentStep < 28 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="fixed bottom-4 left-4 z-50"
-          >
-            <Button
-              onClick={resetQuiz}
-              variant="outline"
-              size="sm"
-              className="bg-background/80 backdrop-blur-sm hover:bg-background"
-            >
-              Reiniciar Quiz
-            </Button>
-          </motion.div>
-        )}
 
         {/* Step 1: Dog age */}
         {state.currentStep === 1 && (
