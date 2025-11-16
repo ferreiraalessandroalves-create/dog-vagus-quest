@@ -624,7 +624,7 @@ const Index = () => {
                 { value: "food", label: "Comida", emoji: "🍖" },
                 { value: "walks", label: "Passeios ou atividades ao ar livre", emoji: "🏡" },
                 { value: "family", label: "Ver membros da família", emoji: "👨‍👩‍👧" },
-                { value: "small_animals", label: "Pequenos animais (como esquilos ou gatos)", emoji: "🐿️" },
+                { value: "small_animals", label: "Pequenos animais", emoji: "🐿️" },
                 { value: "other", label: "Outro", emoji: "➕" },
               ]}
               selected={state.answers.q17 || []}
