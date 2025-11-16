@@ -808,7 +808,7 @@ const Index = () => {
         {state.currentStep === 29 && (
           <LoadingScreen
             key="loading-2"
-            progress={82}
+            progress={61}
             text="Preparando seu plano personalizado..."
             showPopup={true}
             popupQuestion="Pronto para finalizar o que começou? Muitos donos começam mas desistem. Você está comprometido?"
