@@ -20,6 +20,7 @@ import ScratchCard from "@/components/ScratchCard";
 import InputQuestion from "@/components/InputQuestion";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useQuizSubmission } from "@/hooks/useQuizSubmission";
 import puppyImg from "@/assets/puppy.png";
 import adolescentImg from "@/assets/adolescent.png";
 import adultImg from "@/assets/adult.png";
@@ -34,6 +35,7 @@ interface QuizState {
 }
 
 const Index = () => {
+  const { submitQuiz, isLoading } = useQuizSubmission();
   const [state, setState] = useState<QuizState>({
     currentStep: 0,
     answers: {},
@@ -840,8 +842,43 @@ const Index = () => {
           <EmailCapture
             key="email"
             dogName={state.dogName || "seu cachorro"}
-            onSubmit={(email) => {
+            onSubmit={async (email) => {
               setState((p) => ({ ...p, userEmail: email }));
+              
+              // Preparar dados para salvar
+              const results = calculateResults();
+              const quizData = {
+                user_email: email,
+                dog_name: state.dogName,
+                dog_age: state.answers.dog_age,
+                dog_gender: state.answers.dog_gender,
+                dog_breed: state.answers.dog_breed,
+                pain_pulling: state.answers.pain_pulling,
+                pain_startles: state.answers.pain_startles,
+                pain_barking: state.answers.pain_barking,
+                pain_other_dogs: state.answers.pain_other_dogs,
+                pain_unexplained: state.answers.pain_unexplained,
+                pain_digestion: state.answers.pain_digestion,
+                pain_physical: state.answers.pain_physical,
+                pain_coming_home: state.answers.pain_coming_home,
+                pain_behaviors: state.answers.pain_behaviors,
+                pain_stress: state.answers.pain_stress,
+                pain_triggers: state.answers.pain_triggers,
+                excitement_triggers: state.answers.q17,
+                motivations: state.answers.q21,
+                main_goal: state.answers.q22,
+                time_available: state.answers.time,
+                previous_training: state.answers.previousTraining,
+                commitment: state.answers.commitment,
+                vagus_knowledge: state.answers.q19,
+                tension_level: results.tensionLevel,
+                main_problems: results.mainProblems,
+              };
+              
+              // Salvar no banco
+              await submitQuiz(quizData);
+              
+              // Continuar para o próximo step
               nextStep();
             }}
           />

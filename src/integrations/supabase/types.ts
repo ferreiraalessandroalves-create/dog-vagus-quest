@@ -14,7 +14,96 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      quiz_submissions: {
+        Row: {
+          commitment: string | null
+          created_at: string
+          dog_age: string | null
+          dog_breed: string | null
+          dog_gender: string | null
+          dog_name: string | null
+          excitement_triggers: string[] | null
+          id: string
+          main_goal: string | null
+          main_problems: string[] | null
+          motivations: string[] | null
+          pain_barking: number | null
+          pain_behaviors: string[] | null
+          pain_coming_home: string[] | null
+          pain_digestion: string | null
+          pain_other_dogs: number | null
+          pain_physical: string | null
+          pain_pulling: number | null
+          pain_startles: number | null
+          pain_stress: string | null
+          pain_triggers: string[] | null
+          pain_unexplained: number | null
+          previous_training: string | null
+          tension_level: number | null
+          time_available: string | null
+          user_email: string
+          vagus_knowledge: string | null
+        }
+        Insert: {
+          commitment?: string | null
+          created_at?: string
+          dog_age?: string | null
+          dog_breed?: string | null
+          dog_gender?: string | null
+          dog_name?: string | null
+          excitement_triggers?: string[] | null
+          id?: string
+          main_goal?: string | null
+          main_problems?: string[] | null
+          motivations?: string[] | null
+          pain_barking?: number | null
+          pain_behaviors?: string[] | null
+          pain_coming_home?: string[] | null
+          pain_digestion?: string | null
+          pain_other_dogs?: number | null
+          pain_physical?: string | null
+          pain_pulling?: number | null
+          pain_startles?: number | null
+          pain_stress?: string | null
+          pain_triggers?: string[] | null
+          pain_unexplained?: number | null
+          previous_training?: string | null
+          tension_level?: number | null
+          time_available?: string | null
+          user_email: string
+          vagus_knowledge?: string | null
+        }
+        Update: {
+          commitment?: string | null
+          created_at?: string
+          dog_age?: string | null
+          dog_breed?: string | null
+          dog_gender?: string | null
+          dog_name?: string | null
+          excitement_triggers?: string[] | null
+          id?: string
+          main_goal?: string | null
+          main_problems?: string[] | null
+          motivations?: string[] | null
+          pain_barking?: number | null
+          pain_behaviors?: string[] | null
+          pain_coming_home?: string[] | null
+          pain_digestion?: string | null
+          pain_other_dogs?: number | null
+          pain_physical?: string | null
+          pain_pulling?: number | null
+          pain_startles?: number | null
+          pain_stress?: string | null
+          pain_triggers?: string[] | null
+          pain_unexplained?: number | null
+          previous_training?: string | null
+          tension_level?: number | null
+          time_available?: string | null
+          user_email?: string
+          vagus_knowledge?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
