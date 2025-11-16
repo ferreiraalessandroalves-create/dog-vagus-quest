@@ -50,10 +50,6 @@ export function useQuizSubmission() {
       }
 
       console.log('✅ Dados salvos com sucesso:', result);
-      toast({
-        title: "✅ Sucesso!",
-        description: "Seus dados foram salvos com sucesso.",
-      });
       return { success: true, data: result };
     } catch (error) {
       console.error('Erro ao salvar:', error);
