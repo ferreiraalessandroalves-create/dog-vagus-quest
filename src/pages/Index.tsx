@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import ProgressBar from "@/components/ProgressBar";
+import { enviarParaGoogleSheets } from '@/lib/googleSheets';
 import QuizIntro from "@/components/QuizIntro";
 import QuestionCard from "@/components/QuestionCard";
 import MultipleChoice from "@/components/MultipleChoice";
@@ -826,9 +827,35 @@ const Index = () => {
             dogName={state.dogName || "seu cachorro"}
             onSubmit={async (email) => {
               setState((p) => ({ ...p, userEmail: email }));
-              
-              // Preparar dados para salvar
               const results = calculateResults();
+              
+              // Dados para Google Sheets
+              const dadosQuiz = {
+                email,
+                dogName: state.dogName || '',
+                dogAge: state.answers.dog_age,
+                dogGender: state.answers.dog_gender,
+                dogBreed: state.answers.dog_breed,
+                painPulling: state.answers.pain_pulling,
+                painBarking: state.answers.pain_barking,
+                painStartles: state.answers.pain_startles,
+                painOtherDogs: state.answers.pain_other_dogs,
+                painUnexplained: state.answers.pain_unexplained,
+                tensionLevel: results.tensionLevel,
+                mainProblems: results.mainProblems,
+                mainGoal: state.answers.q22,
+                timeAvailable: state.answers.time,
+                commitment: state.answers.commitment,
+              };
+              
+              // Enviar para Google Sheets
+              try {
+                await enviarParaGoogleSheets(dadosQuiz);
+              } catch (error) {
+                console.error(error);
+              }
+              
+              // Dados para banco de dados
               const quizData = {
                 user_email: email,
                 dog_name: state.dogName,
