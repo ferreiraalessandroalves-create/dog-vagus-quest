@@ -932,21 +932,16 @@ const Index = () => {
                 transition={{ delay: 0.2 }}
                 className="md:hidden flex flex-col items-center w-full max-w-md mx-auto"
               >
-                <img
-                  src={ofertaMobile}
-                  alt="Oferta limitada - 61% de desconto"
-                  className="w-full max-w-[320px] mx-auto"
-                />
                 <a 
                   href="https://pay.kiwify.com.br/ANFvpl3" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="mt-6 w-full max-w-[300px]"
                 >
-                  <button className="w-full bg-white text-gray-800 font-semibold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all text-lg flex items-center justify-center gap-2">
-                    Obter 61% de desconto
-                    <span className="text-xl">→</span>
-                  </button>
+                  <img
+                    src={ofertaMobile}
+                    alt="Oferta limitada - 61% de desconto"
+                    className="w-full max-w-[340px] mx-auto"
+                  />
                 </a>
               </motion.div>
 
