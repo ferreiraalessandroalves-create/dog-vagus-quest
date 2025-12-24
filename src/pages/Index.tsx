@@ -27,6 +27,7 @@ import adolescentImg from "@/assets/adolescent.png";
 import adultImg from "@/assets/adult.png";
 import seniorImg from "@/assets/senior.png";
 import ofertaLimitada from "@/assets/oferta-desconto.png";
+import ofertaMobile from "@/assets/imagem_final.png";
 
 interface QuizState {
   currentStep: number;
@@ -918,17 +919,43 @@ const Index = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden"
+            className="min-h-screen flex flex-col items-center justify-center p-4 md:p-6 relative overflow-hidden"
             style={{
               background: "linear-gradient(135deg, #FF6B6B 0%, #EE5A6F 100%)",
             }}
           >
-            <div className="w-full px-2 md:px-8 relative z-10 flex items-center justify-center">
+            <div className="w-full relative z-10 flex flex-col items-center justify-center">
+              {/* Mobile version */}
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="relative w-full max-w-[95vw] sm:max-w-2xl md:max-w-4xl mx-auto"
+                className="md:hidden flex flex-col items-center w-full max-w-md mx-auto"
+              >
+                <img
+                  src={ofertaMobile}
+                  alt="Oferta limitada - 61% de desconto"
+                  className="w-full max-w-[320px] mx-auto"
+                />
+                <a 
+                  href="https://pay.kiwify.com.br/ANFvpl3" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="mt-6 w-full max-w-[300px]"
+                >
+                  <button className="w-full bg-white text-gray-800 font-semibold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all text-lg flex items-center justify-center gap-2">
+                    Obter 61% de desconto
+                    <span className="text-xl">→</span>
+                  </button>
+                </a>
+              </motion.div>
+
+              {/* Desktop version */}
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className="hidden md:block relative w-full max-w-2xl lg:max-w-4xl mx-auto px-8"
               >
                 <a 
                   href="https://pay.kiwify.com.br/ANFvpl3" 
@@ -939,7 +966,7 @@ const Index = () => {
                   <img
                     src={ofertaLimitada}
                     alt="Oferta limitada - 61% de desconto"
-                    className="w-full rounded-2xl md:rounded-3xl shadow-2xl"
+                    className="w-full rounded-3xl shadow-2xl"
                   />
                 </a>
               </motion.div>
