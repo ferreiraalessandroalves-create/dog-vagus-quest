@@ -6,10 +6,12 @@ import { Lock } from "lucide-react";
 interface EmailCaptureProps {
   dogName: string;
   onSubmit: (email: string) => void;
+  disabled?: boolean;
 }
 export default function EmailCapture({
   dogName,
-  onSubmit
+  onSubmit,
+  disabled = false
 }: EmailCaptureProps) {
   const [email, setEmail] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -80,8 +82,8 @@ export default function EmailCapture({
             </p>
           </div>
 
-          <Button onClick={handleSubmit} disabled={!email || !email.includes("@")} size="lg" className="w-full h-14 text-lg bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl">
-            Continuar
+          <Button onClick={handleSubmit} disabled={disabled || !email || !email.includes("@")} size="lg" className="w-full h-14 text-lg bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl">
+            {disabled ? "Enviando..." : "Continuar"}
           </Button>
         </div>
       </div>

@@ -38,6 +38,7 @@ interface QuizState {
 
 const Index = () => {
   const { submitQuiz, isLoading } = useQuizSubmission();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [state, setState] = useState<QuizState>({
     currentStep: 0,
     answers: {},
@@ -826,7 +827,13 @@ const Index = () => {
           <EmailCapture
             key="email"
             dogName={state.dogName || "seu cachorro"}
+            disabled={isSubmitting}
             onSubmit={async (email) => {
+              if (isSubmitting) return; // Previne múltiplos cliques
+              
+              setIsSubmitting(true);
+              console.log('📧 Email capturado:', email);
+              
               setState((p) => ({ ...p, userEmail: email }));
               const results = calculateResults();
               
@@ -852,8 +859,11 @@ const Index = () => {
               // Enviar para Google Sheets
               try {
                 await enviarParaGoogleSheets(dadosQuiz);
+                console.log('✅ Enviado com sucesso!');
               } catch (error) {
-                console.error(error);
+                console.error('❌ Erro:', error);
+              } finally {
+                setIsSubmitting(false);
               }
               
               // Dados para banco de dados
