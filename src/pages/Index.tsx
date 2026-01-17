@@ -19,6 +19,8 @@ import EmailCapture from "@/components/EmailCapture";
 import ProgressChart from "@/components/ProgressChart";
 import ScratchCard from "@/components/ScratchCard";
 import InputQuestion from "@/components/InputQuestion";
+import ExitModalBefore from "@/components/ExitModalBefore";
+import ExitModalAfter from "@/components/ExitModalAfter";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useQuizSubmission } from "@/hooks/useQuizSubmission";
@@ -45,6 +47,45 @@ const Index = () => {
     dogName: "",
     userEmail: "",
   });
+
+  // Exit Intent States
+  const [emailCaptured, setEmailCaptured] = useState(false);
+  const [exitIntentTriggered, setExitIntentTriggered] = useState(false);
+  const [showExitModal, setShowExitModal] = useState<'before' | 'after' | null>(null);
+
+  // Exit Intent - Detecção de mouse saindo pela parte superior
+  useEffect(() => {
+    const handleMouseOut = (e: MouseEvent) => {
+      if (e.clientY <= 0 && !exitIntentTriggered) {
+        setExitIntentTriggered(true);
+        setShowExitModal(emailCaptured ? 'after' : 'before');
+      }
+    };
+    document.addEventListener('mouseout', handleMouseOut);
+    return () => document.removeEventListener('mouseout', handleMouseOut);
+  }, [emailCaptured, exitIntentTriggered]);
+
+  // Exit Intent - Tentativa de fechar aba (beforeunload)
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (!exitIntentTriggered) {
+        const message = emailCaptured 
+          ? '⚠️ ESPERE! Garantir 61% de desconto antes de sair?'
+          : 'Não saia antes de receber seu plano personalizado de GRAÇA!';
+        e.preventDefault();
+        e.returnValue = message;
+        return message;
+      }
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [emailCaptured, exitIntentTriggered]);
+
+  // Fechar modal
+  const closeExitModal = () => {
+    setShowExitModal(null);
+    setExitIntentTriggered(false);
+  };
 
 
   const handleAnswer = (questionId: string, value: any) => {
@@ -832,6 +873,7 @@ const Index = () => {
               if (isSubmitting) return; // Previne múltiplos cliques
               
               setIsSubmitting(true);
+              setEmailCaptured(true); // Marca email como capturado para exit intent
               console.log('📧 Email capturado:', email);
               
               setState((p) => ({ ...p, userEmail: email }));
@@ -979,6 +1021,16 @@ const Index = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Exit Intent Modals */}
+      <ExitModalBefore 
+        isOpen={showExitModal === 'before'} 
+        onClose={closeExitModal} 
+      />
+      <ExitModalAfter 
+        isOpen={showExitModal === 'after'} 
+        onClose={closeExitModal} 
+      />
     </div>
   );
 };
