@@ -67,8 +67,8 @@ const ExitModalAfter = ({ isOpen, onClose }: ExitModalAfterProps) => {
               <p>Antes de sair...</p>
               <p>Que tal garantir seu plano com 61% de desconto agora mesmo?</p>
               <p>
-                De <span className="line-through opacity-80">R$ 174,00</span> por apenas{' '}
-                <span className="text-[#fef08a] text-xl md:text-[1.8rem] font-bold">R$ 67,90</span>
+                De <span className="line-through opacity-80">R$ 147,00</span> por apenas{' '}
+                <span className="text-[#fef08a] text-xl md:text-[1.8rem] font-bold">R$ 57,33</span>
               </p>
               <p className="text-lg font-semibold">⏰ Esta oferta expira em 15 minutos!</p>
             </div>
