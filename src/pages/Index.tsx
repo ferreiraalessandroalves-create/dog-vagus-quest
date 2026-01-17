@@ -982,18 +982,25 @@ const Index = () => {
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="md:hidden flex flex-col items-center w-full max-w-md mx-auto"
+                className="md:hidden flex flex-col items-center w-full max-w-md mx-auto gap-6"
               >
+                <img
+                  src={ofertaMobile}
+                  alt="Oferta limitada - 61% de desconto"
+                  className="w-full max-w-[340px] mx-auto"
+                />
                 <a 
                   href="https://pay.kiwify.com.br/ANFvpl3" 
                   target="_blank" 
                   rel="noopener noreferrer"
+                  className="w-full max-w-[340px]"
                 >
-                  <img
-                    src={ofertaMobile}
-                    alt="Oferta limitada - 61% de desconto"
-                    className="w-full max-w-[340px] mx-auto"
-                  />
+                  <Button
+                    size="lg"
+                    className="w-full bg-white text-[#FF6B6B] hover:bg-white/90 font-bold text-lg py-6 rounded-full shadow-xl animate-pulse"
+                  >
+                    Começar Avaliação Gratuita
+                  </Button>
                 </a>
               </motion.div>
 
