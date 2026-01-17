@@ -74,6 +74,22 @@ export default function QuizIntro({
           <img src={heroImage} alt="Cachorro feliz com seu dono" className="w-full h-full object-cover" />
         </motion.div>
 
+        {/* CTA Button - Below Image */}
+        <motion.div initial={{
+        y: 20,
+        opacity: 0
+      }} animate={{
+        y: 0,
+        opacity: 1
+      }} transition={{
+        delay: 0.55
+      }} className="flex justify-center pt-4">
+          <Button onClick={onStart} size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group">
+            Começar Avaliação Gratuita
+            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </Button>
+        </motion.div>
+
         {/* Benefits */}
         <motion.div initial={{
         y: 20,
@@ -88,22 +104,6 @@ export default function QuizIntro({
               <CheckCircle2 className="w-5 h-5 text-success" />
               <span className="text-foreground">{benefit}</span>
             </div>)}
-        </motion.div>
-
-        {/* CTA Button */}
-        <motion.div initial={{
-        y: 20,
-        opacity: 0
-      }} animate={{
-        y: 0,
-        opacity: 1
-      }} transition={{
-        delay: 0.7
-      }} className="flex justify-center pt-4">
-          <Button onClick={onStart} size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group">
-            Começar Avaliação Gratuita
-            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
         </motion.div>
 
         {/* Trust badge */}
