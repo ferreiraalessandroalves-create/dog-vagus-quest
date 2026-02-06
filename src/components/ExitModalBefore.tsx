@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from "framer-motion";
 
 interface ExitModalBeforeProps {
   isOpen: boolean;
@@ -15,52 +15,58 @@ const ExitModalBefore = ({ isOpen, onClose }: ExitModalBeforeProps) => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
           className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
-          style={{ backgroundColor: 'rgba(0,0,0,0.8)' }}
+          style={{ backgroundColor: "rgba(0,0,0,0.85)" }}
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.3 }}
-            className="relative w-full max-w-[600px] rounded-[30px] p-10 md:p-[60px] text-center"
+            className="relative w-full max-w-md rounded-2xl p-8 text-center"
             style={{
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              boxShadow: '0 20px 60px rgba(0,0,0,0.3)'
+              background: "hsl(230 20% 12%)",
+              border: "2px solid hsl(230 15% 25%)",
             }}
           >
-            {/* Botão X */}
+            {/* Close button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 text-white text-4xl md:text-5xl font-light hover:opacity-80 transition-opacity leading-none"
+              className="absolute top-4 right-4 text-white/60 text-3xl font-light hover:text-white transition-colors leading-none"
               aria-label="Fechar"
             >
               ×
             </button>
 
             {/* Emoji */}
-            <div className="text-5xl md:text-6xl mb-5">⚠️</div>
+            <div className="text-5xl mb-4">⚠️</div>
 
-            {/* Título */}
-            <h2 className="text-2xl md:text-[2.5rem] font-black text-white mb-6 leading-tight">
+            {/* Title */}
+            <h2 className="text-xl md:text-2xl font-bold text-white mb-4 leading-tight">
               Espere! Não saia agora...
             </h2>
 
-            {/* Texto principal */}
-            <div className="text-base md:text-[1.3rem] text-white leading-[1.8] mb-8 space-y-4">
-              <p>Não saia antes de receber seu plano personalizado de <strong>GRAÇA!</strong></p>
+            {/* Text */}
+            <div className="text-sm md:text-base text-white/80 leading-relaxed mb-6 space-y-3">
               <p>
-                Você está a apenas 1 minuto de descobrir exatamente como 
-                transformar o comportamento do seu cachorro.
+                Não saia antes de receber seu plano personalizado de{" "}
+                <strong className="text-white">GRAÇA!</strong>
               </p>
               <p>
-                Mais de <span className="text-[#fef08a] font-bold">250.000</span> pessoas já receberam o plano gratuito.
+                Você está a apenas 1 minuto de descobrir como transformar o comportamento do seu cachorro.
+              </p>
+              <p>
+                Mais de{" "}
+                <span style={{ color: "hsl(168 60% 54%)" }} className="font-bold">
+                  25.000
+                </span>{" "}
+                pessoas já receberam o plano gratuito.
               </p>
             </div>
 
             {/* CTA */}
             <button
               onClick={onClose}
-              className="bg-[#10b981] text-white px-8 md:px-[50px] py-4 md:py-5 rounded-full text-lg md:text-[1.2rem] font-bold hover:bg-[#059669] transition-colors shadow-lg"
+              className="cta-button"
             >
               ✓ Ok, Quero Meu Plano Gratuito
             </button>

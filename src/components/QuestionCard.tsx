@@ -24,16 +24,21 @@ export default function QuestionCard({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.3 }}
-      className="min-h-screen flex flex-col items-center justify-center px-4 py-20"
+      className="min-h-screen flex flex-col px-4 pt-16 pb-8 md:pt-20 md:pb-12"
     >
-      <div className="max-w-3xl w-full space-y-8">
+      <div className="w-full max-w-lg mx-auto flex-1 flex flex-col">
+        {/* Quiz logo */}
+        <div className="quiz-header">
+          <span className="quiz-logo">Canino Obediente 360°</span>
+        </div>
+
         {/* Back button */}
         {showBack && onBack && (
           <Button
             variant="ghost"
             size="sm"
             onClick={onBack}
-            className="mb-4"
+            className="self-start mb-4 text-muted-foreground hover:text-foreground"
           >
             <ChevronLeft className="w-4 h-4 mr-1" />
             Voltar
@@ -41,19 +46,15 @@ export default function QuestionCard({
         )}
 
         {/* Question header */}
-        <div className="text-center space-y-3">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
-            {title}
-          </h2>
+        <div className="text-center mb-6">
+          <h2 className="question-title">{title}</h2>
           {subtitle && (
-            <p className="text-base md:text-lg text-muted-foreground">
-              {subtitle}
-            </p>
+            <p className="question-subtitle">{subtitle}</p>
           )}
         </div>
 
         {/* Question content */}
-        <div className="space-y-4">{children}</div>
+        <div className="flex-1 flex flex-col space-y-3">{children}</div>
       </div>
     </motion.div>
   );

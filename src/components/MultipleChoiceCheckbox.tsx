@@ -38,21 +38,18 @@ export default function MultipleChoiceCheckbox({
           <button
             onClick={() => handleToggle(option.value)}
             className={cn(
-              "w-full p-4 rounded-xl border-2 transition-all duration-300",
-              "flex items-center gap-4 text-left hover:shadow-md",
-              selected.includes(option.value)
-                ? "border-accent bg-accent/10"
-                : "border-border bg-card hover:border-accent/50"
+              "option-card w-full",
+              selected.includes(option.value) && "selected"
             )}
           >
             <Checkbox
               checked={selected.includes(option.value)}
-              className="pointer-events-none"
+              className="pointer-events-none border-white/30 data-[state=checked]:bg-accent data-[state=checked]:border-accent"
             />
             {option.emoji && (
-              <span className="text-2xl">{option.emoji}</span>
+              <span className="text-xl">{option.emoji}</span>
             )}
-            <span className="font-medium flex-1">{option.label}</span>
+            <span className="text-sm font-medium flex-1 text-left">{option.label}</span>
           </button>
         </motion.div>
       ))}

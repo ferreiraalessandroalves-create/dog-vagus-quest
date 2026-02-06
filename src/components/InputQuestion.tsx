@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
+import { ChevronLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
 
 interface InputQuestionProps {
   title: string;
@@ -27,56 +26,53 @@ export default function InputQuestion({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className="min-h-screen flex flex-col items-center justify-center px-4 py-20"
+      className="min-h-screen flex flex-col px-4 pt-16 pb-8"
     >
-      <div className="max-w-xl w-full space-y-8">
-        <Button variant="ghost" size="sm" onClick={onBack} className="mb-4">
-          <svg
-            className="w-4 h-4 mr-1"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
+      <div className="w-full max-w-lg mx-auto flex-1 flex flex-col">
+        {/* Logo */}
+        <div className="quiz-header">
+          <span className="quiz-logo">Canino Obediente 360°</span>
+        </div>
+
+        {/* Back button */}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={onBack}
+          className="self-start mb-4 text-muted-foreground hover:text-foreground"
+        >
+          <ChevronLeft className="w-4 h-4 mr-1" />
           Voltar
         </Button>
 
-        <div className="text-center space-y-3">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
-            {title}
-          </h2>
-          {subtitle && (
-            <p className="text-base md:text-lg text-muted-foreground">{subtitle}</p>
-          )}
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h2 className="question-title">{title}</h2>
+          {subtitle && <p className="question-subtitle">{subtitle}</p>}
         </div>
 
-        <div className="space-y-6">
-          <Input
-            type="text"
-            placeholder={placeholder}
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-            className="h-14 text-lg"
-            autoFocus
-          />
+        {/* Input */}
+        <input
+          type="text"
+          placeholder={placeholder}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          className="quiz-input mb-6"
+          autoFocus
+        />
 
-          <div className="flex justify-center">
-            <Button
-              onClick={onNext}
-              disabled={!value.trim()}
-              size="lg"
-              className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8"
-            >
-              Continuar
-            </Button>
-          </div>
-        </div>
+        {/* Spacer */}
+        <div className="flex-1" />
+
+        {/* CTA */}
+        <button
+          onClick={onNext}
+          disabled={!value.trim()}
+          className="cta-button group"
+        >
+          Continuar
+          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        </button>
       </div>
     </motion.div>
   );

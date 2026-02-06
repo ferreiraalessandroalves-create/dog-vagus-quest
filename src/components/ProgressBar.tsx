@@ -6,15 +6,21 @@ interface ProgressBarProps {
 
 export default function ProgressBar({ percent }: ProgressBarProps) {
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-card shadow-sm">
-      <div className="h-1.5 bg-muted">
+    <>
+      {/* Progress bar container */}
+      <div className="progress-bar-container">
         <motion.div
-          className="h-full bg-gradient-to-r from-accent via-secondary to-primary"
+          className="progress-bar-fill"
           initial={{ width: 0 }}
           animate={{ width: `${Math.min(percent, 100)}%` }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         />
       </div>
-    </div>
+      
+      {/* Progress percentage indicator */}
+      <div className="progress-text">
+        {Math.round(percent)}%
+      </div>
+    </>
   );
 }

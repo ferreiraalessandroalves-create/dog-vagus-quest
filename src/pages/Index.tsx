@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import ProgressBar from "@/components/ProgressBar";
-import { enviarParaGoogleSheets } from '@/lib/googleSheets';
+import { enviarParaGoogleSheets } from "@/lib/googleSheets";
 import QuizIntro from "@/components/QuizIntro";
 import QuestionCard from "@/components/QuestionCard";
 import MultipleChoice from "@/components/MultipleChoice";
@@ -21,8 +21,7 @@ import ScratchCard from "@/components/ScratchCard";
 import InputQuestion from "@/components/InputQuestion";
 import ExitModalBefore from "@/components/ExitModalBefore";
 import ExitModalAfter from "@/components/ExitModalAfter";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
+import { ArrowRight } from "lucide-react";
 import { useQuizSubmission } from "@/hooks/useQuizSubmission";
 import puppyImg from "@/assets/puppy.png";
 import adolescentImg from "@/assets/adolescent.png";
@@ -35,6 +34,7 @@ interface QuizState {
   currentStep: number;
   answers: Record<string, any>;
   dogName: string;
+  ownerName: string;
   userEmail: string;
 }
 
@@ -45,54 +45,52 @@ const Index = () => {
     currentStep: 0,
     answers: {},
     dogName: "",
+    ownerName: "",
     userEmail: "",
   });
 
   // Exit Intent States
   const [emailCaptured, setEmailCaptured] = useState(false);
   const [exitIntentTriggered, setExitIntentTriggered] = useState(false);
-  const [showExitModal, setShowExitModal] = useState<'before' | 'after' | null>(null);
+  const [showExitModal, setShowExitModal] = useState<"before" | "after" | null>(null);
 
-  // Exit Intent - Detecção de mouse saindo pela parte superior
+  // Exit Intent - Mouse leaving viewport
   useEffect(() => {
     const handleMouseOut = (e: MouseEvent) => {
       if (e.clientY <= 0 && !exitIntentTriggered) {
         setExitIntentTriggered(true);
-        setShowExitModal(emailCaptured ? 'after' : 'before');
+        setShowExitModal(emailCaptured ? "after" : "before");
       }
     };
-    document.addEventListener('mouseout', handleMouseOut);
-    return () => document.removeEventListener('mouseout', handleMouseOut);
+    document.addEventListener("mouseout", handleMouseOut);
+    return () => document.removeEventListener("mouseout", handleMouseOut);
   }, [emailCaptured, exitIntentTriggered]);
 
-  // Exit Intent - Tentativa de fechar aba (beforeunload)
+  // Exit Intent - Page close
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       if (!exitIntentTriggered) {
-        const message = emailCaptured 
-          ? '⚠️ ESPERE! Garantir 61% de desconto antes de sair?'
-          : 'Não saia antes de receber seu plano personalizado de GRAÇA!';
+        const message = emailCaptured
+          ? "⚠️ ESPERE! Garantir 61% de desconto antes de sair?"
+          : "Não saia antes de receber seu plano personalizado de GRAÇA!";
         e.preventDefault();
         e.returnValue = message;
         return message;
       }
     };
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
   }, [emailCaptured, exitIntentTriggered]);
 
-  // Fechar modal
   const closeExitModal = () => {
     setShowExitModal(null);
     setExitIntentTriggered(false);
   };
 
-
   const handleAnswer = (questionId: string, value: any) => {
     setState((prev) => ({
       ...prev,
       answers: { ...prev.answers, [questionId]: value },
-      timestamp: Date.now(),
     }));
   };
 
@@ -109,25 +107,13 @@ const Index = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const resetQuiz = () => {
-    setState({
-      currentStep: 0,
-      answers: {},
-      dogName: "",
-      userEmail: "",
-    });
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   const calculateResults = () => {
     const painScores = Object.keys(state.answers)
       .filter((k) => k.startsWith("pain_") && typeof state.answers[k] === "number")
       .map((k) => state.answers[k]);
 
-    const avgScore = painScores.length > 0 
-      ? painScores.reduce((a, b) => a + b, 0) / painScores.length 
-      : 5;
-    
+    const avgScore =
+      painScores.length > 0 ? painScores.reduce((a, b) => a + b, 0) / painScores.length : 5;
     const tensionLevel = Math.min(11.5, (avgScore / 5) * 11.5);
 
     const problems: string[] = [];
@@ -153,21 +139,44 @@ const Index = () => {
   const getTriggers = () => {
     const triggers: string[] = [];
     const answers = state.answers;
-    
+
     if (answers.pain_pulling >= 4) triggers.push("Puxar a coleira durante passeios");
     if (answers.pain_barking >= 4) triggers.push("Latidos excessivos para estímulos externos");
     if (answers.pain_startles >= 4) triggers.push("Reações de medo a sons e movimentos");
     if (triggers.length === 0) triggers.push("Comportamentos de ansiedade geral");
-    
+
     return triggers;
   };
+
+  /*
+   * NOVO FLUXO REORGANIZADO:
+   * 0: Intro
+   * 1-3: Qualificação (idade, gênero, raça)
+   * 4: Social Proof
+   * 5-17: Perguntas SPIN (dores)
+   * 18: Micro Result
+   * 19-20: Educação (nervo vago)
+   * 21: Motivação
+   * 22: Objetivo principal
+   * 23: Authority
+   * 24: Nome do cachorro
+   * 25: ⭐ EMAIL CAPTURE (ANTES DA OFERTA!)
+   * 26: Diagnosis
+   * 27: Tempo disponível
+   * 28: Speed Proof
+   * 29-31: Loading screens
+   * 32: Testimonial
+   * 33: Chart
+   * 34: Scratch/Reveal
+   * 35+: Oferta final
+   */
 
   const totalSteps = 36;
   const progressPercent = (state.currentStep / totalSteps) * 100;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
-      {state.currentStep > 0 && state.currentStep < 28 && (
+    <div className="min-h-screen">
+      {state.currentStep > 0 && state.currentStep < 29 && (
         <ProgressBar percent={progressPercent} />
       )}
 
@@ -186,26 +195,10 @@ const Index = () => {
             <MultipleChoice
               variant="card"
               options={[
-                {
-                  value: "puppy",
-                  label: "Filhote (Menos de 6 meses)",
-                  image: puppyImg,
-                },
-                {
-                  value: "adolescent",
-                  label: "Adolescente (6-18 meses)",
-                  image: adolescentImg,
-                },
-                {
-                  value: "adult",
-                  label: "Adulto (1,5-7 anos)",
-                  image: adultImg,
-                },
-                {
-                  value: "senior",
-                  label: "Idoso (Acima de 7 anos)",
-                  image: seniorImg,
-                },
+                { value: "puppy", label: "Filhote (< 6 meses)", image: puppyImg },
+                { value: "adolescent", label: "Adolescente (6-18 meses)", image: adolescentImg },
+                { value: "adult", label: "Adulto (1,5-7 anos)", image: adultImg },
+                { value: "senior", label: "Idoso (7+ anos)", image: seniorImg },
               ]}
               selected={state.answers.dog_age}
               onSelect={(value) => {
@@ -218,11 +211,7 @@ const Index = () => {
 
         {/* Step 2: Gender */}
         {state.currentStep === 2 && (
-          <QuestionCard
-            key="gender"
-            title="Seu cachorro é..."
-            onBack={prevStep}
-          >
+          <QuestionCard key="gender" title="Seu cachorro é..." onBack={prevStep}>
             <MultipleChoice
               options={[
                 { value: "male", label: "Macho", emoji: "♂️" },
@@ -242,7 +231,7 @@ const Index = () => {
           <QuestionCard
             key="breed"
             title="Escolha a raça do seu cachorro"
-            subtitle="Isso ajuda a personalizar o desafio de acordo com as tendências comportamentais"
+            subtitle="Isso ajuda a personalizar o desafio"
             onBack={prevStep}
           >
             <MultipleChoice
@@ -265,11 +254,9 @@ const Index = () => {
         )}
 
         {/* Step 4: Social Proof */}
-        {state.currentStep === 4 && (
-          <SocialProof key="social" onContinue={nextStep} />
-        )}
+        {state.currentStep === 4 && <SocialProof key="social" onContinue={nextStep} />}
 
-        {/* Step 5: Pain question - Pulling */}
+        {/* Step 5: Pain - Pulling */}
         {state.currentStep === 5 && (
           <QuestionCard
             key="pulling"
@@ -282,32 +269,22 @@ const Index = () => {
               onSelect={(value) => handleAnswer("pain_pulling", value)}
             />
             {state.answers.pain_pulling !== undefined && (
-              <div className="flex justify-center pt-6">
-                <Button
-                  onClick={nextStep}
-                  size="lg"
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8"
-                >
+              <div className="mt-6">
+                <button onClick={nextStep} className="cta-button group">
                   Próximo
-                </Button>
+                  <ArrowRight className="w-5 h-5" />
+                </button>
               </div>
             )}
             {state.answers.pain_pulling >= 4 && (
-              <div className="mt-6 p-4 bg-warning/10 border border-warning/20 rounded-xl">
-                <p className="text-sm">
-                  <strong>Você sabia que...</strong>
-                  <br />
-                  86% dos donos de cães que lidam com puxões na coleira também
-                  notam sinais de tensão no nervo vago em seus cachorros. As
-                  próximas perguntas ajudarão a determinar se o problema está
-                  ligado à tensão do nervo vago.
-                </p>
+              <div className="info-box mt-4">
+                <strong>Você sabia?</strong> 86% dos donos com esse problema também notam sinais de tensão no nervo vago.
               </div>
             )}
           </QuestionCard>
         )}
 
-        {/* Step 6: Pain question - Startles */}
+        {/* Step 6: Pain - Startles */}
         {state.currentStep === 6 && (
           <QuestionCard
             key="startles"
@@ -320,20 +297,17 @@ const Index = () => {
               onSelect={(value) => handleAnswer("pain_startles", value)}
             />
             {state.answers.pain_startles !== undefined && (
-              <div className="flex justify-center pt-6">
-                <Button
-                  onClick={nextStep}
-                  size="lg"
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8"
-                >
+              <div className="mt-6">
+                <button onClick={nextStep} className="cta-button group">
                   Próximo
-                </Button>
+                  <ArrowRight className="w-5 h-5" />
+                </button>
               </div>
             )}
           </QuestionCard>
         )}
 
-        {/* Step 7: Pain question - Barking */}
+        {/* Step 7: Pain - Barking */}
         {state.currentStep === 7 && (
           <QuestionCard
             key="barking"
@@ -346,31 +320,22 @@ const Index = () => {
               onSelect={(value) => handleAnswer("pain_barking", value)}
             />
             {state.answers.pain_barking !== undefined && (
-              <div className="flex justify-center pt-6">
-                <Button
-                  onClick={nextStep}
-                  size="lg"
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8"
-                >
+              <div className="mt-6">
+                <button onClick={nextStep} className="cta-button group">
                   Próximo
-                </Button>
+                  <ArrowRight className="w-5 h-5" />
+                </button>
               </div>
             )}
             {state.answers.pain_barking >= 4 && (
-              <div className="mt-6 p-4 bg-warning/10 border border-warning/20 rounded-xl">
-                <p className="text-sm">
-                  <strong>Você precisa saber que...</strong>
-                  <br />
-                  Até pequenas hiper-reações do seu cachorro, como latir para
-                  tudo, podem ser os primeiros sinais de alerta de que seu cão
-                  tem um problema no nervo vago.
-                </p>
+              <div className="info-box mt-4">
+                <strong>Importante:</strong> Até pequenas hiper-reações podem ser sinais de alerta de problema no nervo vago.
               </div>
             )}
           </QuestionCard>
         )}
 
-        {/* Step 8: Pain question - Other dogs */}
+        {/* Step 8: Pain - Other dogs */}
         {state.currentStep === 8 && (
           <QuestionCard
             key="pain_other_dogs"
@@ -383,14 +348,11 @@ const Index = () => {
               onSelect={(value) => handleAnswer("pain_other_dogs", value)}
             />
             {state.answers.pain_other_dogs !== undefined && (
-              <div className="flex justify-center pt-6">
-                <Button
-                  onClick={nextStep}
-                  size="lg"
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8"
-                >
+              <div className="mt-6">
+                <button onClick={nextStep} className="cta-button group">
                   Próximo
-                </Button>
+                  <ArrowRight className="w-5 h-5" />
+                </button>
               </div>
             )}
           </QuestionCard>
@@ -400,7 +362,7 @@ const Index = () => {
         {state.currentStep === 9 && (
           <QuestionCard
             key="pain_digestion"
-            title="Você tem notado a digestão do seu cachorro desbalanceada ultimamente?"
+            title="Você tem notado a digestão do seu cachorro desbalanceada?"
             onBack={prevStep}
           >
             <MultipleChoice
@@ -422,14 +384,14 @@ const Index = () => {
         {state.currentStep === 10 && (
           <QuestionCard
             key="pain_physical"
-            title="Você já notou mudanças físicas no comportamento do seu cachorro, como aumento do tempo de sono?"
+            title="Você notou mudanças físicas, como aumento do tempo de sono?"
             onBack={prevStep}
           >
             <MultipleChoice
               options={[
                 { value: "yes", label: "Sim, às vezes", emoji: "😬" },
                 { value: "unsure", label: "Não tenho certeza", emoji: "🤔" },
-                { value: "no", label: "Não, não notei mudanças", emoji: "🤗" },
+                { value: "no", label: "Não, não notei", emoji: "🤗" },
               ]}
               selected={state.answers.pain_physical}
               onSelect={(value) => {
@@ -440,11 +402,11 @@ const Index = () => {
           </QuestionCard>
         )}
 
-        {/* Step 11: Unexplained behavior changes */}
+        {/* Step 11: Unexplained behavior */}
         {state.currentStep === 11 && (
           <QuestionCard
             key="pain_unexplained"
-            title="Sinto que o comportamento do meu cachorro muda às vezes sem nenhuma razão clara"
+            title="O comportamento do meu cachorro muda sem razão clara"
             subtitle="Você se identifica com essa situação?"
             onBack={prevStep}
           >
@@ -453,29 +415,17 @@ const Index = () => {
               onSelect={(value) => handleAnswer("pain_unexplained", value)}
             />
             {state.answers.pain_unexplained !== undefined && (
-              <div className="flex justify-center pt-6">
-                <Button
-                  onClick={nextStep}
-                  size="lg"
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8"
-                >
+              <div className="mt-6">
+                <button onClick={nextStep} className="cta-button group">
                   Próximo
-                </Button>
-              </div>
-            )}
-            {state.answers.pain_unexplained >= 4 && (
-              <div className="mt-6 p-4 bg-warning/10 border border-warning/20 rounded-xl">
-                <p className="text-sm">
-                  <strong>Sabemos como isso pode parecer...</strong>
-                  <br />
-                  O estresse e um nervo vago desequilibrado podem afetar o comportamento de um cachorro de várias maneiras. Analisamos mais de 500 estudos científicos para identificar os mais eficazes.
-                </p>
+                  <ArrowRight className="w-5 h-5" />
+                </button>
               </div>
             )}
           </QuestionCard>
         )}
 
-        {/* Step 12: Coming home reaction */}
+        {/* Step 12: Coming home */}
         {state.currentStep === 12 && (
           <QuestionCard
             key="pain_coming_home"
@@ -485,8 +435,8 @@ const Index = () => {
           >
             <MultipleChoiceCheckbox
               options={[
-                { value: "scratches", label: "Arranha a porta antes mesmo de eu abrir", emoji: "🚪" },
-                { value: "jumps", label: "Extremamente empolgado, pulando e lambendo", emoji: "🚀" },
+                { value: "scratches", label: "Arranha a porta antes de eu abrir", emoji: "🚪" },
+                { value: "jumps", label: "Extremamente empolgado, pulando", emoji: "🚀" },
                 { value: "pees", label: "Tão empolgado que faz xixi", emoji: "✨" },
                 { value: "barks", label: "Late muito", emoji: "📢" },
                 { value: "hides", label: "Se esconde ou fica acuado", emoji: "🙈" },
@@ -496,14 +446,11 @@ const Index = () => {
               onSelect={(value) => handleAnswer("pain_coming_home", value)}
             />
             {state.answers.pain_coming_home?.length > 0 && (
-              <div className="flex justify-center pt-6">
-                <Button
-                  onClick={nextStep}
-                  size="lg"
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8"
-                >
+              <div className="mt-6">
+                <button onClick={nextStep} className="cta-button group">
                   Próximo
-                </Button>
+                  <ArrowRight className="w-5 h-5" />
+                </button>
               </div>
             )}
           </QuestionCard>
@@ -513,14 +460,14 @@ const Index = () => {
         {state.currentStep === 13 && (
           <QuestionCard
             key="pain_behaviors"
-            title="Quais destes problemas comportamentais ou tendências você observa no seu cachorro?"
+            title="Quais problemas comportamentais você observa?"
             subtitle="Escolha todas que se aplicam:"
             onBack={prevStep}
           >
             <MultipleChoiceCheckbox
               options={[
-                { value: "energy", label: "Energia excessiva e falta de controle", emoji: "⚡" },
-                { value: "aggression", label: "Agressividade com pessoas ou outros animais", emoji: "😤" },
+                { value: "energy", label: "Energia excessiva", emoji: "⚡" },
+                { value: "aggression", label: "Agressividade", emoji: "😤" },
                 { value: "pulling", label: "Puxar a coleira", emoji: "🐕" },
                 { value: "separation", label: "Ansiedade de separação", emoji: "😰" },
                 { value: "barking", label: "Latidos excessivos", emoji: "🔊" },
@@ -531,14 +478,11 @@ const Index = () => {
               onSelect={(value) => handleAnswer("pain_behaviors", value)}
             />
             {state.answers.pain_behaviors?.length > 0 && (
-              <div className="flex justify-center pt-6">
-                <Button
-                  onClick={nextStep}
-                  size="lg"
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8"
-                >
+              <div className="mt-6">
+                <button onClick={nextStep} className="cta-button group">
                   Próximo
-                </Button>
+                  <ArrowRight className="w-5 h-5" />
+                </button>
               </div>
             )}
           </QuestionCard>
@@ -570,7 +514,7 @@ const Index = () => {
         {state.currentStep === 15 && (
           <QuestionCard
             key="pain_triggers"
-            title="O que desencadeia o medo ou estresse do seu cachorro?"
+            title="O que desencadeia o medo ou estresse?"
             subtitle="Escolha todas que se aplicam:"
             onBack={prevStep}
           >
@@ -578,28 +522,21 @@ const Index = () => {
               options={[
                 { value: "other_dogs", label: "Outros cachorros", emoji: "🐶" },
                 { value: "new_people", label: "Pessoas novas", emoji: "🙋" },
-                { value: "loud_noises", label: "Trovões ou barulhos altos", emoji: "🌪️" },
-                { value: "touch", label: "Toque ou manuseio inesperado", emoji: "👋" },
+                { value: "loud_noises", label: "Trovões ou barulhos", emoji: "🌪️" },
                 { value: "alone", label: "Ficar sozinho", emoji: "🏠" },
                 { value: "vet", label: "Visitas ao veterinário", emoji: "💉" },
-                { value: "grooming", label: "Banho e tosa", emoji: "✂️" },
-                { value: "animals", label: "Ver outros animais", emoji: "🦊" },
                 { value: "travel", label: "Viagens de carro", emoji: "🚗" },
-                { value: "fireworks", label: "Fogos de artifício ou celebrações", emoji: "🎆" },
-                { value: "other", label: "Outro", emoji: "➕" },
+                { value: "fireworks", label: "Fogos de artifício", emoji: "🎆" },
               ]}
               selected={state.answers.pain_triggers || []}
               onSelect={(value) => handleAnswer("pain_triggers", value)}
             />
             {state.answers.pain_triggers?.length > 0 && (
-              <div className="flex justify-center pt-6">
-                <Button
-                  onClick={nextStep}
-                  size="lg"
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8"
-                >
+              <div className="mt-6">
+                <button onClick={nextStep} className="cta-button group">
                   Próximo
-                </Button>
+                  <ArrowRight className="w-5 h-5" />
+                </button>
               </div>
             )}
           </QuestionCard>
@@ -607,11 +544,7 @@ const Index = () => {
 
         {/* Step 16: Excitement */}
         {state.currentStep === 16 && (
-          <QuestionCard
-            key="q16"
-            title="Seu cão se excita facilmente?"
-            onBack={prevStep}
-          >
+          <QuestionCard key="q16" title="Seu cão se excita facilmente?" onBack={prevStep}>
             <MultipleChoice
               options={[
                 { value: "yes", label: "Sim", emoji: "😬" },
@@ -635,45 +568,35 @@ const Index = () => {
             subtitle="Escolha todos que se aplicam:"
             onBack={prevStep}
           >
-            <div className="mb-8 flex justify-center">
-              <img
-                src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=400&fit=crop"
-                alt="Cachorro animado"
-                className="w-48 h-48 rounded-full object-cover border-4 border-accent/20"
-              />
-            </div>
             <MultipleChoiceCheckbox
               options={[
                 { value: "other_dogs", label: "Outros cães", emoji: "🐶" },
                 { value: "new_people", label: "Pessoas novas", emoji: "🙋" },
                 { value: "toys", label: "Brinquedos", emoji: "🎾" },
                 { value: "food", label: "Comida", emoji: "🍖" },
-                { value: "walks", label: "Passeios ou atividades ao ar livre", emoji: "🏡" },
-                { value: "family", label: "Ver membros da família", emoji: "👨‍👩‍👧" },
-                { value: "small_animals", label: "Pequenos animais", emoji: "🐿️" },
-                { value: "other", label: "Outro", emoji: "➕" },
+                { value: "walks", label: "Passeios", emoji: "🏡" },
+                { value: "family", label: "Membros da família", emoji: "👨‍👩‍👧" },
               ]}
               selected={state.answers.q17 || []}
               onSelect={(value) => handleAnswer("q17", value)}
             />
             {state.answers.q17?.length > 0 && (
-              <div className="flex justify-center pt-6">
-                <Button
-                  onClick={nextStep}
-                  size="lg"
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8"
-                >
+              <div className="mt-6">
+                <button onClick={nextStep} className="cta-button group">
                   Próximo
-                </Button>
+                  <ArrowRight className="w-5 h-5" />
+                </button>
               </div>
             )}
           </QuestionCard>
         )}
 
         {/* Step 18: Micro Result */}
-        {state.currentStep === 18 && <MicroResult key="micro" triggers={getTriggers()} onContinue={nextStep} />}
+        {state.currentStep === 18 && (
+          <MicroResult key="micro" triggers={getTriggers()} onContinue={nextStep} />
+        )}
 
-        {/* Step 19: Vagus nerve knowledge */}
+        {/* Step 19: Vagus knowledge */}
         {state.currentStep === 19 && (
           <QuestionCard
             key="q19"
@@ -702,29 +625,26 @@ const Index = () => {
         {state.currentStep === 21 && (
           <QuestionCard
             key="q21"
-            title="Qual é a sua motivação para iniciar a jornada de resetar o nervo vago do seu cachorro??"
+            title="Qual é a sua motivação para iniciar a jornada?"
             subtitle="Escolha todos que se aplicam:"
             onBack={prevStep}
           >
             <MultipleChoiceCheckbox
               options={[
-                { value: "amor", label: "Meu amor pelo meu cachorro e o desejo de vê-lo mais calmo e feliz", emoji: "❤️" },
-                { value: "longevidade", label: "Quero que ele tenha uma vida mais longa, saudável e equilibrada", emoji: "💪" },
-                { value: "harmonia", label: "Busco uma convivência mais tranquila e harmoniosa no dia a dia", emoji: "🏡" },
+                { value: "amor", label: "Meu amor pelo meu cachorro", emoji: "❤️" },
+                { value: "longevidade", label: "Vida mais longa e saudável", emoji: "💪" },
+                { value: "harmonia", label: "Convivência mais tranquila", emoji: "🏡" },
                 { value: "outro", label: "Outro", emoji: "💭" },
               ]}
               selected={state.answers.q21 || []}
               onSelect={(value) => handleAnswer("q21", value)}
             />
             {state.answers.q21?.length > 0 && (
-              <div className="flex justify-center pt-6">
-                <Button
-                  onClick={nextStep}
-                  size="lg"
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8"
-                >
+              <div className="mt-6">
+                <button onClick={nextStep} className="cta-button group">
                   Próximo
-                </Button>
+                  <ArrowRight className="w-5 h-5" />
+                </button>
               </div>
             )}
           </QuestionCard>
@@ -734,15 +654,15 @@ const Index = () => {
         {state.currentStep === 22 && (
           <QuestionCard
             key="q22"
-            title="Vamos definir seu objetivo principal para iniciar o Desafio de Reset do Nervo Vago!"
+            title="Vamos definir seu objetivo principal!"
             subtitle="Escolha sua prioridade:"
             onBack={prevStep}
           >
             <MultipleChoice
               options={[
                 { value: "learn", label: "Conhecer mais sobre o nervo vago", emoji: "🤔" },
-                { value: "calmer", label: "Tornar meu cão reativo mais calmo", emoji: "📢" },
-                { value: "bond", label: "Construir um vínculo muito mais forte com meu cão", emoji: "❤️" },
+                { value: "calmer", label: "Tornar meu cão mais calmo", emoji: "📢" },
+                { value: "bond", label: "Construir um vínculo mais forte", emoji: "❤️" },
               ]}
               selected={state.answers.q22}
               onSelect={(value) => {
@@ -769,120 +689,25 @@ const Index = () => {
           />
         )}
 
-        {/* Step 25: Diagnosis */}
+        {/* Step 25: ⭐ EMAIL CAPTURE - ANTES DA OFERTA! */}
         {state.currentStep === 25 && (
-          <Diagnosis
-            key="diagnosis"
-            dogName={state.dogName || "seu cachorro"}
-            {...calculateResults()}
-            onContinue={nextStep}
-          />
-        )}
-
-        {/* Step 26: Time available */}
-        {state.currentStep === 26 && (
-          <QuestionCard
-            key="time"
-            title="Quanto tempo você pode dedicar por dia ao treinamento?"
-            onBack={prevStep}
-          >
-            <MultipleChoice
-              options={[
-                { value: "5-10", label: "5-10 minutos", emoji: "⏱️" },
-                { value: "10-20", label: "10-20 minutos", emoji: "⏰" },
-                { value: "20+", label: "Mais de 20 minutos", emoji: "🕐" },
-              ]}
-              selected={state.answers.time}
-              onSelect={(value) => {
-                handleAnswer("time", value);
-                setTimeout(nextStep, 300);
-              }}
-            />
-          </QuestionCard>
-        )}
-
-        {/* Step 27: Speed proof */}
-        {state.currentStep === 27 && (
-          <SpeedProof
-            key="speed"
-            dogName={state.dogName || "seu cachorro"}
-            estimatedDate={getEstimatedDate()}
-            onContinue={nextStep}
-          />
-        )}
-
-        {/* Step 28: Loading with popup 1 */}
-        {state.currentStep === 28 && (
-          <LoadingScreen
-            key="loading-1"
-            progress={32}
-            text="Analisando as respostas..."
-            showPopup={true}
-            popupQuestion="Você já tentou treinar seu cão antes?"
-            popupOptions={[
-              "Sim, mas não funcionou",
-              "Não, é minha primeira vez",
-            ]}
-            onPopupAnswer={(value) => {
-              handleAnswer("previousTraining", value);
-            }}
-            onComplete={nextStep}
-          />
-        )}
-
-        {/* Step 29: Loading with popup 2 */}
-        {state.currentStep === 29 && (
-          <LoadingScreen
-            key="loading-2"
-            progress={61}
-            text="Preparando seu plano personalizado..."
-            showPopup={true}
-            popupQuestion="Pronto para finalizar o que começou? Muitos donos começam mas desistem. Você está comprometido?"
-            popupOptions={[
-              "Sim, estou comprometido!",
-              "Ainda pensando...",
-            ]}
-            onPopupAnswer={(value) => {
-              handleAnswer("commitment", value);
-            }}
-            onComplete={nextStep}
-          />
-        )}
-
-        {/* Step 30: Loading 100% with confetti */}
-        {state.currentStep === 30 && (
-          <LoadingScreen
-            key="loading-3"
-            progress={100}
-            text="Plano pronto! 🎉"
-            showConfetti={true}
-            onComplete={nextStep}
-          />
-        )}
-
-        {/* Step 31: Testimonial */}
-        {state.currentStep === 31 && <Testimonial key="testimonial" onContinue={nextStep} />}
-
-        {/* Step 32: Email */}
-        {state.currentStep === 32 && (
           <EmailCapture
             key="email"
             dogName={state.dogName || "seu cachorro"}
             disabled={isSubmitting}
             onSubmit={async (email) => {
-              if (isSubmitting) return; // Previne múltiplos cliques
-              
+              if (isSubmitting) return;
+
               setIsSubmitting(true);
-              setEmailCaptured(true); // Marca email como capturado para exit intent
-              console.log('📧 Email capturado:', email);
-              
+              setEmailCaptured(true);
+
               setState((p) => ({ ...p, userEmail: email }));
               const results = calculateResults();
-              
-              // Dados para Google Sheets
+
+              // Send to Google Sheets
               const dadosQuiz = {
                 email,
-                dogName: state.dogName || '',
+                dogName: state.dogName || "",
                 dogAge: state.answers.dog_age,
                 dogGender: state.answers.dog_gender,
                 dogBreed: state.answers.dog_breed,
@@ -897,18 +722,16 @@ const Index = () => {
                 timeAvailable: state.answers.time,
                 commitment: state.answers.commitment,
               };
-              
-              // Enviar para Google Sheets
+
               try {
                 await enviarParaGoogleSheets(dadosQuiz);
-                console.log('✅ Enviado com sucesso!');
               } catch (error) {
-                console.error('❌ Erro:', error);
+                console.error("Erro ao enviar:", error);
               } finally {
                 setIsSubmitting(false);
               }
-              
-              // Dados para banco de dados
+
+              // Save to database
               const quizData = {
                 user_email: email,
                 dog_name: state.dogName,
@@ -936,15 +759,96 @@ const Index = () => {
                 tension_level: results.tensionLevel,
                 main_problems: results.mainProblems,
               };
-              
-              // Salvar no banco
+
               await submitQuiz(quizData);
-              
-              // Continuar para o próximo step
               nextStep();
             }}
           />
         )}
+
+        {/* Step 26: Diagnosis */}
+        {state.currentStep === 26 && (
+          <Diagnosis
+            key="diagnosis"
+            dogName={state.dogName || "seu cachorro"}
+            {...calculateResults()}
+            onContinue={nextStep}
+          />
+        )}
+
+        {/* Step 27: Time available */}
+        {state.currentStep === 27 && (
+          <QuestionCard
+            key="time"
+            title="Quanto tempo você pode dedicar por dia?"
+            onBack={prevStep}
+          >
+            <MultipleChoice
+              options={[
+                { value: "5-10", label: "5-10 minutos", emoji: "⏱️" },
+                { value: "10-20", label: "10-20 minutos", emoji: "⏰" },
+                { value: "20+", label: "Mais de 20 minutos", emoji: "🕐" },
+              ]}
+              selected={state.answers.time}
+              onSelect={(value) => {
+                handleAnswer("time", value);
+                setTimeout(nextStep, 300);
+              }}
+            />
+          </QuestionCard>
+        )}
+
+        {/* Step 28: Speed proof */}
+        {state.currentStep === 28 && (
+          <SpeedProof
+            key="speed"
+            dogName={state.dogName || "seu cachorro"}
+            estimatedDate={getEstimatedDate()}
+            onContinue={nextStep}
+          />
+        )}
+
+        {/* Step 29: Loading 1 */}
+        {state.currentStep === 29 && (
+          <LoadingScreen
+            key="loading-1"
+            progress={32}
+            text="Analisando as respostas..."
+            showPopup={true}
+            popupQuestion="Você já tentou treinar seu cão antes?"
+            popupOptions={["Sim, mas não funcionou", "Não, é minha primeira vez"]}
+            onPopupAnswer={(value) => handleAnswer("previousTraining", value)}
+            onComplete={nextStep}
+          />
+        )}
+
+        {/* Step 30: Loading 2 */}
+        {state.currentStep === 30 && (
+          <LoadingScreen
+            key="loading-2"
+            progress={61}
+            text="Preparando seu plano personalizado..."
+            showPopup={true}
+            popupQuestion="Você está comprometido com a transformação?"
+            popupOptions={["Sim, estou comprometido!", "Ainda pensando..."]}
+            onPopupAnswer={(value) => handleAnswer("commitment", value)}
+            onComplete={nextStep}
+          />
+        )}
+
+        {/* Step 31: Loading complete */}
+        {state.currentStep === 31 && (
+          <LoadingScreen
+            key="loading-3"
+            progress={100}
+            text="Plano pronto! 🎉"
+            showConfetti={true}
+            onComplete={nextStep}
+          />
+        )}
+
+        {/* Step 32: Testimonial */}
+        {state.currentStep === 32 && <Testimonial key="testimonial" onContinue={nextStep} />}
 
         {/* Step 33: Chart */}
         {state.currentStep === 33 && (
@@ -955,26 +859,18 @@ const Index = () => {
           />
         )}
 
-        {/* Step 34: Scratch */}
+        {/* Step 34: Discount reveal */}
         {state.currentStep === 34 && (
-          <ScratchCard
-            key="scratch"
-            dogName={state.dogName || "seu cachorro"}
-            onReveal={nextStep}
-          />
+          <ScratchCard key="scratch" dogName={state.dogName || "seu cachorro"} onReveal={nextStep} />
         )}
 
-        {/* Step 35: Discount popup (moved to ScratchCard) */}
-        
-        {/* Step 36: Final offer */}
+        {/* Step 35+: Final offer */}
         {state.currentStep >= 35 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="min-h-screen flex flex-col items-center justify-center p-4 md:p-6 relative overflow-hidden"
-            style={{
-              background: "linear-gradient(135deg, #FF6B6B 0%, #EE5A6F 100%)",
-            }}
+            className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden"
+            style={{ background: "linear-gradient(135deg, #FF6B6B 0%, #EE5A6F 100%)" }}
           >
             <div className="w-full relative z-10 flex flex-col items-center justify-center">
               {/* Mobile version */}
@@ -984,11 +880,7 @@ const Index = () => {
                 transition={{ delay: 0.2 }}
                 className="md:hidden flex flex-col items-center w-full max-w-md mx-auto"
               >
-                <a 
-                  href="https://pay.kiwify.com.br/ANFvpl3" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
+                <a href="https://pay.kiwify.com.br/ANFvpl3" target="_blank" rel="noopener noreferrer">
                   <img
                     src={ofertaMobile}
                     alt="Oferta limitada - 61% de desconto"
@@ -1004,9 +896,9 @@ const Index = () => {
                 transition={{ delay: 0.2 }}
                 className="hidden md:block relative w-full max-w-2xl lg:max-w-4xl mx-auto px-8"
               >
-                <a 
-                  href="https://pay.kiwify.com.br/ANFvpl3" 
-                  target="_blank" 
+                <a
+                  href="https://pay.kiwify.com.br/ANFvpl3"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="block cursor-pointer hover:opacity-95 transition-opacity"
                 >
@@ -1023,14 +915,8 @@ const Index = () => {
       </AnimatePresence>
 
       {/* Exit Intent Modals */}
-      <ExitModalBefore 
-        isOpen={showExitModal === 'before'} 
-        onClose={closeExitModal} 
-      />
-      <ExitModalAfter 
-        isOpen={showExitModal === 'after'} 
-        onClose={closeExitModal} 
-      />
+      <ExitModalBefore isOpen={showExitModal === "before"} onClose={closeExitModal} />
+      <ExitModalAfter isOpen={showExitModal === "after"} onClose={closeExitModal} />
     </div>
   );
 };

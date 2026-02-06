@@ -55,53 +55,58 @@ export default function LoadingScreen({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen flex flex-col items-center justify-center px-4 bg-gradient-to-b from-background to-muted/20 relative"
+      className="min-h-screen flex flex-col items-center justify-center px-4 relative"
     >
       {/* Logo */}
-      <div className="mb-8">
-        <h2 className="text-xl font-bold text-primary">Canino Obediente 360°</h2>
+      <div className="quiz-header mb-6">
+        <span className="quiz-logo">Canino Obediente 360°</span>
       </div>
 
-      {/* Circular Progress */}
-      <div className="relative w-40 h-40 mb-8">
+      {/* Loading circle */}
+      <div className="relative w-32 h-32 mb-6">
         <svg className="w-full h-full transform -rotate-90">
           <circle
-            cx="80"
-            cy="80"
-            r="70"
-            stroke="currentColor"
+            cx="64"
+            cy="64"
+            r="56"
+            stroke="rgba(255, 255, 255, 0.1)"
             strokeWidth="8"
             fill="none"
-            className="text-muted"
           />
           <motion.circle
-            cx="80"
-            cy="80"
-            r="70"
-            stroke="currentColor"
+            cx="64"
+            cy="64"
+            r="56"
+            stroke="hsl(168 60% 54%)"
             strokeWidth="8"
             fill="none"
-            className="text-accent"
-            strokeDasharray={440}
-            strokeDashoffset={440 - (440 * currentProgress) / 100}
+            strokeDasharray={352}
+            strokeDashoffset={352 - (352 * currentProgress) / 100}
             strokeLinecap="round"
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3 }}
           />
         </svg>
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-4xl font-bold">{currentProgress}%</span>
+          <span className="text-3xl font-bold">{currentProgress}%</span>
         </div>
       </div>
 
       {/* Text */}
-      <p className="text-center text-muted-foreground max-w-md mb-8">{text}</p>
+      <motion.p
+        key={text}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="text-center text-sm text-muted-foreground max-w-xs mb-8"
+      >
+        {text}
+      </motion.p>
 
       {/* Social Proof */}
       <div className="text-center">
-        <p className="text-2xl font-bold text-accent mb-2">
+        <p className="text-xl font-bold mb-1" style={{ color: "hsl(168 60% 54%)" }}>
           Mais de 25.000 donos de cães
         </p>
-        <p className="text-muted-foreground">escolheram Canino Obediente 360°</p>
+        <p className="text-sm text-muted-foreground">escolheram Canino Obediente 360°</p>
       </div>
 
       {/* Confetti Effect */}
@@ -111,10 +116,11 @@ export default function LoadingScreen({
           animate={{ opacity: 1, scale: 1 }}
           className="absolute inset-0 pointer-events-none"
         >
-          {[...Array(50)].map((_, i) => (
+          {[...Array(30)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-2 h-2 bg-accent rounded-full"
+              className="absolute w-2 h-2 rounded-full"
+              style={{ background: "hsl(168 60% 54%)" }}
               initial={{
                 x: "50%",
                 y: "50%",
@@ -139,24 +145,25 @@ export default function LoadingScreen({
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="bg-card p-8 rounded-2xl shadow-xl max-w-md w-full border-2 border-border"
+            className="p-6 rounded-2xl max-w-sm w-full"
+            style={{ background: "hsl(230 20% 12%)", border: "2px solid hsl(230 15% 25%)" }}
           >
-            <h3 className="text-xl font-bold text-center mb-6">
+            <h3 className="text-lg font-bold text-center mb-6">
               {popupQuestion}
             </h3>
-            <div className="flex gap-4">
+            <div className="flex flex-col gap-3">
               {popupOptions.map((option) => (
                 <button
                   key={option}
                   onClick={() => handlePopupAnswer(option)}
-                  className="flex-1 py-3 px-6 rounded-xl border-2 border-border hover:border-accent hover:bg-accent/10 transition-all font-medium"
+                  className="option-card justify-center"
                 >
-                  {option}
+                  <span className="text-sm font-medium">{option}</span>
                 </button>
               ))}
             </div>
