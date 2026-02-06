@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { ArrowRight, CheckCircle } from "lucide-react";
 
 interface DiagnosisProps {
   dogName: string;
@@ -15,9 +15,9 @@ export default function Diagnosis({
   onContinue,
 }: DiagnosisProps) {
   const getTensionColor = () => {
-    if (tensionLevel < 4) return "text-success";
-    if (tensionLevel < 8) return "text-warning";
-    return "text-danger";
+    if (tensionLevel < 4) return "hsl(158 64% 52%)";
+    if (tensionLevel < 8) return "hsl(38 92% 50%)";
+    return "hsl(4 90% 58%)";
   };
 
   const getTensionLabel = () => {
@@ -31,93 +31,107 @@ export default function Diagnosis({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className="min-h-screen flex flex-col items-center justify-center px-4 py-20"
+      className="min-h-screen flex flex-col px-4 pt-16 pb-8"
     >
-      <div className="max-w-2xl w-full space-y-8">
-        <div className="text-center space-y-4">
-          <h2 className="text-3xl md:text-4xl font-bold">
-            Diagnóstico Personalizado de{" "}
-            <span className="text-accent">{dogName}</span>
+      <div className="w-full max-w-lg mx-auto flex-1 flex flex-col">
+        {/* Logo */}
+        <div className="quiz-header">
+          <span className="quiz-logo">Canino Obediente 360°</span>
+        </div>
+
+        {/* Header */}
+        <div className="text-center mb-6">
+          <h2 className="question-title">
+            Diagnóstico de{" "}
+            <span style={{ color: "hsl(45 100% 51%)" }}>{dogName}</span>
           </h2>
-          
-          <p className="text-lg text-muted-foreground">
+          <p className="question-subtitle">
             Baseado nas suas respostas, aqui está a avaliação do nervo vago
           </p>
         </div>
 
-        <div className="bg-card p-8 rounded-2xl border-2 border-border text-center space-y-4">
-          <h3 className="text-xl font-bold">Nível de Tensão do Nervo Vago</h3>
+        {/* Tension gauge */}
+        <div className="p-6 rounded-2xl text-center mb-6" style={{ background: "rgba(255, 255, 255, 0.08)" }}>
+          <p className="text-sm text-muted-foreground mb-4">Nível de Tensão do Nervo Vago</p>
           
-          <div className="relative w-48 h-48 mx-auto">
+          <div className="relative w-32 h-32 mx-auto mb-4">
             <svg className="w-full h-full transform -rotate-90">
               <circle
-                cx="96"
-                cy="96"
-                r="80"
-                stroke="currentColor"
-                strokeWidth="12"
+                cx="64"
+                cy="64"
+                r="56"
+                stroke="rgba(255, 255, 255, 0.1)"
+                strokeWidth="10"
                 fill="none"
-                className="text-muted"
               />
               <motion.circle
-                cx="96"
-                cy="96"
-                r="80"
-                stroke="currentColor"
-                strokeWidth="12"
+                cx="64"
+                cy="64"
+                r="56"
+                stroke={getTensionColor()}
+                strokeWidth="10"
                 fill="none"
-                className={getTensionColor()}
-                strokeDasharray={502}
-                initial={{ strokeDashoffset: 502 }}
-                animate={{ strokeDashoffset: 502 - (502 * tensionLevel) / 11.5 }}
+                strokeDasharray={352}
+                initial={{ strokeDashoffset: 352 }}
+                animate={{ strokeDashoffset: 352 - (352 * tensionLevel) / 11.5 }}
                 strokeLinecap="round"
                 transition={{ duration: 1.5, ease: "easeOut" }}
               />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className={`text-4xl font-bold ${getTensionColor()}`}>
+              <span className="text-3xl font-bold" style={{ color: getTensionColor() }}>
                 {tensionLevel.toFixed(1)}
               </span>
-              <span className="text-sm text-muted-foreground">de 11.5</span>
+              <span className="text-xs text-muted-foreground">de 11.5</span>
             </div>
           </div>
 
-          <p className={`text-2xl font-bold ${getTensionColor()}`}>
+          <p className="text-xl font-bold" style={{ color: getTensionColor() }}>
             Tensão {getTensionLabel()}
           </p>
         </div>
 
-        <div className="bg-card p-6 rounded-2xl border-2 border-border space-y-4">
-          <h3 className="text-xl font-bold">Principais Problemas Identificados:</h3>
-          <div className="space-y-2">
-            {mainProblems.map((problem, idx) => (
-              <div key={idx} className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-accent flex items-center justify-center text-accent-foreground text-sm font-bold">
-                  {idx + 1}
+        {/* Problems identified */}
+        {mainProblems.length > 0 && (
+          <div className="p-4 rounded-xl mb-6" style={{ background: "rgba(255, 255, 255, 0.08)" }}>
+            <h3 className="text-base font-bold mb-3">Problemas Identificados:</h3>
+            <div className="space-y-2">
+              {mainProblems.map((problem, idx) => (
+                <div key={idx} className="flex items-center gap-3">
+                  <div 
+                    className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold"
+                    style={{ background: "hsl(168 60% 54%)" }}
+                  >
+                    {idx + 1}
+                  </div>
+                  <p className="text-sm text-muted-foreground">{problem}</p>
                 </div>
-                <p className="text-muted-foreground">{problem}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
-        <div className="bg-accent/10 p-6 rounded-2xl border-2 border-accent/20">
-          <p className="text-center">
-            <strong className="text-accent">Boa notícia!</strong> Com o programa
-            correto de reequilíbrio do nervo vago, {dogName} pode apresentar
-            melhorias significativas em apenas 21 dias.
+        {/* Good news box */}
+        <div 
+          className="p-4 rounded-xl mb-6"
+          style={{ background: "rgba(64, 196, 170, 0.15)", border: "1px solid rgba(64, 196, 170, 0.3)" }}
+        >
+          <p className="text-sm text-center">
+            <strong style={{ color: "hsl(168 60% 54%)" }}>Boa notícia!</strong>{" "}
+            <span className="text-muted-foreground">
+              Com o programa correto, {dogName} pode apresentar melhorias significativas em apenas 21 dias.
+            </span>
           </p>
         </div>
 
-        <div className="flex justify-center">
-          <Button
-            onClick={onContinue}
-            size="lg"
-            className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8"
-          >
-            Ver Meu Plano Personalizado
-          </Button>
-        </div>
+        {/* Spacer */}
+        <div className="flex-1" />
+
+        {/* CTA */}
+        <button onClick={onContinue} className="cta-button group">
+          Ver Meu Plano Personalizado
+          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        </button>
       </div>
     </motion.div>
   );

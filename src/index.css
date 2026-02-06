@@ -2,102 +2,114 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Inlead-style dark theme - Mobile-first design system */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 220 15% 15%;
+    /* Dark background - Inlead style */
+    --background: 230 20% 10%;
+    --foreground: 0 0% 100%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 220 15% 15%;
+    /* Card backgrounds - translucent dark */
+    --card: 230 20% 12%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 15% 15%;
+    --popover: 230 20% 12%;
+    --popover-foreground: 0 0% 100%;
 
-    /* Brand colors - Canino Obediente 360 */
-    --primary: 224 49% 32%;  /* #2C3E7B - Azul escuro da marca */
+    /* Primary - Teal/Turquoise (Inlead accent) */
+    --primary: 168 60% 54%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 41 95% 60%;  /* #F9B233 - Amarelo/dourado */
-    --secondary-foreground: 220 15% 15%;
+    /* Secondary - Golden yellow */
+    --secondary: 41 95% 60%;
+    --secondary-foreground: 230 20% 10%;
 
-    --accent: 178 60% 56%;  /* #4ECDC4 - Turquesa para CTAs */
+    /* Accent - Bright teal for CTAs */
+    --accent: 168 60% 54%;
     --accent-foreground: 0 0% 100%;
 
-    --success: 158 64% 52%;  /* #10B981 - Verde */
+    /* Success - Green */
+    --success: 158 64% 52%;
     --success-foreground: 0 0% 100%;
 
-    --destructive: 4 90% 58%;  /* #EF4444 - Vermelho */
-    --destructive-foreground: 0 0% 100%;
-
-    --warning: 38 92% 50%;  /* #F59E0B - Laranja */
-    --warning-foreground: 0 0% 100%;
-
-    --muted: 220 13% 95%;
-    --muted-foreground: 220 9% 46%;
-
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 224 49% 32%;
-
-    --radius: 0.75rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 220 20% 10%;
-    --foreground: 0 0% 98%;
-
-    --card: 220 20% 12%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 220 20% 12%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 224 49% 45%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 41 95% 55%;
-    --secondary-foreground: 220 15% 15%;
-
-    --muted: 220 15% 20%;
-    --muted-foreground: 220 9% 65%;
-
-    --accent: 178 60% 50%;
-    --accent-foreground: 0 0% 100%;
-
+    /* Destructive - Red */
     --destructive: 4 90% 58%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 20%;
-    --input: 220 15% 20%;
-    --ring: 224 49% 45%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    /* Warning - Orange/Yellow */
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    /* Muted - Subtle backgrounds */
+    --muted: 230 15% 18%;
+    --muted-foreground: 0 0% 70%;
+
+    /* Borders and inputs */
+    --border: 230 15% 25%;
+    --input: 230 15% 25%;
+    --ring: 168 60% 54%;
+
+    --radius: 0.75rem;
+
+    /* Sidebar (if needed) */
+    --sidebar-background: 230 20% 10%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 168 60% 54%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 230 15% 18%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 230 15% 25%;
+    --sidebar-ring: 168 60% 54%;
+  }
+
+  /* Light mode override (same as dark for this quiz) */
+  .light {
+    --background: 230 20% 10%;
+    --foreground: 0 0% 100%;
+    --card: 230 20% 12%;
+    --card-foreground: 0 0% 100%;
+    --popover: 230 20% 12%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 168 60% 54%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 41 95% 60%;
+    --secondary-foreground: 230 20% 10%;
+    --accent: 168 60% 54%;
+    --accent-foreground: 0 0% 100%;
+    --success: 158 64% 52%;
+    --success-foreground: 0 0% 100%;
+    --destructive: 4 90% 58%;
+    --destructive-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --muted: 230 15% 18%;
+    --muted-foreground: 0 0% 70%;
+    --border: 230 15% 25%;
+    --input: 230 15% 25%;
+    --ring: 168 60% 54%;
+  }
+
+  .dark {
+    --background: 230 20% 8%;
+    --foreground: 0 0% 100%;
+    --card: 230 20% 10%;
+    --card-foreground: 0 0% 100%;
+    --popover: 230 20% 10%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 168 60% 54%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 41 95% 60%;
+    --secondary-foreground: 230 20% 10%;
+    --muted: 230 15% 15%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 168 60% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 4 90% 58%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 230 15% 20%;
+    --input: 230 15% 20%;
+    --ring: 168 60% 54%;
   }
 }
 
@@ -106,7 +118,267 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    background: linear-gradient(180deg, hsl(230 20% 10%) 0%, hsl(230 25% 8%) 100%);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Quiz container - mobile first */
+  .quiz-container {
+    @apply w-full max-w-full min-h-screen px-4 py-4;
+  }
+
+  @media (min-width: 768px) {
+    .quiz-container {
+      @apply max-w-[480px] mx-auto px-6;
+    }
+  }
+
+  /* Progress bar styles */
+  .progress-bar-container {
+    @apply fixed top-0 left-0 right-0 h-1.5 z-50;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .progress-bar-fill {
+    @apply h-full transition-all duration-500 ease-out;
+    background: linear-gradient(90deg, 
+      hsl(168 60% 54%) 0%,
+      hsl(174 60% 50%) 50%,
+      hsl(186 70% 50%) 100%
+    );
+    box-shadow: 0 0 12px hsla(168, 60%, 54%, 0.5);
+  }
+
+  .progress-text {
+    @apply fixed top-3 right-4 text-sm font-semibold z-[51] px-3 py-1 rounded-full;
+    color: hsl(168 60% 54%);
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  /* Quiz header/logo */
+  .quiz-header {
+    @apply text-center py-4 md:py-6;
+  }
+
+  .quiz-logo {
+    @apply text-sm font-semibold tracking-wide;
+    color: hsl(168 60% 54%);
+  }
+
+  /* Question title styles */
+  .question-title {
+    @apply text-[22px] md:text-[26px] font-bold leading-tight text-center mb-2 px-2;
+  }
+
+  .question-subtitle {
+    @apply text-sm md:text-base text-center mb-6;
+    color: hsla(0, 0%, 100%, 0.7);
+  }
+
+  /* Option cards */
+  .option-card {
+    @apply w-full min-h-[64px] p-4 md:p-5 rounded-xl flex items-center gap-3 cursor-pointer transition-all duration-200;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .option-card:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: hsla(168, 60%, 54%, 0.5);
+  }
+
+  .option-card.selected {
+    background: hsla(168, 60%, 54%, 0.15);
+    border-color: hsl(168 60% 54%);
+  }
+
+  .option-emoji {
+    @apply text-[28px] flex-shrink-0;
+  }
+
+  .option-text {
+    @apply text-base font-medium leading-snug;
+  }
+
+  /* Option card with image */
+  .option-card-image {
+    @apply flex flex-col items-center p-4 text-center min-h-[120px];
+  }
+
+  .option-image {
+    @apply w-[60px] h-[60px] object-contain mb-2;
+  }
+
+  /* CTA button - mobile optimized */
+  .cta-button {
+    @apply w-full min-h-[56px] px-6 py-4 rounded-xl text-[17px] font-semibold flex items-center justify-center gap-2 transition-all duration-200;
+    background: linear-gradient(135deg, hsl(168 60% 54%) 0%, hsl(174 60% 50%) 100%);
+    color: white;
+    box-shadow: 0 4px 15px hsla(168, 60%, 54%, 0.3);
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px hsla(168, 60%, 54%, 0.4);
+  }
+
+  .cta-button:active {
+    transform: translateY(0);
+  }
+
+  .cta-button:disabled {
+    background: rgba(255, 255, 255, 0.2);
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  /* Emoji scale */
+  .emoji-scale {
+    @apply flex justify-between items-center w-full py-2 my-4;
+  }
+
+  .emoji-option {
+    @apply w-14 h-14 flex items-center justify-center text-[28px] rounded-xl cursor-pointer transition-all duration-200;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid transparent;
+  }
+
+  .emoji-option:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+  }
+
+  .emoji-option.selected {
+    background: hsla(168, 60%, 54%, 0.2);
+    border-color: hsl(168 60% 54%);
+    transform: scale(1.1);
+  }
+
+  /* Info box (yellow border) */
+  .info-box {
+    @apply p-3 md:p-4 rounded-lg text-[13px] leading-relaxed;
+    background: rgba(255, 193, 7, 0.15);
+    border-left: 3px solid hsl(45 100% 51%);
+  }
+
+  /* Testimonial card */
+  .testimonial-card {
+    @apply p-5 rounded-2xl;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .testimonial-stars {
+    @apply text-base mb-2;
+    color: hsl(45 100% 51%);
+  }
+
+  /* Price display */
+  .price-original {
+    @apply text-base line-through;
+    color: hsla(0, 0%, 100%, 0.5);
+  }
+
+  .price-current {
+    @apply text-4xl font-extrabold my-1;
+    color: hsl(168 60% 54%);
+  }
+
+  /* Benefits list */
+  .benefit-item {
+    @apply flex items-start gap-3 text-sm leading-relaxed;
+  }
+
+  .benefit-icon {
+    @apply text-lg flex-shrink-0;
+    color: hsl(168 60% 54%);
+  }
+
+  /* Input field */
+  .quiz-input {
+    @apply w-full py-4 px-5 rounded-xl text-base outline-none transition-all duration-200;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    color: white;
+  }
+
+  .quiz-input::placeholder {
+    color: hsla(0, 0%, 100%, 0.4);
+  }
+
+  .quiz-input:focus {
+    border-color: hsl(168 60% 54%);
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  /* Loading/analysis screen */
+  .loading-circle {
+    @apply w-[120px] h-[120px] rounded-full relative;
+    border: 6px solid rgba(255, 255, 255, 0.1);
+    border-top-color: hsl(168 60% 54%);
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Timer urgency */
+  .timer-container {
+    @apply flex items-center justify-center gap-2 p-3 rounded-lg mb-4;
+    background: rgba(220, 53, 69, 0.15);
+    border: 1px solid rgba(220, 53, 69, 0.3);
+  }
+
+  .timer-digits {
+    @apply text-xl font-bold;
+    color: hsl(4 90% 58%);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Reveal animation */
+  .reveal-discount {
+    @apply text-7xl font-extrabold;
+    color: hsl(168 60% 54%);
+    animation: revealPulse 0.5s ease-out;
+  }
+
+  @keyframes revealPulse {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Expert card */
+  .expert-card {
+    @apply flex gap-4 p-5 rounded-2xl items-start;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .expert-image {
+    @apply w-20 h-20 rounded-full object-cover;
+    border: 3px solid hsl(168 60% 54%);
+  }
+}
+
+/* Safe area padding for mobile */
+@supports (padding: max(0px)) {
+  .quiz-container {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
   }
 }

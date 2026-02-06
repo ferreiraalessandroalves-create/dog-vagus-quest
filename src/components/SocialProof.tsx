@@ -1,117 +1,102 @@
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import awardSeal from "@/assets/award-seal.png";
-import vagusNerveDog from "@/assets/vagus-nerve-dog.jpg";
+
 interface SocialProofProps {
   onContinue: () => void;
 }
-export default function SocialProof({
-  onContinue
-}: SocialProofProps) {
-  return <motion.div initial={{
-    opacity: 0
-  }} animate={{
-    opacity: 1
-  }} exit={{
-    opacity: 0
-  }} className="min-h-screen flex flex-col items-center justify-center px-4 py-12">
-      <div className="max-w-2xl w-full space-y-8 text-center">
-        {/* Hero Image */}
-        <motion.div initial={{
-        scale: 0.9,
-        opacity: 0
-      }} animate={{
-        scale: 1,
-        opacity: 1
-      }} transition={{
-        delay: 0.1
-      }} className="rounded-3xl overflow-hidden border-2 border-accent/20 shadow-2xl">
-          
-        </motion.div>
+
+export default function SocialProof({ onContinue }: SocialProofProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="min-h-screen flex flex-col px-4 pt-16 pb-8"
+    >
+      <div className="w-full max-w-lg mx-auto flex-1 flex flex-col">
+        {/* Logo */}
+        <div className="quiz-header">
+          <span className="quiz-logo">Canino Obediente 360°</span>
+        </div>
 
         {/* Main stat */}
-        <motion.div initial={{
-        scale: 0.9,
-        opacity: 0
-      }} animate={{
-        scale: 1,
-        opacity: 1
-      }} transition={{
-        delay: 0.2
-      }}>
-          <h2 className="text-5xl md:text-6xl font-bold mb-4">
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.1 }}
+          className="text-center mb-6"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-3">
             Mais de{" "}
-            <span className="bg-gradient-to-r from-accent to-secondary bg-clip-text text-transparent">25.000</span>{" "}
+            <span style={{ color: "hsl(168 60% 54%)" }}>25.000</span>{" "}
             donos
           </h2>
-          <p className="text-xl md:text-2xl text-muted-foreground">
+          <p className="text-base text-muted-foreground">
             escolheram o{" "}
             <span className="font-semibold text-foreground">
               Desafio de Equilíbrio do Nervo Vago
             </span>{" "}
-            para ajudar seus cães a superar a reatividade!
+            para ajudar seus cães!
           </p>
         </motion.div>
 
         {/* Quote card */}
-        <motion.div initial={{
-        y: 20,
-        opacity: 0
-      }} animate={{
-        y: 0,
-        opacity: 1
-      }} transition={{
-        delay: 0.4
-      }} className="bg-gradient-to-br from-accent/10 to-primary/10 p-8 rounded-3xl border border-accent/20">
-          <div className="text-6xl mb-4 text-accent/30">❝</div>
-          <p className="text-xl md:text-2xl font-medium mb-6 leading-relaxed">
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="p-6 rounded-2xl mb-6"
+          style={{ background: "rgba(64, 196, 170, 0.1)", border: "1px solid rgba(64, 196, 170, 0.2)" }}
+        >
+          <div className="text-4xl mb-3" style={{ color: "rgba(64, 196, 170, 0.4)" }}>❝</div>
+          <p className="text-lg font-medium mb-4 leading-relaxed">
             Reatividade não é uma falha — é o nervo vago do seu cachorro pedindo ajuda
           </p>
-          <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-            <span className="font-semibold text-foreground">Canino Obediente 360</span>
-            <span>• Equipe especializada</span>
+          <div className="text-sm text-muted-foreground">
+            <span className="font-semibold text-foreground">Canino Obediente 360°</span>
+            <span> • Equipe especializada</span>
           </div>
         </motion.div>
 
         {/* Academic badge */}
-        <motion.div initial={{
-        y: 20,
-        opacity: 0
-      }} animate={{
-        y: 0,
-        opacity: 1
-      }} transition={{
-        delay: 0.6
-      }} className="flex items-center justify-center gap-4 p-6 bg-card rounded-2xl border">
-          <div className="flex items-center justify-center w-20 h-20">
-            <img src={awardSeal} alt="Selo Acadêmico" className="w-full h-full object-contain" />
-          </div>
-          <div className="text-left">
-            <p className="font-semibold text-foreground">
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className="flex items-center gap-4 p-4 rounded-xl mb-6"
+          style={{ background: "rgba(255, 255, 255, 0.08)" }}
+        >
+          <img
+            src={awardSeal}
+            alt="Selo Acadêmico"
+            className="w-16 h-16 object-contain"
+          />
+          <div>
+            <p className="font-semibold text-sm">
               Descobertas científicas mais recentes
             </p>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs text-muted-foreground">
               Apresentadas em Oxford, Harvard e Cambridge
             </p>
           </div>
         </motion.div>
 
+        {/* Spacer */}
+        <div className="flex-1" />
+
         {/* CTA */}
-        <motion.div initial={{
-        y: 20,
-        opacity: 0
-      }} animate={{
-        y: 0,
-        opacity: 1
-      }} transition={{
-        delay: 0.8
-      }} className="pt-4">
-          <Button onClick={onContinue} size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group">
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.4 }}
+        >
+          <button onClick={onContinue} className="cta-button group">
             Continuar
-            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </button>
         </motion.div>
       </div>
-    </motion.div>;
+    </motion.div>
+  );
 }

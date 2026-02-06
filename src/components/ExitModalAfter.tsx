@@ -1,5 +1,5 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import happyDog from '@/assets/happy-dog.jpg';
+import { motion, AnimatePresence } from "framer-motion";
+import happyDog from "@/assets/happy-dog.jpg";
 
 interface ExitModalAfterProps {
   isOpen: boolean;
@@ -8,7 +8,7 @@ interface ExitModalAfterProps {
 
 const ExitModalAfter = ({ isOpen, onClose }: ExitModalAfterProps) => {
   const redirectToCheckout = () => {
-    window.location.href = 'https://pay.kiwify.com.br/ANFvpl3';
+    window.location.href = "https://pay.kiwify.com.br/ANFvpl3";
   };
 
   return (
@@ -20,75 +20,74 @@ const ExitModalAfter = ({ isOpen, onClose }: ExitModalAfterProps) => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
           className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
-          style={{ backgroundColor: 'rgba(0,0,0,0.8)' }}
+          style={{ backgroundColor: "rgba(0,0,0,0.9)" }}
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.3 }}
-            className="relative w-full max-w-[600px] rounded-[30px] p-10 md:p-[60px] text-center overflow-y-auto max-h-[95vh]"
+            className="relative w-full max-w-md rounded-2xl p-6 text-center overflow-y-auto max-h-[90vh]"
             style={{
-              background: 'linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%)',
-              boxShadow: '0 20px 60px rgba(0,0,0,0.3)'
+              background: "linear-gradient(135deg, #ff6b6b 0%, #EE5A6F 100%)",
             }}
           >
-            {/* Botão X */}
+            {/* Close button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 text-white text-4xl md:text-5xl font-light hover:opacity-80 transition-opacity leading-none"
+              className="absolute top-3 right-3 text-white/80 text-3xl font-light hover:text-white transition-colors leading-none"
               aria-label="Fechar"
             >
               ×
             </button>
 
-            {/* Imagem do cachorro */}
-            <div className="mx-auto mb-5">
+            {/* Dog image */}
+            <div className="mx-auto mb-4">
               <img
                 src={happyDog}
                 alt="Cachorro feliz"
-                className="w-[150px] h-[150px] md:w-[200px] md:h-[200px] rounded-full object-cover mx-auto"
-                style={{ border: '8px solid rgba(255,255,255,0.3)' }}
+                className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover mx-auto"
+                style={{ border: "4px solid rgba(255,255,255,0.3)" }}
               />
             </div>
 
-            {/* Desconto gigante */}
-            <div className="text-5xl md:text-[5rem] font-black text-white mb-2 leading-none">
+            {/* Discount */}
+            <div className="text-5xl md:text-6xl font-black text-white mb-2 leading-none">
               61% OFF
             </div>
 
-            {/* Título */}
-            <h2 className="text-2xl md:text-[2.5rem] font-black text-[#fef08a] mb-6 leading-tight">
+            {/* Title */}
+            <h2 className="text-xl md:text-2xl font-bold text-yellow-200 mb-4 leading-tight">
               🎉 OFERTA EXCLUSIVA! 🎉
             </h2>
 
-            {/* Texto principal */}
-            <div className="text-base md:text-[1.3rem] text-white leading-[1.8] mb-6 space-y-3">
+            {/* Text */}
+            <div className="text-sm md:text-base text-white leading-relaxed mb-6 space-y-2">
               <p>Antes de sair...</p>
-              <p>Que tal garantir seu plano com 61% de desconto agora mesmo?</p>
+              <p>Que tal garantir seu plano com 61% de desconto?</p>
               <p>
-                De <span className="line-through opacity-80">R$ 147,00</span> por apenas{' '}
-                <span className="text-[#fef08a] text-xl md:text-[1.8rem] font-bold">R$ 57,33</span>
+                De <span className="line-through opacity-70">R$ 147,00</span> por apenas{" "}
+                <span className="text-yellow-200 text-lg md:text-xl font-bold">R$ 57,33</span>
               </p>
-              <p className="text-lg font-semibold">⏰ Esta oferta expira em 15 minutos!</p>
+              <p className="font-semibold">⏰ Esta oferta expira em 15 minutos!</p>
             </div>
 
-            {/* CTA Principal */}
+            {/* Primary CTA */}
             <motion.button
               onClick={redirectToCheckout}
-              animate={{ scale: [1, 1.05, 1] }}
+              animate={{ scale: [1, 1.03, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="bg-white text-[#ff6b6b] px-6 md:px-[50px] py-4 md:py-5 rounded-full text-lg md:text-[1.3rem] font-bold hover:bg-gray-100 transition-colors shadow-lg w-full md:w-auto"
+              className="w-full bg-white text-red-500 px-6 py-4 rounded-xl text-base md:text-lg font-bold hover:bg-gray-100 transition-colors shadow-lg mb-3"
             >
-              🚀 Sim! Quero Garantir 61% OFF Agora
+              🚀 Sim! Quero 61% OFF Agora
             </motion.button>
 
-            {/* CTA Secundário */}
+            {/* Secondary CTA */}
             <button
               onClick={onClose}
-              className="mt-4 bg-transparent border-2 border-white text-white px-6 md:px-[30px] py-3 md:py-4 rounded-full text-sm md:text-base hover:bg-white/10 transition-colors w-full md:w-auto"
+              className="w-full bg-transparent border-2 border-white/50 text-white px-4 py-3 rounded-xl text-sm hover:bg-white/10 transition-colors"
             >
-              Não, obrigado. Vou perder o desconto.
+              Não, vou perder o desconto
             </button>
           </motion.div>
         </motion.div>
