@@ -40,7 +40,7 @@ export default function Testimonial({ onContinue }: TestimonialProps) {
           <div className="flex items-center gap-3">
             <div 
               className="w-10 h-10 rounded-full flex items-center justify-center text-lg"
-              style={{ background: "rgba(64, 196, 170, 0.2)" }}
+              style={{ background: "hsla(168, 60%, 51%, 0.1)" }}
             >
               👤
             </div>
@@ -54,7 +54,7 @@ export default function Testimonial({ onContinue }: TestimonialProps) {
         {/* Social proof */}
         <div 
           className="p-5 rounded-xl text-center mb-6"
-          style={{ background: "rgba(64, 196, 170, 0.1)", border: "1px solid rgba(64, 196, 170, 0.2)" }}
+          style={{ background: "hsla(168, 60%, 51%, 0.06)", border: "1px solid hsla(168, 60%, 51%, 0.15)" }}
         >
           <p className="text-xl font-bold mb-1" style={{ color: "hsl(168 60% 54%)" }}>
             Mais de 25.000 donos de cães

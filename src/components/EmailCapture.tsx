@@ -91,7 +91,7 @@ export default function EmailCapture({
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="absolute z-10 w-full mt-1 rounded-xl overflow-hidden shadow-lg"
-                style={{ background: "hsl(230 20% 15%)", border: "1px solid hsl(230 15% 25%)" }}
+                style={{ background: "hsl(0 0% 100%)", border: "1px solid hsl(220 13% 91%)", boxShadow: "0 4px 12px rgba(0,0,0,0.1)" }}
               >
                 {getSuggestions().map((suggestion, idx) => (
                   <button
@@ -124,7 +124,7 @@ export default function EmailCapture({
           </label>
 
           {/* Privacy notice */}
-          <div className="flex items-start gap-3 p-4 rounded-xl" style={{ background: "rgba(255,255,255,0.05)" }}>
+          <div className="flex items-start gap-3 p-4 rounded-xl" style={{ background: "hsl(210 20% 98%)" }}>
             <Lock className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" />
             <p className="text-xs text-muted-foreground">
               Seus dados estão seguros. Não enviamos spam, apenas informações relevantes sobre o treinamento.

@@ -24,7 +24,7 @@ export default function MicroResult({ triggers, onContinue }: MicroResultProps) 
         <div className="text-center mb-6">
           <div 
             className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4"
-            style={{ background: "rgba(245, 158, 11, 0.15)" }}
+            style={{ background: "hsla(38, 92%, 50%, 0.08)" }}
           >
             <svg
               className="w-8 h-8"
@@ -59,7 +59,7 @@ export default function MicroResult({ triggers, onContinue }: MicroResultProps) 
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: idx * 0.1 }}
               className="flex items-center gap-4 p-4 rounded-xl"
-              style={{ background: "rgba(255, 255, 255, 0.08)", border: "1px solid rgba(64, 196, 170, 0.2)" }}
+              style={{ background: "hsl(210 20% 98%)", border: "1px solid hsla(168, 60%, 51%, 0.15)" }}
             >
               <div 
                 className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm"

@@ -47,9 +47,9 @@ export default function SocialProof({ onContinue }: SocialProofProps) {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
           className="p-6 rounded-2xl mb-6"
-          style={{ background: "rgba(64, 196, 170, 0.1)", border: "1px solid rgba(64, 196, 170, 0.2)" }}
+          style={{ background: "hsla(168, 60%, 51%, 0.06)", border: "1px solid hsla(168, 60%, 51%, 0.15)" }}
         >
-          <div className="text-4xl mb-3" style={{ color: "rgba(64, 196, 170, 0.4)" }}>❝</div>
+          <div className="text-4xl mb-3" style={{ color: "hsla(168, 60%, 51%, 0.3)" }}>❝</div>
           <p className="text-lg font-medium mb-4 leading-relaxed">
             Reatividade não é uma falha — é o nervo vago do seu cachorro pedindo ajuda
           </p>
@@ -65,7 +65,7 @@ export default function SocialProof({ onContinue }: SocialProofProps) {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3 }}
           className="flex items-center gap-4 p-4 rounded-xl mb-6"
-          style={{ background: "rgba(255, 255, 255, 0.08)" }}
+          style={{ background: "hsl(210 20% 98%)", border: "1px solid hsl(220 13% 91%)" }}
         >
           <img
             src={awardSeal}

@@ -35,7 +35,7 @@ export default function SpeedProof({
         <div className="text-center mb-6">
           <div 
             className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4"
-            style={{ background: "rgba(64, 196, 170, 0.15)" }}
+            style={{ background: "hsla(168, 60%, 51%, 0.08)" }}
           >
             <svg
               className="w-8 h-8"
@@ -81,7 +81,7 @@ export default function SpeedProof({
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: idx * 0.1 }}
               className="flex items-start gap-4 p-4 rounded-xl"
-              style={{ background: "rgba(255, 255, 255, 0.08)" }}
+              style={{ background: "hsl(210 20% 98%)", border: "1px solid hsl(220 13% 91%)" }}
             >
               <div className="text-xl">📅</div>
               <div>
@@ -95,7 +95,7 @@ export default function SpeedProof({
         {/* Urgency box */}
         <div 
           className="p-4 rounded-xl text-center mb-6"
-          style={{ background: "rgba(245, 158, 11, 0.15)", border: "1px solid rgba(245, 158, 11, 0.3)" }}
+          style={{ background: "hsla(38, 92%, 50%, 0.08)", border: "1px solid hsla(38, 92%, 50%, 0.15)" }}
         >
           <p className="font-bold text-sm mb-1">⚡ Ação Rápida Necessária</p>
           <p className="text-xs text-muted-foreground">
