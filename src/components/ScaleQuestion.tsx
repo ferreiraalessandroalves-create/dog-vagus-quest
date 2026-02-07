@@ -26,8 +26,8 @@ export default function ScaleQuestion({
     <div className="w-full py-4">
       {/* Scale labels */}
       <div className="flex justify-between mb-3 px-1">
-        <span className="text-xs text-muted-foreground">Discordo</span>
         <span className="text-xs text-muted-foreground">Concordo</span>
+        <span className="text-xs text-muted-foreground">Discordo</span>
       </div>
 
       {/* Emoji scale */}
