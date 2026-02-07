@@ -47,14 +47,14 @@ export default function Education({ onContinue }: EducationProps) {
 
         {/* Info cards */}
         <div className="space-y-4 flex-1">
-          <div className="p-4 rounded-xl" style={{ background: "rgba(255, 255, 255, 0.08)" }}>
+          <div className="p-4 rounded-xl" style={{ background: "hsl(210 20% 98%)", border: "1px solid hsl(220 13% 91%)" }}>
             <h3 className="text-base font-bold mb-2">🧠 O Sistema Nervoso Canino</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
               O nervo vago é o nervo mais longo do corpo, conectando o cérebro aos principais órgãos. Ele controla a resposta ao estresse, digestão e comportamento social.
             </p>
           </div>
 
-          <div className="p-4 rounded-xl" style={{ background: "rgba(255, 255, 255, 0.08)" }}>
+          <div className="p-4 rounded-xl" style={{ background: "hsl(210 20% 98%)", border: "1px solid hsl(220 13% 91%)" }}>
             <h3 className="text-base font-bold mb-2">⚡ Quando Desequilibrado</h3>
             <ul className="text-sm text-muted-foreground space-y-1">
               <li>• Reatividade excessiva (latidos, puxões)</li>
@@ -64,7 +64,7 @@ export default function Education({ onContinue }: EducationProps) {
             </ul>
           </div>
 
-          <div className="p-4 rounded-xl" style={{ background: "rgba(64, 196, 170, 0.15)", border: "1px solid rgba(64, 196, 170, 0.3)" }}>
+          <div className="p-4 rounded-xl" style={{ background: "hsla(168, 60%, 51%, 0.06)", border: "1px solid hsla(168, 60%, 51%, 0.15)" }}>
             <h3 className="text-base font-bold mb-2" style={{ color: "hsl(168 60% 54%)" }}>✨ A Solução</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Exercícios específicos de estimulação do nervo vago podem reequilibrar o sistema nervoso, resultando em comportamento calmo e equilibrado em apenas 21 dias.

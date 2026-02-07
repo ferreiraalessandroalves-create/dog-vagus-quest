@@ -69,7 +69,7 @@ export default function LoadingScreen({
             cx="64"
             cy="64"
             r="56"
-            stroke="rgba(255, 255, 255, 0.1)"
+            stroke="hsl(220 13% 91%)"
             strokeWidth="8"
             fill="none"
           />
@@ -145,13 +145,13 @@ export default function LoadingScreen({
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4"
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             className="p-6 rounded-2xl max-w-sm w-full"
-            style={{ background: "hsl(230 20% 12%)", border: "2px solid hsl(230 15% 25%)" }}
+            style={{ background: "hsl(0 0% 100%)", border: "2px solid hsl(220 13% 91%)", boxShadow: "0 10px 40px rgba(0,0,0,0.1)" }}
           >
             <h3 className="text-lg font-bold text-center mb-6">
               {popupQuestion}

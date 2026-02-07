@@ -59,7 +59,7 @@ export default function ScratchCard({ dogName, onReveal }: ScratchCardProps) {
         {/* Reveal animation */}
         <div 
           className="relative w-full max-w-xs mx-auto aspect-[4/3] rounded-2xl overflow-hidden"
-          style={{ background: "rgba(255, 255, 255, 0.08)" }}
+          style={{ background: "hsl(210 20% 98%)", border: "1px solid hsl(220 13% 91%)" }}
         >
           {!revealed ? (
             <motion.div 
@@ -106,14 +106,14 @@ export default function ScratchCard({ dogName, onReveal }: ScratchCardProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4"
         >
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.7, type: "spring", damping: 12 }}
             className="p-8 rounded-2xl max-w-sm w-full text-center"
-            style={{ background: "hsl(230 20% 12%)", border: "2px solid hsl(168 60% 54%)" }}
+            style={{ background: "hsl(0 0% 100%)", border: "2px solid hsl(168 60% 51%)", boxShadow: "0 10px 40px rgba(0,0,0,0.15)" }}
           >
             <div className="text-6xl mb-4">🤩</div>
             <h2 className="text-2xl font-bold mb-2">Parabéns!</h2>

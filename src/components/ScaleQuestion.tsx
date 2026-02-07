@@ -12,8 +12,8 @@ const scaleOptions = [
   { value: 1, emoji: "😊", label: "Nunca" },
   { value: 2, emoji: "🙂", label: "Raramente" },
   { value: 3, emoji: "😐", label: "Às vezes" },
-  { value: 4, emoji: "😕", label: "Frequentemente" },
-  { value: 5, emoji: "😣", label: "Sempre" },
+  { value: 4, emoji: "😟", label: "Frequentemente" },
+  { value: 5, emoji: "😫", label: "Sempre" },
 ];
 
 export default function ScaleQuestion({

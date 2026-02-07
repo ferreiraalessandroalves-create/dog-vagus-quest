@@ -2,31 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Inlead-style dark theme - Mobile-first design system */
+/* Inlead-style LIGHT theme - Mobile-first design system */
 
 @layer base {
   :root {
-    /* Dark background - Inlead style */
-    --background: 230 20% 10%;
-    --foreground: 0 0% 100%;
+    /* Light background */
+    --background: 0 0% 100%;
+    --foreground: 220 20% 18%;
 
-    /* Card backgrounds - translucent dark */
-    --card: 230 20% 12%;
-    --card-foreground: 0 0% 100%;
+    /* Card backgrounds - white */
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 18%;
 
-    --popover: 230 20% 12%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 18%;
 
     /* Primary - Teal/Turquoise (Inlead accent) */
-    --primary: 168 60% 54%;
+    --primary: 168 60% 51%;
     --primary-foreground: 0 0% 100%;
 
     /* Secondary - Golden yellow */
     --secondary: 41 95% 60%;
-    --secondary-foreground: 230 20% 10%;
+    --secondary-foreground: 220 20% 18%;
 
     /* Accent - Bright teal for CTAs */
-    --accent: 168 60% 54%;
+    --accent: 168 60% 51%;
     --accent-foreground: 0 0% 100%;
 
     /* Success - Green */
@@ -42,40 +42,39 @@
     --warning-foreground: 0 0% 100%;
 
     /* Muted - Subtle backgrounds */
-    --muted: 230 15% 18%;
-    --muted-foreground: 0 0% 70%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 220 10% 46%;
 
     /* Borders and inputs */
-    --border: 230 15% 25%;
-    --input: 230 15% 25%;
-    --ring: 168 60% 54%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 168 60% 51%;
 
     --radius: 0.75rem;
 
-    /* Sidebar (if needed) */
-    --sidebar-background: 230 20% 10%;
-    --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 168 60% 54%;
+    /* Sidebar */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 20% 18%;
+    --sidebar-primary: 168 60% 51%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 230 15% 18%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 230 15% 25%;
-    --sidebar-ring: 168 60% 54%;
+    --sidebar-accent: 210 20% 96%;
+    --sidebar-accent-foreground: 220 20% 18%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 168 60% 51%;
   }
 
-  /* Light mode override (same as dark for this quiz) */
   .light {
-    --background: 230 20% 10%;
-    --foreground: 0 0% 100%;
-    --card: 230 20% 12%;
-    --card-foreground: 0 0% 100%;
-    --popover: 230 20% 12%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 168 60% 54%;
+    --background: 0 0% 100%;
+    --foreground: 220 20% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 18%;
+    --primary: 168 60% 51%;
     --primary-foreground: 0 0% 100%;
     --secondary: 41 95% 60%;
-    --secondary-foreground: 230 20% 10%;
-    --accent: 168 60% 54%;
+    --secondary-foreground: 220 20% 18%;
+    --accent: 168 60% 51%;
     --accent-foreground: 0 0% 100%;
     --success: 158 64% 52%;
     --success-foreground: 0 0% 100%;
@@ -83,33 +82,33 @@
     --destructive-foreground: 0 0% 100%;
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 100%;
-    --muted: 230 15% 18%;
-    --muted-foreground: 0 0% 70%;
-    --border: 230 15% 25%;
-    --input: 230 15% 25%;
-    --ring: 168 60% 54%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 220 10% 46%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 168 60% 51%;
   }
 
   .dark {
-    --background: 230 20% 8%;
-    --foreground: 0 0% 100%;
-    --card: 230 20% 10%;
-    --card-foreground: 0 0% 100%;
-    --popover: 230 20% 10%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 168 60% 54%;
+    --background: 0 0% 100%;
+    --foreground: 220 20% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 18%;
+    --primary: 168 60% 51%;
     --primary-foreground: 0 0% 100%;
     --secondary: 41 95% 60%;
-    --secondary-foreground: 230 20% 10%;
-    --muted: 230 15% 15%;
-    --muted-foreground: 0 0% 65%;
-    --accent: 168 60% 50%;
+    --secondary-foreground: 220 20% 18%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 220 10% 46%;
+    --accent: 168 60% 51%;
     --accent-foreground: 0 0% 100%;
     --destructive: 4 90% 58%;
     --destructive-foreground: 0 0% 100%;
-    --border: 230 15% 20%;
-    --input: 230 15% 20%;
-    --ring: 168 60% 54%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 168 60% 51%;
   }
 }
 
@@ -124,7 +123,7 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    background: linear-gradient(180deg, hsl(230 20% 10%) 0%, hsl(230 25% 8%) 100%);
+    background: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 20% 98%) 100%);
     min-height: 100vh;
   }
 }
@@ -144,23 +143,24 @@
   /* Progress bar styles */
   .progress-bar-container {
     @apply fixed top-0 left-0 right-0 h-1.5 z-50;
-    background: rgba(255, 255, 255, 0.1);
+    background: hsl(220 13% 91%);
   }
 
   .progress-bar-fill {
     @apply h-full transition-all duration-500 ease-out;
     background: linear-gradient(90deg, 
-      hsl(168 60% 54%) 0%,
+      hsl(168 60% 51%) 0%,
       hsl(174 60% 50%) 50%,
       hsl(186 70% 50%) 100%
     );
-    box-shadow: 0 0 12px hsla(168, 60%, 54%, 0.5);
+    box-shadow: 0 0 12px hsla(168, 60%, 51%, 0.4);
   }
 
   .progress-text {
     @apply fixed top-3 right-4 text-sm font-semibold z-[51] px-3 py-1 rounded-full;
-    color: hsl(168 60% 54%);
-    background: rgba(0, 0, 0, 0.5);
+    color: hsl(168 60% 51%);
+    background: hsla(0, 0%, 100%, 0.9);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   }
 
   /* Quiz header/logo */
@@ -170,34 +170,35 @@
 
   .quiz-logo {
     @apply text-sm font-semibold tracking-wide;
-    color: hsl(168 60% 54%);
+    color: hsl(168 60% 51%);
   }
 
   /* Question title styles */
   .question-title {
     @apply text-[22px] md:text-[26px] font-bold leading-tight text-center mb-2 px-2;
+    color: hsl(220 20% 18%);
   }
 
   .question-subtitle {
     @apply text-sm md:text-base text-center mb-6;
-    color: hsla(0, 0%, 100%, 0.7);
+    color: hsl(220 10% 46%);
   }
 
   /* Option cards */
   .option-card {
     @apply w-full min-h-[64px] p-4 md:p-5 rounded-xl flex items-center gap-3 cursor-pointer transition-all duration-200;
-    background: rgba(255, 255, 255, 0.08);
-    border: 2px solid rgba(255, 255, 255, 0.15);
+    background: hsl(0 0% 100%);
+    border: 2px solid hsl(220 13% 91%);
   }
 
   .option-card:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: hsla(168, 60%, 54%, 0.5);
+    background: hsl(210 20% 98%);
+    border-color: hsla(168, 60%, 51%, 0.5);
   }
 
   .option-card.selected {
-    background: hsla(168, 60%, 54%, 0.15);
-    border-color: hsl(168 60% 54%);
+    background: hsla(168, 60%, 51%, 0.08);
+    border-color: hsl(168 60% 51%);
   }
 
   .option-emoji {
@@ -206,6 +207,7 @@
 
   .option-text {
     @apply text-base font-medium leading-snug;
+    color: hsl(220 20% 18%);
   }
 
   /* Option card with image */
@@ -220,14 +222,14 @@
   /* CTA button - mobile optimized */
   .cta-button {
     @apply w-full min-h-[56px] px-6 py-4 rounded-xl text-[17px] font-semibold flex items-center justify-center gap-2 transition-all duration-200;
-    background: linear-gradient(135deg, hsl(168 60% 54%) 0%, hsl(174 60% 50%) 100%);
+    background: linear-gradient(135deg, hsl(168 60% 51%) 0%, hsl(174 60% 50%) 100%);
     color: white;
-    box-shadow: 0 4px 15px hsla(168, 60%, 54%, 0.3);
+    box-shadow: 0 4px 15px hsla(168, 60%, 51%, 0.3);
   }
 
   .cta-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px hsla(168, 60%, 54%, 0.4);
+    box-shadow: 0 6px 20px hsla(168, 60%, 51%, 0.4);
   }
 
   .cta-button:active {
@@ -235,7 +237,8 @@
   }
 
   .cta-button:disabled {
-    background: rgba(255, 255, 255, 0.2);
+    background: hsl(220 13% 91%);
+    color: hsl(220 10% 46%);
     cursor: not-allowed;
     box-shadow: none;
   }
@@ -247,32 +250,33 @@
 
   .emoji-option {
     @apply w-14 h-14 flex items-center justify-center text-[28px] rounded-xl cursor-pointer transition-all duration-200;
-    background: rgba(255, 255, 255, 0.08);
+    background: hsl(210 20% 96%);
     border: 2px solid transparent;
   }
 
   .emoji-option:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: hsl(210 20% 93%);
     transform: scale(1.05);
   }
 
   .emoji-option.selected {
-    background: hsla(168, 60%, 54%, 0.2);
-    border-color: hsl(168 60% 54%);
+    background: hsla(168, 60%, 51%, 0.12);
+    border-color: hsl(168 60% 51%);
     transform: scale(1.1);
   }
 
   /* Info box (yellow border) */
   .info-box {
     @apply p-3 md:p-4 rounded-lg text-[13px] leading-relaxed;
-    background: rgba(255, 193, 7, 0.15);
+    background: hsla(45, 100%, 51%, 0.08);
     border-left: 3px solid hsl(45 100% 51%);
   }
 
   /* Testimonial card */
   .testimonial-card {
     @apply p-5 rounded-2xl;
-    background: rgba(255, 255, 255, 0.08);
+    background: hsl(210 20% 98%);
+    border: 1px solid hsl(220 13% 91%);
   }
 
   .testimonial-stars {
@@ -283,12 +287,12 @@
   /* Price display */
   .price-original {
     @apply text-base line-through;
-    color: hsla(0, 0%, 100%, 0.5);
+    color: hsl(220 10% 46%);
   }
 
   .price-current {
     @apply text-4xl font-extrabold my-1;
-    color: hsl(168 60% 54%);
+    color: hsl(168 60% 51%);
   }
 
   /* Benefits list */
@@ -298,31 +302,32 @@
 
   .benefit-icon {
     @apply text-lg flex-shrink-0;
-    color: hsl(168 60% 54%);
+    color: hsl(168 60% 51%);
   }
 
   /* Input field */
   .quiz-input {
     @apply w-full py-4 px-5 rounded-xl text-base outline-none transition-all duration-200;
-    background: rgba(255, 255, 255, 0.08);
-    border: 2px solid rgba(255, 255, 255, 0.15);
-    color: white;
+    background: hsl(0 0% 100%);
+    border: 2px solid hsl(220 13% 91%);
+    color: hsl(220 20% 18%);
   }
 
   .quiz-input::placeholder {
-    color: hsla(0, 0%, 100%, 0.4);
+    color: hsl(220 10% 70%);
   }
 
   .quiz-input:focus {
-    border-color: hsl(168 60% 54%);
-    background: rgba(255, 255, 255, 0.12);
+    border-color: hsl(168 60% 51%);
+    background: hsl(0 0% 100%);
+    box-shadow: 0 0 0 3px hsla(168, 60%, 51%, 0.1);
   }
 
   /* Loading/analysis screen */
   .loading-circle {
     @apply w-[120px] h-[120px] rounded-full relative;
-    border: 6px solid rgba(255, 255, 255, 0.1);
-    border-top-color: hsl(168 60% 54%);
+    border: 6px solid hsl(220 13% 91%);
+    border-top-color: hsl(168 60% 51%);
     animation: spin 1s linear infinite;
   }
 
@@ -333,8 +338,8 @@
   /* Timer urgency */
   .timer-container {
     @apply flex items-center justify-center gap-2 p-3 rounded-lg mb-4;
-    background: rgba(220, 53, 69, 0.15);
-    border: 1px solid rgba(220, 53, 69, 0.3);
+    background: hsla(4, 90%, 58%, 0.08);
+    border: 1px solid hsla(4, 90%, 58%, 0.2);
   }
 
   .timer-digits {
@@ -346,7 +351,7 @@
   /* Reveal animation */
   .reveal-discount {
     @apply text-7xl font-extrabold;
-    color: hsl(168 60% 54%);
+    color: hsl(168 60% 51%);
     animation: revealPulse 0.5s ease-out;
   }
 
@@ -367,12 +372,13 @@
   /* Expert card */
   .expert-card {
     @apply flex gap-4 p-5 rounded-2xl items-start;
-    background: rgba(255, 255, 255, 0.08);
+    background: hsl(210 20% 98%);
+    border: 1px solid hsl(220 13% 91%);
   }
 
   .expert-image {
     @apply w-20 h-20 rounded-full object-cover;
-    border: 3px solid hsl(168 60% 54%);
+    border: 3px solid hsl(168 60% 51%);
   }
 }
 

@@ -31,7 +31,7 @@ export default function Authority({ onContinue }: AuthorityProps) {
         <div className="text-center mb-6">
           <div 
             className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4"
-            style={{ background: "rgba(64, 196, 170, 0.15)" }}
+            style={{ background: "hsla(168, 60%, 51%, 0.08)" }}
           >
             <svg
               className="w-8 h-8"
@@ -59,7 +59,7 @@ export default function Authority({ onContinue }: AuthorityProps) {
 
         {/* Expert card */}
         <div className="expert-card mb-6">
-          <Avatar className="w-16 h-16 border-2" style={{ borderColor: "rgba(64, 196, 170, 0.3)" }}>
+          <Avatar className="w-16 h-16 border-2" style={{ borderColor: "hsla(168, 60%, 51%, 0.3)" }}>
             <AvatarImage 
               src={drCarlosImage} 
               alt="Dr. Carlos Mendes" 

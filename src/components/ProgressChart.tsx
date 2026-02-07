@@ -28,12 +28,12 @@ export default function ProgressChart({ dogName, onContinue }: ProgressChartProp
         </div>
 
         {/* Chart */}
-        <div className="p-4 rounded-2xl mb-6" style={{ background: "rgba(255, 255, 255, 0.08)" }}>
+        <div className="p-4 rounded-2xl mb-6" style={{ background: "hsl(210 20% 98%)", border: "1px solid hsl(220 13% 91%)" }}>
           <div className="relative h-48">
             {/* Grid lines */}
             <div className="absolute inset-0 flex flex-col justify-between">
               {[...Array(5)].map((_, i) => (
-                <div key={i} className="border-t border-white/10" />
+                <div key={i} className="border-t border-border" />
               ))}
             </div>
 

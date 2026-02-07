@@ -51,7 +51,7 @@ export default function Diagnosis({
         </div>
 
         {/* Tension gauge */}
-        <div className="p-6 rounded-2xl text-center mb-6" style={{ background: "rgba(255, 255, 255, 0.08)" }}>
+        <div className="p-6 rounded-2xl text-center mb-6" style={{ background: "hsl(210 20% 98%)", border: "1px solid hsl(220 13% 91%)" }}>
           <p className="text-sm text-muted-foreground mb-4">Nível de Tensão do Nervo Vago</p>
           
           <div className="relative w-32 h-32 mx-auto mb-4">
@@ -60,7 +60,7 @@ export default function Diagnosis({
                 cx="64"
                 cy="64"
                 r="56"
-                stroke="rgba(255, 255, 255, 0.1)"
+                stroke="hsl(220 13% 91%)"
                 strokeWidth="10"
                 fill="none"
               />
@@ -93,7 +93,7 @@ export default function Diagnosis({
 
         {/* Problems identified */}
         {mainProblems.length > 0 && (
-          <div className="p-4 rounded-xl mb-6" style={{ background: "rgba(255, 255, 255, 0.08)" }}>
+          <div className="p-4 rounded-xl mb-6" style={{ background: "hsl(210 20% 98%)", border: "1px solid hsl(220 13% 91%)" }}>
             <h3 className="text-base font-bold mb-3">Problemas Identificados:</h3>
             <div className="space-y-2">
               {mainProblems.map((problem, idx) => (
@@ -114,7 +114,7 @@ export default function Diagnosis({
         {/* Good news box */}
         <div 
           className="p-4 rounded-xl mb-6"
-          style={{ background: "rgba(64, 196, 170, 0.15)", border: "1px solid rgba(64, 196, 170, 0.3)" }}
+          style={{ background: "hsla(168, 60%, 51%, 0.06)", border: "1px solid hsla(168, 60%, 51%, 0.15)" }}
         >
           <p className="text-sm text-center">
             <strong style={{ color: "hsl(168 60% 54%)" }}>Boa notícia!</strong>{" "}
