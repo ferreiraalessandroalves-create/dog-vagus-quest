@@ -9,6 +9,7 @@ import MultipleChoiceCheckbox from "@/components/MultipleChoiceCheckbox";
 import ScaleQuestion from "@/components/ScaleQuestion";
 import SocialProof from "@/components/SocialProof";
 import LoadingScreen from "@/components/LoadingScreen";
+import LoadingAnalise from "@/components/LoadingAnalise";
 import MicroResult from "@/components/MicroResult";
 import Education from "@/components/Education";
 import Authority from "@/components/Authority";
@@ -164,14 +165,14 @@ const Index = () => {
    * 26: Diagnosis
    * 27: Tempo disponível
    * 28: Speed Proof
-   * 29-31: Loading screens
-   * 32: Testimonial
-   * 33: Chart
-   * 34: Scratch/Reveal
-   * 35+: Oferta final
+   * 29: LoadingAnalise (depoimentos + análise 5s)
+   * 30: Testimonial
+   * 31: Chart
+   * 32: Scratch/Reveal
+   * 33+: Oferta final
    */
 
-  const totalSteps = 36;
+  const totalSteps = 34;
   const progressPercent = (state.currentStep / totalSteps) * 100;
 
   return (
@@ -808,50 +809,20 @@ const Index = () => {
           />
         )}
 
-        {/* Step 29: Loading 1 */}
+        {/* Step 29: Loading Análise com depoimentos */}
         {state.currentStep === 29 && (
-          <LoadingScreen
-            key="loading-1"
-            progress={32}
-            text="Analisando as respostas..."
-            showPopup={true}
-            popupQuestion="Você já tentou treinar seu cão antes?"
-            popupOptions={["Sim, mas não funcionou", "Não, é minha primeira vez"]}
-            onPopupAnswer={(value) => handleAnswer("previousTraining", value)}
+          <LoadingAnalise
+            key="loading-analise"
+            nomeDoCao={state.dogName || "seu cachorro"}
             onComplete={nextStep}
           />
         )}
 
-        {/* Step 30: Loading 2 */}
-        {state.currentStep === 30 && (
-          <LoadingScreen
-            key="loading-2"
-            progress={61}
-            text="Preparando seu plano personalizado..."
-            showPopup={true}
-            popupQuestion="Você está comprometido com a transformação?"
-            popupOptions={["Sim, estou comprometido!", "Ainda pensando..."]}
-            onPopupAnswer={(value) => handleAnswer("commitment", value)}
-            onComplete={nextStep}
-          />
-        )}
+        {/* Step 30: Testimonial */}
+        {state.currentStep === 30 && <Testimonial key="testimonial" onContinue={nextStep} />}
 
-        {/* Step 31: Loading complete */}
+        {/* Step 31: Chart */}
         {state.currentStep === 31 && (
-          <LoadingScreen
-            key="loading-3"
-            progress={100}
-            text="Plano pronto! 🎉"
-            showConfetti={true}
-            onComplete={nextStep}
-          />
-        )}
-
-        {/* Step 32: Testimonial */}
-        {state.currentStep === 32 && <Testimonial key="testimonial" onContinue={nextStep} />}
-
-        {/* Step 33: Chart */}
-        {state.currentStep === 33 && (
           <ProgressChart
             key="chart"
             dogName={state.dogName || "seu cachorro"}
@@ -859,13 +830,13 @@ const Index = () => {
           />
         )}
 
-        {/* Step 34: Discount reveal */}
-        {state.currentStep === 34 && (
+        {/* Step 32: Discount reveal */}
+        {state.currentStep === 32 && (
           <ScratchCard key="scratch" dogName={state.dogName || "seu cachorro"} onReveal={nextStep} />
         )}
 
-        {/* Step 35+: Final offer */}
-        {state.currentStep >= 35 && (
+        {/* Step 33+: Final offer */}
+        {state.currentStep >= 33 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
