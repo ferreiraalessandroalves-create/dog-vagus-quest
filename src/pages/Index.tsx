@@ -22,6 +22,7 @@ import ScratchCard from "@/components/ScratchCard";
 import InputQuestion from "@/components/InputQuestion";
 import ExitModalBefore from "@/components/ExitModalBefore";
 import ExitModalAfter from "@/components/ExitModalAfter";
+import VSLPage from "@/components/VSLPage";
 import { ArrowRight } from "lucide-react";
 import { useQuizSubmission } from "@/hooks/useQuizSubmission";
 import puppyImg from "@/assets/puppy.png";
@@ -835,53 +836,9 @@ const Index = () => {
           <ScratchCard key="scratch" dogName={state.dogName || "seu cachorro"} onReveal={nextStep} />
         )}
 
-        {/* Step 33+: Final offer */}
+        {/* Step 33+: VSL Sales Page */}
         {state.currentStep >= 33 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden"
-            style={{ background: "linear-gradient(135deg, #FF6B6B 0%, #EE5A6F 100%)" }}
-          >
-            <div className="w-full relative z-10 flex flex-col items-center justify-center">
-              {/* Mobile version */}
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className="md:hidden flex flex-col items-center w-full max-w-md mx-auto"
-              >
-                <a href="https://pay.kiwify.com.br/ANFvpl3" target="_blank" rel="noopener noreferrer">
-                  <img
-                    src={ofertaMobile}
-                    alt="Oferta limitada - 61% de desconto"
-                    className="w-full max-w-[340px] mx-auto"
-                  />
-                </a>
-              </motion.div>
-
-              {/* Desktop version */}
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className="hidden md:block relative w-full max-w-2xl lg:max-w-4xl mx-auto px-8"
-              >
-                <a
-                  href="https://pay.kiwify.com.br/ANFvpl3"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block cursor-pointer hover:opacity-95 transition-opacity"
-                >
-                  <img
-                    src={ofertaLimitada}
-                    alt="Oferta limitada - 61% de desconto"
-                    className="w-full rounded-3xl shadow-2xl"
-                  />
-                </a>
-              </motion.div>
-            </div>
-          </motion.div>
+          <VSLPage key="vsl" />
         )}
       </AnimatePresence>
 
