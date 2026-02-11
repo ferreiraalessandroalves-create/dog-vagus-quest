@@ -50,6 +50,24 @@ export function useQuizSubmission() {
       }
 
       console.log('✅ Dados salvos com sucesso:', result);
+
+      // Replicar para Supabase externo (assíncrono, não bloqueia)
+      try {
+        supabase.functions.invoke('replicate-quiz', {
+          body: { record: result },
+        }).then(({ error: replicateError }) => {
+          if (replicateError) {
+            console.error('⚠️ Erro na replicação (não crítico):', replicateError);
+          } else {
+            console.log('🔄 Replicação para Supabase externo iniciada');
+          }
+        }).catch((err) => {
+          console.error('⚠️ Falha ao chamar replicação (não crítico):', err);
+        });
+      } catch (e) {
+        console.error('⚠️ Erro ao iniciar replicação:', e);
+      }
+
       return { success: true, data: result };
     } catch (error) {
       console.error('Erro ao salvar:', error);
