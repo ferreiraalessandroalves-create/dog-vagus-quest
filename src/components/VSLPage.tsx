@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import happyDog from "@/assets/happy-dog.jpg";
-import heroGolden from "@/assets/hero-golden-retriever.jpg";
+import heroVsl from "@/assets/hero-vsl.jpeg";
 import imgFx48 from "@/assets/Image_fx_48.png";
 import imgFx49 from "@/assets/Image_fx_49.png";
 import imgFx50 from "@/assets/Image_fx_50.png";
@@ -139,7 +139,7 @@ const VSLPage = () => {
       {/* SEÇÃO 1: HERO COM FUNDO */}
       <section className="relative min-h-[700px] flex items-center justify-center px-4 py-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src={heroGolden} alt="Golden Retriever" className="w-full h-full object-cover" />
+          <img src={heroVsl} alt="Golden Retriever" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70" />
         </div>
 
@@ -171,6 +171,16 @@ const VSLPage = () => {
                 {AFTER_BARS.map((bar) => <HeroBar key={bar.label} label={bar.label} value={bar.value} color="green" />)}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* TIMER + OFERTA DISPONÍVEL */}
+      <section className="py-4 px-6 bg-red-50">
+        <div className="max-w-2xl mx-auto">
+          <div className="rounded-xl p-4 text-center border-2 border-red-200">
+            <p className="text-sm font-semibold mb-2 text-red-800">⏰ Oferta disponível por:</p>
+            <div className="text-4xl font-black text-red-600" style={{ fontVariantNumeric: "tabular-nums" }}>{minutes}:{seconds}</div>
           </div>
         </div>
       </section>
@@ -220,14 +230,9 @@ const VSLPage = () => {
         </div>
       </section>
 
-      {/* SEÇÃO 6: TIMER + OFERTA */}
+      {/* SEÇÃO 6: OFERTA */}
       <section className="py-8 px-6 bg-gray-50">
         <div className="max-w-2xl mx-auto space-y-6">
-          <div className="rounded-xl p-4 text-center bg-red-50 border-2 border-red-200">
-            <p className="text-sm font-semibold mb-2 text-red-800">⏰ Oferta disponível por:</p>
-            <div className="text-4xl font-black text-red-600" style={{ fontVariantNumeric: "tabular-nums" }}>{minutes}:{seconds}</div>
-          </div>
-
           <div className="rounded-2xl p-6 border-3 border-orange-400" style={{ background: "linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%)", borderWidth: 3, borderColor: "#FB923C" }}>
             <div className="text-center font-bold py-3 px-4 rounded-lg mb-6 text-white bg-orange-500">🎁 CONDIÇÃO ESPECIAL COM 61% DE DESCONTO</div>
             <h3 className="text-2xl font-bold text-center mb-2 text-gray-800">Canino Obediente 360°</h3>
@@ -296,15 +301,6 @@ const VSLPage = () => {
             Educar seu cachorro não precisa ser complexo e demorado,<br />21 dias é o suficiente
           </h2>
           <CTAButton />
-        </div>
-      </section>
-
-      {/* SEÇÃO 9: APP GRATUITO */}
-      <section className="py-8 px-6 bg-white">
-        <div className="max-w-2xl mx-auto text-center">
-          <div className="w-24 h-24 rounded-2xl mx-auto mb-6 flex items-center justify-center text-4xl" style={{ background: "linear-gradient(135deg, #40C4AA 0%, #2DD4BF 100%)" }}>📱</div>
-          <h2 className="text-2xl font-bold mb-4 text-gray-800">O aplicativo para acompanhar é gratuito</h2>
-          <p className="leading-relaxed text-gray-500">Nós ensinamos e você usa o aplicativo Canino Obediente 360° para acompanhar o progresso do seu cachorro no celular. Ele é 100% gratuito e você não terá custo nenhum para usar.</p>
         </div>
       </section>
 
