@@ -185,6 +185,24 @@ const VSLPage = () => {
         </div>
       </section>
 
+      {/* BADGES DE DESTAQUE */}
+      <section className="py-6 px-4 bg-white">
+        <div className="max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex items-center gap-2 bg-emerald-50 border-2 border-emerald-200 rounded-full px-6 py-3 text-center">
+            <span className="text-xl">🔬</span>
+            <span className="font-bold text-emerald-800 text-sm sm:text-base">Método cientificamente comprovado</span>
+          </div>
+          <div className="flex items-center gap-2 bg-orange-50 border-2 border-orange-200 rounded-full px-6 py-3 text-center">
+            <span className="text-xl">🐾</span>
+            <span className="font-bold text-orange-800 text-sm sm:text-base">Personalizado para seu cachorro</span>
+          </div>
+          <div className="flex items-center gap-2 bg-blue-50 border-2 border-blue-200 rounded-full px-6 py-3 text-center">
+            <span className="text-xl">📅</span>
+            <span className="font-bold text-blue-800 text-sm sm:text-base">Resultados em 21 dias</span>
+          </div>
+        </div>
+      </section>
+
       {/* SEÇÃO 3: PROBLEMAS */}
       <section className="py-8 px-6 bg-white">
         <div className="max-w-2xl mx-auto">
