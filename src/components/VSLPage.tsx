@@ -228,39 +228,6 @@ const VSLPage = () => {
         </div>
       </section>
 
-      {/* SEÇÃO 5: LISTA COMPLETA */}
-      <section className="py-8 px-6 bg-white">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">NESSE PROGRAMA VOCÊ TERÁ ACESSO A:</h2>
-          <div className="space-y-3">
-            {ACCESS_LIST.map((item) => (
-              <div key={item} className="flex items-start gap-3">
-                <span className="text-xl flex-shrink-0 text-emerald-500">✅</span>
-                <p className="text-gray-700">{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SEÇÃO 6: OFERTA */}
-      <section className="py-8 px-6 bg-gray-50">
-        <div className="max-w-2xl mx-auto space-y-6">
-          <div className="rounded-2xl p-6 border-3 border-orange-400" style={{ background: "linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%)", borderWidth: 3, borderColor: "#FB923C" }}>
-            <div className="text-center font-bold py-3 px-4 rounded-lg mb-6 text-white bg-orange-500">🎁 CONDIÇÃO ESPECIAL COM 61% DE DESCONTO</div>
-            <h3 className="text-2xl font-bold text-center mb-2 text-gray-800">Canino Obediente 360°</h3>
-            <p className="text-center mb-6 text-gray-500">Acesso completo ao método + App + Suporte</p>
-            <div className="text-center mb-6">
-              <p className="text-sm line-through text-gray-400">De R$ 120,50</p>
-              <p className="text-lg mb-2 text-gray-700">Por apenas</p>
-              <p className="text-5xl font-black text-emerald-600">R$ 47,00</p>
-              <p className="text-sm mt-2 text-gray-500">ou 12x de R$ 4,30</p>
-            </div>
-            <CTAButton />
-          </div>
-        </div>
-      </section>
-
       {/* SEÇÃO 7: OBEDIÊNCIA ANTES/DEPOIS COM IMAGENS */}
       <section className="py-20 px-4 bg-gradient-to-b from-white via-gray-50 to-white">
         <div className="max-w-7xl mx-auto">
@@ -303,6 +270,39 @@ const VSLPage = () => {
 
           <div className="mt-16 text-center max-w-md mx-auto">
             <CTAButton>🎯 Quero Transformar Meu Cachorro Agora!</CTAButton>
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO 5: LISTA COMPLETA */}
+      <section className="py-8 px-6 bg-white">
+        <div className="max-w-2xl mx-auto">
+          <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">NESSE PROGRAMA VOCÊ TERÁ ACESSO A:</h2>
+          <div className="space-y-3">
+            {ACCESS_LIST.map((item) => (
+              <div key={item} className="flex items-start gap-3">
+                <span className="text-xl flex-shrink-0 text-emerald-500">✅</span>
+                <p className="text-gray-700">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO 6: OFERTA */}
+      <section className="py-8 px-6 bg-gray-50">
+        <div className="max-w-2xl mx-auto space-y-6">
+          <div className="rounded-2xl p-6 border-3 border-orange-400" style={{ background: "linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%)", borderWidth: 3, borderColor: "#FB923C" }}>
+            <div className="text-center font-bold py-3 px-4 rounded-lg mb-6 text-white bg-orange-500">🎁 CONDIÇÃO ESPECIAL COM 61% DE DESCONTO</div>
+            <h3 className="text-2xl font-bold text-center mb-2 text-gray-800">Canino Obediente 360°</h3>
+            <p className="text-center mb-6 text-gray-500">Acesso completo ao método + App + Suporte</p>
+            <div className="text-center mb-6">
+              <p className="text-sm line-through text-gray-400">De R$ 120,50</p>
+              <p className="text-lg mb-2 text-gray-700">Por apenas</p>
+              <p className="text-5xl font-black text-emerald-600">R$ 47,00</p>
+              <p className="text-sm mt-2 text-gray-500">ou 12x de R$ 4,30</p>
+            </div>
+            <CTAButton />
           </div>
         </div>
       </section>
