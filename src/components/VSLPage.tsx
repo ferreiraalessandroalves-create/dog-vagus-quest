@@ -136,24 +136,29 @@ const VSLPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* SEÇÃO 1: HERO COM FUNDO */}
-      <section className="relative min-h-[700px] flex items-center justify-center px-4 py-20 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img src={heroVsl} alt="Golden Retriever" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70" />
+      {/* TIMER NO TOPO */}
+      <section className="py-4 px-6 bg-red-50 sticky top-0 z-50 shadow-sm">
+        <div className="max-w-2xl mx-auto">
+          <div className="rounded-xl p-4 text-center border-2 border-red-200">
+            <p className="text-sm font-semibold mb-2 text-red-800">⏰ Oferta disponível por:</p>
+            <div className="text-4xl font-black text-red-600" style={{ fontVariantNumeric: "tabular-nums" }}>{minutes}:{seconds}</div>
+          </div>
         </div>
+      </section>
 
-        <div className="relative z-10 max-w-6xl mx-auto text-center">
+      {/* SEÇÃO 1: HERO SEM FUNDO */}
+      <section className="flex items-center justify-center px-4 py-16 bg-gray-900">
+        <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-8 leading-tight px-4">
-            <span className="text-white drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)] block mb-2">DEIXE SEU CACHORRO</span>
-            <span className="text-orange-400 drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)] block mb-2 text-5xl md:text-6xl lg:text-7xl">10X MAIS OBEDIENTE</span>
-            <span className="text-white drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)] block text-3xl md:text-4xl lg:text-5xl">EM APENAS 21 DIAS COM O</span>
-            <span className="text-white drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)] block text-3xl md:text-4xl lg:text-5xl">MÉTODO DE EQUILÍBRIO DO NERVO VAGO</span>
+            <span className="text-white block mb-2">DEIXE SEU CACHORRO</span>
+            <span className="text-orange-400 block mb-2 text-5xl md:text-6xl lg:text-7xl">10X MAIS OBEDIENTE</span>
+            <span className="text-white block text-3xl md:text-4xl lg:text-5xl">EM APENAS 21 DIAS COM O</span>
+            <span className="text-white block text-3xl md:text-4xl lg:text-5xl">MÉTODO DE EQUILÍBRIO DO NERVO VAGO</span>
           </h1>
 
           <div className="grid md:grid-cols-2 gap-8 mt-12">
             {/* Card ANTES */}
-            <div className="bg-white/95 backdrop-blur-md rounded-3xl p-8 shadow-2xl border-2 border-red-200 hover:border-red-400 transition-all duration-300">
+            <div className="bg-white rounded-3xl p-8 shadow-2xl border-2 border-red-200 hover:border-red-400 transition-all duration-300">
               <div className="flex items-center justify-center mb-6">
                 <div className="bg-red-500 text-white px-6 py-3 rounded-full font-bold text-lg shadow-lg">❌ ANTES DE USAR</div>
               </div>
@@ -163,7 +168,7 @@ const VSLPage = () => {
             </div>
 
             {/* Card DEPOIS */}
-            <div className="bg-white/95 backdrop-blur-md rounded-3xl p-8 shadow-2xl border-2 border-green-200 hover:border-green-400 transition-all duration-300">
+            <div className="bg-white rounded-3xl p-8 shadow-2xl border-2 border-green-200 hover:border-green-400 transition-all duration-300">
               <div className="flex items-center justify-center mb-6">
                 <div className="bg-green-500 text-white px-6 py-3 rounded-full font-bold text-lg shadow-lg">✅ DEPOIS DE USAR</div>
               </div>
@@ -171,16 +176,6 @@ const VSLPage = () => {
                 {AFTER_BARS.map((bar) => <HeroBar key={bar.label} label={bar.label} value={bar.value} color="green" />)}
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* TIMER + OFERTA DISPONÍVEL */}
-      <section className="py-4 px-6 bg-red-50">
-        <div className="max-w-2xl mx-auto">
-          <div className="rounded-xl p-4 text-center border-2 border-red-200">
-            <p className="text-sm font-semibold mb-2 text-red-800">⏰ Oferta disponível por:</p>
-            <div className="text-4xl font-black text-red-600" style={{ fontVariantNumeric: "tabular-nums" }}>{minutes}:{seconds}</div>
           </div>
         </div>
       </section>
