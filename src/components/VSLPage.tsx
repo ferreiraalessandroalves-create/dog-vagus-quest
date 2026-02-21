@@ -99,13 +99,13 @@ const CTAButton = ({ children }: { children?: React.ReactNode }) => (
 
 const HeroBar = ({ label, value, color }: { label: string; value: number; color: "red" | "green" }) => (
   <div>
-    <div className="flex justify-between items-center mb-2">
-      <span className="text-sm font-semibold text-gray-700">{label}</span>
-      <span className={`text-sm font-bold ${color === "red" ? "text-red-600" : "text-green-600"}`}>{value}%</span>
+    <div className="flex justify-between items-center mb-1 sm:mb-2">
+      <span className="text-xs sm:text-sm font-semibold text-gray-700 truncate mr-2">{label}</span>
+      <span className={`text-xs sm:text-sm font-bold flex-shrink-0 ${color === "red" ? "text-red-600" : "text-green-600"}`}>{value}%</span>
     </div>
-    <div className="w-full bg-gray-200 rounded-full h-4">
+    <div className="w-full bg-gray-200 rounded-full h-2.5 sm:h-4">
       <div
-        className={`h-4 rounded-full transition-all duration-500 ${color === "red" ? "bg-gradient-to-r from-red-500 to-red-600" : "bg-gradient-to-r from-green-500 to-green-600"}`}
+        className={`h-2.5 sm:h-4 rounded-full transition-all duration-500 ${color === "red" ? "bg-gradient-to-r from-red-500 to-red-600" : "bg-gradient-to-r from-green-500 to-green-600"}`}
         style={{ width: `${value}%` }}
       />
     </div>
@@ -158,42 +158,24 @@ const VSLPage = () => {
 
           <div className="grid md:grid-cols-2 gap-8 mt-12">
             {/* Card ANTES */}
-            <div className="bg-white rounded-3xl p-8 shadow-2xl border-2 border-red-200 hover:border-red-400 transition-all duration-300">
-              <div className="flex items-center justify-center mb-6">
-                <div className="bg-red-500 text-white px-6 py-3 rounded-full font-bold text-lg shadow-lg">❌ ANTES DE USAR</div>
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 shadow-2xl border-2 border-red-200 hover:border-red-400 transition-all duration-300">
+              <div className="flex items-center justify-center mb-4 sm:mb-6">
+                <div className="bg-red-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full font-bold text-sm sm:text-lg shadow-lg">❌ ANTES DE USAR</div>
               </div>
-              <div className="space-y-4">
+              <div className="space-y-2 sm:space-y-4">
                 {BEFORE_BARS.map((bar) => <HeroBar key={bar.label} label={bar.label} value={bar.value} color="red" />)}
               </div>
             </div>
 
             {/* Card DEPOIS */}
-            <div className="bg-white rounded-3xl p-8 shadow-2xl border-2 border-green-200 hover:border-green-400 transition-all duration-300">
-              <div className="flex items-center justify-center mb-6">
-                <div className="bg-green-500 text-white px-6 py-3 rounded-full font-bold text-lg shadow-lg">✅ DEPOIS DE USAR</div>
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 shadow-2xl border-2 border-green-200 hover:border-green-400 transition-all duration-300">
+              <div className="flex items-center justify-center mb-4 sm:mb-6">
+                <div className="bg-green-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full font-bold text-sm sm:text-lg shadow-lg">✅ DEPOIS DE USAR</div>
               </div>
-              <div className="space-y-4">
+              <div className="space-y-2 sm:space-y-4">
                 {AFTER_BARS.map((bar) => <HeroBar key={bar.label} label={bar.label} value={bar.value} color="green" />)}
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* BADGES DE DESTAQUE */}
-      <section className="py-6 px-4 bg-white">
-        <div className="max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-4">
-          <div className="flex items-center gap-2 bg-emerald-50 border-2 border-emerald-200 rounded-full px-6 py-3 text-center">
-            <span className="text-xl">🔬</span>
-            <span className="font-bold text-emerald-800 text-sm sm:text-base">Método cientificamente comprovado</span>
-          </div>
-          <div className="flex items-center gap-2 bg-orange-50 border-2 border-orange-200 rounded-full px-6 py-3 text-center">
-            <span className="text-xl">🐾</span>
-            <span className="font-bold text-orange-800 text-sm sm:text-base">Personalizado para seu cachorro</span>
-          </div>
-          <div className="flex items-center gap-2 bg-blue-50 border-2 border-blue-200 rounded-full px-6 py-3 text-center">
-            <span className="text-xl">📅</span>
-            <span className="font-bold text-blue-800 text-sm sm:text-base">Resultados em 21 dias</span>
           </div>
         </div>
       </section>
@@ -268,7 +250,14 @@ const VSLPage = () => {
             ))}
           </div>
 
-          <div className="mt-16 text-center max-w-md mx-auto">
+          {/* FACILIDADE */}
+          <div className="mt-16 text-center max-w-2xl mx-auto">
+            <h2 className="text-2xl font-bold text-gray-800">
+              Educar seu cachorro não precisa ser complexo e demorado,<br />21 dias é o suficiente
+            </h2>
+          </div>
+
+          <div className="mt-8 text-center max-w-md mx-auto">
             <CTAButton>🎯 Quero Transformar Meu Cachorro Agora!</CTAButton>
           </div>
         </div>
@@ -307,15 +296,6 @@ const VSLPage = () => {
         </div>
       </section>
 
-      {/* SEÇÃO 8: FACILIDADE */}
-      <section className="py-8 px-6 bg-gray-50">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-6 text-gray-800">
-            Educar seu cachorro não precisa ser complexo e demorado,<br />21 dias é o suficiente
-          </h2>
-          <CTAButton />
-        </div>
-      </section>
 
       {/* SEÇÃO 10: GARANTIA 7 DIAS */}
       <section className="py-8 px-6 bg-emerald-50">
