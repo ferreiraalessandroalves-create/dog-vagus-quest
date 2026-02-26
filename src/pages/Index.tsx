@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import ProgressBar from "@/components/ProgressBar";
+
 import { enviarParaGoogleSheets } from "@/lib/googleSheets";
 import QuizIntro from "@/components/QuizIntro";
 import QuestionCard from "@/components/QuestionCard";
@@ -178,9 +178,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      {state.currentStep > 0 && state.currentStep < 29 && (
-        <ProgressBar percent={progressPercent} />
-      )}
 
       <AnimatePresence mode="wait">
         {/* Step 0: Intro */}
