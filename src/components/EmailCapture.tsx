@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Lock, ArrowRight } from "lucide-react";
+import logoIcon from "@/assets/canino-logo-icon.png";
 
 interface EmailCaptureProps {
   dogName: string;
@@ -43,7 +44,7 @@ export default function EmailCapture({
       <div className="w-full max-w-lg mx-auto flex-1 flex flex-col">
         {/* Logo */}
         <div className="quiz-header">
-          <span className="quiz-logo">Canino Obediente 360°</span>
+          <img src={logoIcon} alt="Canino Obediente 360°" className="quiz-logo-img" />
         </div>
 
         {/* Header */}

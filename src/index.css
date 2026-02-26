@@ -140,37 +140,29 @@
     }
   }
 
-  /* Progress bar styles */
+  /* Progress bar styles - bottom, thin, green */
   .progress-bar-container {
-    @apply fixed top-0 left-0 right-0 h-1.5 z-50;
-    background: hsl(220 13% 91%);
+    @apply fixed bottom-0 left-0 right-0 h-1 z-50;
+    background: hsl(220 13% 91% / 0.3);
   }
 
   .progress-bar-fill {
     @apply h-full transition-all duration-500 ease-out;
-    background: linear-gradient(90deg, 
-      hsl(168 60% 51%) 0%,
-      hsl(174 60% 50%) 50%,
-      hsl(186 70% 50%) 100%
-    );
-    box-shadow: 0 0 12px hsla(168, 60%, 51%, 0.4);
+    background: hsl(142 71% 45%);
   }
 
   .progress-text {
-    @apply fixed top-3 right-4 text-sm font-semibold z-[51] px-3 py-1 rounded-full;
-    color: hsl(168 60% 51%);
-    background: hsla(0, 0%, 100%, 0.9);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    @apply hidden;
   }
 
   /* Quiz header/logo */
   .quiz-header {
-    @apply text-center py-4 md:py-6;
+    @apply text-center py-4 md:py-6 flex justify-center;
   }
 
-  .quiz-logo {
-    @apply text-sm font-semibold tracking-wide;
-    color: hsl(168 60% 51%);
+  .quiz-logo-img {
+    @apply w-12 h-12 rounded-full object-cover;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   }
 
   /* Question title styles */

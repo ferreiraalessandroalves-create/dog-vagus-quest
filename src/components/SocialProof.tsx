@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import awardSeal from "@/assets/award-seal.png";
+import logoIcon from "@/assets/canino-logo-icon.png";
 
 interface SocialProofProps {
   onContinue: () => void;
@@ -17,7 +18,7 @@ export default function SocialProof({ onContinue }: SocialProofProps) {
       <div className="w-full max-w-lg mx-auto flex-1 flex flex-col">
         {/* Logo */}
         <div className="quiz-header">
-          <span className="quiz-logo">Canino Obediente 360°</span>
+          <img src={logoIcon} alt="Canino Obediente 360°" className="quiz-logo-img" />
         </div>
 
         {/* Main stat */}
