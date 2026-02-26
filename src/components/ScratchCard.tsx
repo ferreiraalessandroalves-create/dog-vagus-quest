@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import logoIcon from "@/assets/canino-logo-icon.png";
+
 
 interface ScratchCardProps {
   dogName: string;
@@ -42,11 +42,7 @@ export default function ScratchCard({ dogName, onReveal }: ScratchCardProps) {
       exit={{ opacity: 0, y: -20 }}
       className="min-h-screen flex flex-col items-center justify-center px-4"
     >
-      <div className="w-full max-w-lg mx-auto text-center">
-        {/* Logo */}
-        <div className="quiz-header mb-8">
-          <img src={logoIcon} alt="Canino Obediente 360°" className="quiz-logo-img" />
-        </div>
+      <div className="w-full max-w-lg mx-auto text-center pt-28">
 
         {/* Header */}
         <h2 className="question-title mb-2">

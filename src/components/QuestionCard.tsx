@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft } from "lucide-react";
 import { ReactNode } from "react";
-import logoIcon from "@/assets/canino-logo-icon.png";
 
 interface QuestionCardProps {
   title: string;
@@ -25,13 +24,9 @@ export default function QuestionCard({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.3 }}
-      className="min-h-screen flex flex-col px-4 pt-16 pb-8 md:pt-20 md:pb-12"
+      className="min-h-screen flex flex-col px-4 pt-28 pb-8 md:pt-32 md:pb-12"
     >
       <div className="w-full max-w-lg mx-auto flex-1 flex flex-col">
-        {/* Quiz logo */}
-        <div className="quiz-header">
-          <img src={logoIcon} alt="Canino Obediente 360°" className="quiz-logo-img" />
-        </div>
 
         {/* Back button */}
         {showBack && onBack && (
