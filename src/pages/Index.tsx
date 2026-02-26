@@ -23,6 +23,7 @@ import InputQuestion from "@/components/InputQuestion";
 import ExitModalBefore from "@/components/ExitModalBefore";
 import ExitModalAfter from "@/components/ExitModalAfter";
 import VSLPage from "@/components/VSLPage";
+import QuizHeader from "@/components/QuizHeader";
 import { ArrowRight } from "lucide-react";
 import { useQuizSubmission } from "@/hooks/useQuizSubmission";
 import puppyImg from "@/assets/puppy.png";
@@ -178,6 +179,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
+      {state.currentStep > 0 && state.currentStep < 33 && (
+        <QuizHeader currentStep={state.currentStep} totalSteps={32} />
+      )}
 
       <AnimatePresence mode="wait">
         {/* Step 0: Intro */}

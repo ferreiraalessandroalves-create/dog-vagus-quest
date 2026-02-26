@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import heroImage from "@/assets/happy-dog.jpg";
-import logoIcon from "@/assets/canino-logo-icon.png";
+
 
 interface QuizIntroProps {
   onStart: () => void;
@@ -23,14 +23,6 @@ export default function QuizIntro({ onStart }: QuizIntroProps) {
       className="min-h-screen flex flex-col items-center px-4 py-8 md:py-12"
     >
       <div className="w-full max-w-lg mx-auto flex flex-col items-center space-y-6">
-        {/* Logo */}
-        <motion.div
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.1 }}
-        >
-          <img src={logoIcon} alt="Canino Obediente 360°" className="quiz-logo-img" />
-        </motion.div>
 
         {/* Headline */}
         <motion.h1
