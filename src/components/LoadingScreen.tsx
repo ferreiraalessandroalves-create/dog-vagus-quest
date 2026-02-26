@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import logoIcon from "@/assets/canino-logo-icon.png";
 
 interface LoadingScreenProps {
   progress: number;
@@ -59,7 +60,7 @@ export default function LoadingScreen({
     >
       {/* Logo */}
       <div className="quiz-header mb-6">
-        <span className="quiz-logo">Canino Obediente 360°</span>
+        <img src={logoIcon} alt="Canino Obediente 360°" className="quiz-logo-img" />
       </div>
 
       {/* Loading circle */}

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import logoIcon from "@/assets/canino-logo-icon.png";
 
 interface SpeedProofProps {
   dogName: string;
@@ -28,7 +29,7 @@ export default function SpeedProof({
       <div className="w-full max-w-lg mx-auto flex-1 flex flex-col">
         {/* Logo */}
         <div className="quiz-header">
-          <span className="quiz-logo">Canino Obediente 360°</span>
+          <img src={logoIcon} alt="Canino Obediente 360°" className="quiz-logo-img" />
         </div>
 
         {/* Header */}

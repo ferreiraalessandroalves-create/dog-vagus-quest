@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft } from "lucide-react";
 import { ReactNode } from "react";
+import logoIcon from "@/assets/canino-logo-icon.png";
 
 interface QuestionCardProps {
   title: string;
@@ -29,7 +30,7 @@ export default function QuestionCard({
       <div className="w-full max-w-lg mx-auto flex-1 flex flex-col">
         {/* Quiz logo */}
         <div className="quiz-header">
-          <span className="quiz-logo">Canino Obediente 360°</span>
+          <img src={logoIcon} alt="Canino Obediente 360°" className="quiz-logo-img" />
         </div>
 
         {/* Back button */}
