@@ -6,7 +6,7 @@ import QuizIntro from "@/components/QuizIntro";
 import QuestionCard from "@/components/QuestionCard";
 import MultipleChoice from "@/components/MultipleChoice";
 import MultipleChoiceCheckbox from "@/components/MultipleChoiceCheckbox";
-import ScaleQuestion from "@/components/ScaleQuestion";
+
 import SocialProof from "@/components/SocialProof";
 import LoadingScreen from "@/components/LoadingScreen";
 import LoadingAnalise from "@/components/LoadingAnalise";
@@ -267,23 +267,18 @@ const Index = () => {
             subtitle="Você se identifica com essa situação?"
             onBack={prevStep}
           >
-            <ScaleQuestion
-              selected={state.answers.pain_pulling}
-              onSelect={(value) => handleAnswer("pain_pulling", value)}
+            <MultipleChoice
+              options={[
+                { value: "5", label: "Sim, ele puxa forte e fico sem controle", emoji: "🐕" },
+                { value: "4", label: "Às vezes, dependendo do que ele vê", emoji: "😬" },
+                { value: "3", label: "Puxa bastante, mas consigo segurar", emoji: "😓" },
+              ]}
+              selected={state.answers.pain_pulling?.toString()}
+              onSelect={(value) => {
+                handleAnswer("pain_pulling", Number(value));
+                setTimeout(nextStep, 300);
+              }}
             />
-            {state.answers.pain_pulling !== undefined && (
-              <div className="mt-6">
-                <button onClick={nextStep} className="cta-button group">
-                  Próximo
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-              </div>
-            )}
-            {state.answers.pain_pulling >= 4 && (
-              <div className="info-box mt-4">
-                <strong>Você sabia?</strong> 86% dos donos com esse problema também notam sinais de tensão no nervo vago.
-              </div>
-            )}
           </QuestionCard>
         )}
 
@@ -291,22 +286,22 @@ const Index = () => {
         {state.currentStep === 6 && (
           <QuestionCard
             key="startles"
-            title="Meu cachorro se assusta com qualquer barulhinho"
+            title="Meu cachorro se assusta com qualquer barulho"
             subtitle="Você se identifica com essa situação?"
             onBack={prevStep}
           >
-            <ScaleQuestion
-              selected={state.answers.pain_startles}
-              onSelect={(value) => handleAnswer("pain_startles", value)}
+            <MultipleChoice
+              options={[
+                { value: "5", label: "Sim, qualquer som já deixa ele em pânico", emoji: "😱" },
+                { value: "4", label: "Às vezes, especialmente sons mais altos", emoji: "😰" },
+                { value: "3", label: "Fica agitado mas passa rápido", emoji: "😬" },
+              ]}
+              selected={state.answers.pain_startles?.toString()}
+              onSelect={(value) => {
+                handleAnswer("pain_startles", Number(value));
+                setTimeout(nextStep, 300);
+              }}
             />
-            {state.answers.pain_startles !== undefined && (
-              <div className="mt-6">
-                <button onClick={nextStep} className="cta-button group">
-                  Próximo
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-              </div>
-            )}
           </QuestionCard>
         )}
 
@@ -318,23 +313,18 @@ const Index = () => {
             subtitle="Você se identifica com essa situação?"
             onBack={prevStep}
           >
-            <ScaleQuestion
-              selected={state.answers.pain_barking}
-              onSelect={(value) => handleAnswer("pain_barking", value)}
+            <MultipleChoice
+              options={[
+                { value: "5", label: "Sim, late o tempo todo sem parar", emoji: "📢" },
+                { value: "4", label: "Late bastante, especialmente para estranhos", emoji: "🔊" },
+                { value: "3", label: "Late menos que antes, mas ainda é muito", emoji: "😤" },
+              ]}
+              selected={state.answers.pain_barking?.toString()}
+              onSelect={(value) => {
+                handleAnswer("pain_barking", Number(value));
+                setTimeout(nextStep, 300);
+              }}
             />
-            {state.answers.pain_barking !== undefined && (
-              <div className="mt-6">
-                <button onClick={nextStep} className="cta-button group">
-                  Próximo
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-              </div>
-            )}
-            {state.answers.pain_barking >= 4 && (
-              <div className="info-box mt-4">
-                <strong>Importante:</strong> Até pequenas hiper-reações podem ser sinais de alerta de problema no nervo vago.
-              </div>
-            )}
           </QuestionCard>
         )}
 
@@ -346,18 +336,18 @@ const Index = () => {
             subtitle="Você se identifica com essa situação?"
             onBack={prevStep}
           >
-            <ScaleQuestion
-              selected={state.answers.pain_other_dogs}
-              onSelect={(value) => handleAnswer("pain_other_dogs", value)}
+            <MultipleChoice
+              options={[
+                { value: "5", label: "Fica completamente descontrolado", emoji: "🤯" },
+                { value: "4", label: "Fica muito agitado e difícil de controlar", emoji: "😬" },
+                { value: "3", label: "Se empolga demais mas dá pra segurar", emoji: "😓" },
+              ]}
+              selected={state.answers.pain_other_dogs?.toString()}
+              onSelect={(value) => {
+                handleAnswer("pain_other_dogs", Number(value));
+                setTimeout(nextStep, 300);
+              }}
             />
-            {state.answers.pain_other_dogs !== undefined && (
-              <div className="mt-6">
-                <button onClick={nextStep} className="cta-button group">
-                  Próximo
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-              </div>
-            )}
           </QuestionCard>
         )}
 
@@ -413,18 +403,18 @@ const Index = () => {
             subtitle="Você se identifica com essa situação?"
             onBack={prevStep}
           >
-            <ScaleQuestion
-              selected={state.answers.pain_unexplained}
-              onSelect={(value) => handleAnswer("pain_unexplained", value)}
+            <MultipleChoice
+              options={[
+                { value: "5", label: "Sim, de repente fica agitado do nada", emoji: "🤔" },
+                { value: "4", label: "Às vezes age estranhamente sem motivo", emoji: "😕" },
+                { value: "3", label: "Tem dias bons e dias ruins sem explicação", emoji: "🤷" },
+              ]}
+              selected={state.answers.pain_unexplained?.toString()}
+              onSelect={(value) => {
+                handleAnswer("pain_unexplained", Number(value));
+                setTimeout(nextStep, 300);
+              }}
             />
-            {state.answers.pain_unexplained !== undefined && (
-              <div className="mt-6">
-                <button onClick={nextStep} className="cta-button group">
-                  Próximo
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-              </div>
-            )}
           </QuestionCard>
         )}
 
