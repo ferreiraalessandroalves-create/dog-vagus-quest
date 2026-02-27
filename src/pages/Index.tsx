@@ -18,7 +18,7 @@ import SpeedProof from "@/components/SpeedProof";
 import Testimonial from "@/components/Testimonial";
 import EmailCapture from "@/components/EmailCapture";
 import ProgressChart from "@/components/ProgressChart";
-import ScratchCard from "@/components/ScratchCard";
+
 import InputQuestion from "@/components/InputQuestion";
 import ExitModalBefore from "@/components/ExitModalBefore";
 import ExitModalAfter from "@/components/ExitModalAfter";
@@ -183,8 +183,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      {state.currentStep > 0 && state.currentStep < 29 && (
-        <QuizHeader currentStep={state.currentStep} totalSteps={28} />
+      {state.currentStep > 0 && state.currentStep < 28 && (
+        <QuizHeader currentStep={state.currentStep} totalSteps={27} />
       )}
 
       <AnimatePresence mode="wait">
@@ -731,13 +731,8 @@ const Index = () => {
           />
         )}
 
-        {/* Step 28: Discount reveal */}
-        {state.currentStep === 28 && (
-          <ScratchCard key="scratch" dogName={state.dogName || "seu cachorro"} onReveal={nextStep} />
-        )}
-
-        {/* Step 29+: VSL Sales Page */}
-        {state.currentStep >= 29 && (
+        {/* Step 28+: VSL Sales Page */}
+        {state.currentStep >= 28 && (
           <VSLPage key="vsl" />
         )}
       </AnimatePresence>
