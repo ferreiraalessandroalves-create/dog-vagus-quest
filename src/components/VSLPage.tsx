@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import happyDog from "@/assets/happy-dog.jpg";
-import heroVsl from "@/assets/hero-vsl.jpeg";
+import { motion } from "framer-motion";
 import imgFx48 from "@/assets/Image_fx_48.png";
 import imgFx49 from "@/assets/Image_fx_49.png";
 import imgFx50 from "@/assets/Image_fx_50.png";
@@ -114,7 +112,6 @@ const HeroBar = ({ label, value, color }: { label: string; value: number; color:
 
 const VSLPage = () => {
   const [timeLeft, setTimeLeft] = useState(15 * 60);
-  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -126,17 +123,12 @@ const VSLPage = () => {
     return () => clearInterval(timer);
   }, []);
 
-  useEffect(() => {
-    const t = setTimeout(() => setShowPopup(true), 30000);
-    return () => clearTimeout(t);
-  }, []);
-
   const minutes = Math.floor(timeLeft / 60).toString().padStart(2, "0");
   const seconds = (timeLeft % 60).toString().padStart(2, "0");
 
   return (
     <div className="min-h-screen bg-white">
-      {/* TIMER NO TOPO */}
+      {/* SEÇÃO 1: TIMER NO TOPO */}
       <section className="py-4 px-6 bg-red-50 sticky top-0 z-50 shadow-sm">
         <div className="max-w-2xl mx-auto">
           <div className="rounded-xl p-4 text-center border-2 border-red-200">
@@ -146,7 +138,17 @@ const VSLPage = () => {
         </div>
       </section>
 
-      {/* SEÇÃO 1: HERO SEM FUNDO */}
+      {/* SEÇÃO 2: MINI VSL DE TEXTO */}
+      <section className="py-12 px-6 bg-white">
+        <div className="max-w-2xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 text-center">Parabéns! Identificamos o perfil do seu cachorro.</h2>
+          <p className="text-lg text-gray-600 mb-8 text-center">Antes de te dar acesso ao protocolo, preciso te explicar por que tudo que você já tentou não funcionou.</p>
+          <p className="text-gray-700 leading-relaxed mb-6">Métodos tradicionais de adestramento usam punição e repetição forçada. Isso ativa o sistema de estresse do seu cão — quanto mais você pune, mais ansioso e reativo ele fica. Por isso late mais, puxa mais e desobedece mais.</p>
+          <p className="text-gray-700 leading-relaxed">O Canino Obediente 360° ativa o nervo vago — o sistema de calma natural do seu cão. Quando o nervo vago é ativado, o comportamento muda naturalmente, sem punição e sem estresse.</p>
+        </div>
+      </section>
+
+      {/* SEÇÃO 3: HERO COM BARRAS ANTES/DEPOIS */}
       <section className="flex items-center justify-center px-4 py-16 bg-gray-900">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-8 leading-tight px-4">
@@ -157,7 +159,6 @@ const VSLPage = () => {
           </h1>
 
           <div className="grid md:grid-cols-2 gap-8 mt-12">
-            {/* Card ANTES */}
             <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 shadow-2xl border-2 border-red-200 hover:border-red-400 transition-all duration-300">
               <div className="flex items-center justify-center mb-4 sm:mb-6">
                 <div className="bg-red-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full font-bold text-sm sm:text-lg shadow-lg">❌ ANTES DE USAR</div>
@@ -167,7 +168,6 @@ const VSLPage = () => {
               </div>
             </div>
 
-            {/* Card DEPOIS */}
             <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 shadow-2xl border-2 border-green-200 hover:border-green-400 transition-all duration-300">
               <div className="flex items-center justify-center mb-4 sm:mb-6">
                 <div className="bg-green-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full font-bold text-sm sm:text-lg shadow-lg">✅ DEPOIS DE USAR</div>
@@ -180,7 +180,7 @@ const VSLPage = () => {
         </div>
       </section>
 
-      {/* SEÇÃO 3: PROBLEMAS */}
+      {/* SEÇÃO 4: PROBLEMAS */}
       <section className="py-8 px-6 bg-white">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-2xl font-bold mb-6 text-gray-800">Sua vida antes de começar a usar o Canino Obediente 360°</h2>
@@ -195,7 +195,7 @@ const VSLPage = () => {
         </div>
       </section>
 
-      {/* SEÇÃO 4: BENEFÍCIOS */}
+      {/* SEÇÃO 5: BENEFÍCIOS */}
       <section className="py-8 px-6 bg-emerald-50">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-2xl font-bold mb-6 text-gray-800">A vida depois de começar a usar o Canino Obediente 360°</h2>
@@ -210,7 +210,56 @@ const VSLPage = () => {
         </div>
       </section>
 
-      {/* SEÇÃO 7: OBEDIÊNCIA ANTES/DEPOIS COM IMAGENS */}
+      {/* SEÇÃO 6: LISTA COMPLETA */}
+      <section className="py-8 px-6 bg-white">
+        <div className="max-w-2xl mx-auto">
+          <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">NESSE PROGRAMA VOCÊ TERÁ ACESSO A:</h2>
+          <div className="space-y-3">
+            {ACCESS_LIST.map((item) => (
+              <div key={item} className="flex items-start gap-3">
+                <span className="text-xl flex-shrink-0 text-emerald-500">✅</span>
+                <p className="text-gray-700">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO 7: OFERTA */}
+      <section className="py-8 px-6 bg-gray-50">
+        <div className="max-w-2xl mx-auto space-y-6">
+          <div className="rounded-2xl p-6 border-3 border-orange-400" style={{ background: "linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%)", borderWidth: 3, borderColor: "#FB923C" }}>
+            <div className="text-center font-bold py-3 px-4 rounded-lg mb-6 text-white bg-orange-500">🎁 CONDIÇÃO ESPECIAL COM 61% DE DESCONTO</div>
+            <h3 className="text-2xl font-bold text-center mb-2 text-gray-800">Canino Obediente 360°</h3>
+            <p className="text-center mb-6 text-gray-500">Acesso completo ao método + App + Suporte</p>
+            <div className="text-center mb-6">
+              <p className="text-sm line-through text-gray-400">De R$ 76,90</p>
+              <p className="text-lg mb-2 text-gray-700">Por apenas</p>
+              <p className="text-5xl font-black text-emerald-600">R$ 29,90</p>
+              <p className="text-sm mt-2 text-gray-500">ou 12x de R$ 2,90</p>
+            </div>
+            <CTAButton />
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO 8: GARANTIA 30 DIAS */}
+      <section className="py-8 px-6 bg-emerald-50">
+        <div className="max-w-2xl mx-auto text-center">
+          <div className="w-32 h-32 mx-auto mb-6 flex items-center justify-center">
+            <svg viewBox="0 0 120 120" className="w-full h-full">
+              <polygon points="60,5 73,40 110,40 80,62 90,98 60,78 30,98 40,62 10,40 47,40" fill="#7C3AED" stroke="#6D28D9" strokeWidth="2" />
+              <text x="60" y="58" textAnchor="middle" fill="white" fontSize="22" fontWeight="bold">30</text>
+              <text x="60" y="76" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">DIAS</text>
+            </svg>
+          </div>
+          <h2 className="text-2xl font-bold mb-4 text-gray-800">Garantia de 100% de devolução do dinheiro</h2>
+          <p className="leading-relaxed mb-6 text-gray-700">O nosso programa de adestramento é apoiado por uma garantia de 100% de devolução do dinheiro. Estamos tão confiantes de que o nosso produto vai te ajudar que garantimos um reembolso total no prazo de 30 dias após a compra, se não vir resultados visíveis no comportamento do seu cachorro.</p>
+          <CTAButton />
+        </div>
+      </section>
+
+      {/* SEÇÃO 9: COMPARATIVOS ANTES/DEPOIS COM IMAGENS */}
       <section className="py-20 px-4 bg-gradient-to-b from-white via-gray-50 to-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -221,7 +270,6 @@ const VSLPage = () => {
           <div className="space-y-12">
             {COMPARISONS.map((comp, i) => (
               <div key={i} className="grid md:grid-cols-2 gap-8">
-                {/* ANTES */}
                 <div className="relative group">
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
                     <span className="bg-red-500 text-white px-8 py-3 rounded-full font-bold text-base shadow-xl">❌ ANTES</span>
@@ -234,7 +282,6 @@ const VSLPage = () => {
                   </div>
                 </div>
 
-                {/* DEPOIS */}
                 <div className="relative group">
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
                     <span className="bg-green-500 text-white px-8 py-3 rounded-full font-bold text-base shadow-xl">✅ DEPOIS</span>
@@ -250,7 +297,6 @@ const VSLPage = () => {
             ))}
           </div>
 
-          {/* FACILIDADE */}
           <div className="mt-16 text-center max-w-2xl mx-auto">
             <h2 className="text-2xl font-bold text-gray-800">
               Educar seu cachorro não precisa ser complexo e demorado,<br />21 dias é o suficiente
@@ -262,81 +308,6 @@ const VSLPage = () => {
           </div>
         </div>
       </section>
-
-      {/* SEÇÃO 5: LISTA COMPLETA */}
-      <section className="py-8 px-6 bg-white">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">NESSE PROGRAMA VOCÊ TERÁ ACESSO A:</h2>
-          <div className="space-y-3">
-            {ACCESS_LIST.map((item) => (
-              <div key={item} className="flex items-start gap-3">
-                <span className="text-xl flex-shrink-0 text-emerald-500">✅</span>
-                <p className="text-gray-700">{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SEÇÃO 6: OFERTA */}
-      <section className="py-8 px-6 bg-gray-50">
-        <div className="max-w-2xl mx-auto space-y-6">
-          <div className="rounded-2xl p-6 border-3 border-orange-400" style={{ background: "linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%)", borderWidth: 3, borderColor: "#FB923C" }}>
-            <div className="text-center font-bold py-3 px-4 rounded-lg mb-6 text-white bg-orange-500">🎁 CONDIÇÃO ESPECIAL COM 61% DE DESCONTO</div>
-            <h3 className="text-2xl font-bold text-center mb-2 text-gray-800">Canino Obediente 360°</h3>
-            <p className="text-center mb-6 text-gray-500">Acesso completo ao método + App + Suporte</p>
-            <div className="text-center mb-6">
-              <p className="text-sm line-through text-gray-400">De R$ 120,50</p>
-              <p className="text-lg mb-2 text-gray-700">Por apenas</p>
-              <p className="text-5xl font-black text-emerald-600">R$ 47,00</p>
-              <p className="text-sm mt-2 text-gray-500">ou 12x de R$ 4,30</p>
-            </div>
-            <CTAButton />
-          </div>
-        </div>
-      </section>
-
-
-      {/* SEÇÃO 10: GARANTIA 7 DIAS */}
-      <section className="py-8 px-6 bg-emerald-50">
-        <div className="max-w-2xl mx-auto text-center">
-          <div className="w-32 h-32 mx-auto mb-6 flex items-center justify-center">
-            <svg viewBox="0 0 120 120" className="w-full h-full">
-              <polygon points="60,5 73,40 110,40 80,62 90,98 60,78 30,98 40,62 10,40 47,40" fill="#7C3AED" stroke="#6D28D9" strokeWidth="2" />
-              <text x="60" y="58" textAnchor="middle" fill="white" fontSize="28" fontWeight="bold">7</text>
-              <text x="60" y="76" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">DIAS</text>
-            </svg>
-          </div>
-          <h2 className="text-2xl font-bold mb-4 text-gray-800">Garantia de 100% de devolução do dinheiro</h2>
-          <p className="leading-relaxed mb-6 text-gray-700">O nosso programa de adestramento é apoiado por uma garantia de 100% de devolução do dinheiro. Estamos tão confiantes de que o nosso produto vai te ajudar que garantimos um reembolso total no prazo de 7 dias após a compra, se não vir resultados visíveis no comportamento do seu cachorro.</p>
-          <CTAButton />
-        </div>
-      </section>
-
-      {/* POPUP 61% OFF */}
-      <AnimatePresence>
-        {showPopup && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[9999] flex items-center justify-center p-4" style={{ backgroundColor: "rgba(0,0,0,0.7)" }}>
-            <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} className="relative w-full max-w-md rounded-3xl p-8 text-center overflow-y-auto max-h-[90vh]" style={{ background: "linear-gradient(135deg, #FF6B7A 0%, #EE5A6F 100%)" }}>
-              <button onClick={() => setShowPopup(false)} className="absolute top-4 right-4 text-white text-2xl leading-none">✕</button>
-              <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden" style={{ border: "4px solid rgba(255,255,255,0.3)" }}>
-                <img src={happyDog} alt="Cachorro feliz" className="w-full h-full object-cover" />
-              </div>
-              <div className="text-5xl font-black text-white mb-2">61% OFF</div>
-              <p className="text-white text-lg mb-4">🎉 OFERTA EXCLUSIVA! 🎉</p>
-              <p className="text-white mb-2">Antes de sair...</p>
-              <p className="text-white text-lg font-semibold mb-4">Que tal garantir seu plano com 61% de desconto?</p>
-              <div className="rounded-xl p-4 mb-4 text-center" style={{ background: "rgba(255,255,255,0.2)" }}>
-                <p className="text-white text-sm line-through">De R$ 120,50</p>
-                <p className="text-white text-3xl font-black">R$ 47,00</p>
-              </div>
-              <p className="text-white text-sm mb-6">⏰ Esta oferta expira em 15 minutos!</p>
-              <a href={CHECKOUT_URL} target="_blank" rel="noopener noreferrer" className="block w-full bg-white font-bold py-4 px-6 rounded-xl text-lg shadow-lg mb-3" style={{ color: "#EE5A6F" }}>🎉 Sim! Quero 61% OFF Agora</a>
-              <button onClick={() => setShowPopup(false)} className="w-full py-3 px-6 rounded-xl text-sm text-white font-semibold" style={{ border: "2px solid rgba(255,255,255,0.5)", background: "transparent" }}>Não, vou perder o desconto</button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 };
