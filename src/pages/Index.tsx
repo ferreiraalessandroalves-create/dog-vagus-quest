@@ -564,9 +564,9 @@ const Index = () => {
           >
             <MultipleChoice
               options={[
-                { value: "learn", label: "Conhecer mais sobre o nervo vago", emoji: "🤔" },
-                { value: "calmer", label: "Tornar meu cão mais calmo", emoji: "📢" },
-                { value: "bond", label: "Construir um vínculo mais forte", emoji: "❤️" },
+                { value: "walk", label: "Quero passear sem vergonha com meu cão", emoji: "🚶" },
+                { value: "calmer", label: "Quero um cão calmo e obediente em casa", emoji: "🏡" },
+                { value: "bond", label: "Quero construir um vínculo mais forte com ele", emoji: "❤️" },
               ]}
               selected={state.answers.q22}
               onSelect={(value) => {
