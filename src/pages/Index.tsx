@@ -57,7 +57,6 @@ const Index = () => {
   const [exitIntentTriggered, setExitIntentTriggered] = useState(false);
   const [showExitModal, setShowExitModal] = useState<"before" | "after" | null>(null);
 
-  // Exit Intent - Mouse leaving viewport
   useEffect(() => {
     const handleMouseOut = (e: MouseEvent) => {
       if (e.clientY <= 0 && !exitIntentTriggered) {
@@ -69,7 +68,6 @@ const Index = () => {
     return () => document.removeEventListener("mouseout", handleMouseOut);
   }, [emailCaptured, exitIntentTriggered]);
 
-  // Exit Intent - Page close
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       if (!exitIntentTriggered) {
@@ -152,35 +150,41 @@ const Index = () => {
   };
 
   /*
-   * NOVO FLUXO REORGANIZADO:
+   * FLUXO REORGANIZADO:
    * 0: Intro
    * 1-3: Qualificação (idade, gênero, raça)
    * 4: Social Proof
-   * 5-17: Perguntas SPIN (dores)
-   * 18: Micro Result
-   * 19-20: Educação (nervo vago)
-   * 21: Motivação
-   * 22: Objetivo principal
-   * 23: Authority
-   * 24: Nome do cachorro
-   * 25: ⭐ EMAIL CAPTURE (ANTES DA OFERTA!)
-   * 26: Diagnosis
-   * 27: Tempo disponível
-   * 28: Speed Proof
-   * 29: LoadingAnalise (depoimentos + análise 5s)
-   * 30: Testimonial
-   * 31: Chart
-   * 32: Scratch/Reveal
-   * 33+: Oferta final
+   * 5-8: Perguntas de dor (pulling, startles, barking, other dogs)
+   * 9: Comportamento muda sem razão
+   * 10: Coming home
+   * 11: Behavioral issues
+   * 12: Stress
+   * 13: Stress triggers
+   * 14: Micro Result
+   * 15: Vagus knowledge
+   * 16: Education
+   * 17: Motivation
+   * 18: Main goal
+   * 19: Authority
+   * 20: Dog name
+   * 21: ⭐ EMAIL CAPTURE
+   * 22: Diagnosis
+   * 23: Time available
+   * 24: Speed Proof
+   * 25: LoadingAnalise
+   * 26: Testimonial
+   * 27: Chart
+   * 28: Scratch/Reveal
+   * 29+: Oferta final
    */
 
-  const totalSteps = 34;
+  const totalSteps = 30;
   const progressPercent = (state.currentStep / totalSteps) * 100;
 
   return (
     <div className="min-h-screen">
-      {state.currentStep > 0 && state.currentStep < 33 && (
-        <QuizHeader currentStep={state.currentStep} totalSteps={32} />
+      {state.currentStep > 0 && state.currentStep < 29 && (
+        <QuizHeader currentStep={state.currentStep} totalSteps={28} />
       )}
 
       <AnimatePresence mode="wait">
@@ -351,52 +355,8 @@ const Index = () => {
           </QuestionCard>
         )}
 
-        {/* Step 9: Digestion */}
+        {/* Step 9: Unexplained behavior */}
         {state.currentStep === 9 && (
-          <QuestionCard
-            key="pain_digestion"
-            title="Você tem notado a digestão do seu cachorro desbalanceada?"
-            onBack={prevStep}
-          >
-            <MultipleChoice
-              options={[
-                { value: "yes", label: "Sim, às vezes", emoji: "😔" },
-                { value: "unsure", label: "Não tenho certeza", emoji: "🤔" },
-                { value: "no", label: "Não, não notei", emoji: "😊" },
-              ]}
-              selected={state.answers.pain_digestion}
-              onSelect={(value) => {
-                handleAnswer("pain_digestion", value);
-                setTimeout(nextStep, 300);
-              }}
-            />
-          </QuestionCard>
-        )}
-
-        {/* Step 10: Physical changes */}
-        {state.currentStep === 10 && (
-          <QuestionCard
-            key="pain_physical"
-            title="Você notou mudanças físicas, como aumento do tempo de sono?"
-            onBack={prevStep}
-          >
-            <MultipleChoice
-              options={[
-                { value: "yes", label: "Sim, às vezes", emoji: "😬" },
-                { value: "unsure", label: "Não tenho certeza", emoji: "🤔" },
-                { value: "no", label: "Não, não notei", emoji: "🤗" },
-              ]}
-              selected={state.answers.pain_physical}
-              onSelect={(value) => {
-                handleAnswer("pain_physical", value);
-                setTimeout(nextStep, 300);
-              }}
-            />
-          </QuestionCard>
-        )}
-
-        {/* Step 11: Unexplained behavior */}
-        {state.currentStep === 11 && (
           <QuestionCard
             key="pain_unexplained"
             title="O comportamento do meu cachorro muda sem razão clara"
@@ -418,8 +378,8 @@ const Index = () => {
           </QuestionCard>
         )}
 
-        {/* Step 12: Coming home */}
-        {state.currentStep === 12 && (
+        {/* Step 10: Coming home */}
+        {state.currentStep === 10 && (
           <QuestionCard
             key="pain_coming_home"
             title="Como seu cachorro reage quando você chega em casa?"
@@ -449,8 +409,8 @@ const Index = () => {
           </QuestionCard>
         )}
 
-        {/* Step 13: Behavioral issues */}
-        {state.currentStep === 13 && (
+        {/* Step 11: Behavioral issues */}
+        {state.currentStep === 11 && (
           <QuestionCard
             key="pain_behaviors"
             title="Quais problemas comportamentais você observa?"
@@ -481,8 +441,8 @@ const Index = () => {
           </QuestionCard>
         )}
 
-        {/* Step 14: Stress */}
-        {state.currentStep === 14 && (
+        {/* Step 12: Stress */}
+        {state.currentStep === 12 && (
           <QuestionCard
             key="pain_stress"
             title="Seu cachorro fica estressado ou assustado facilmente?"
@@ -503,8 +463,8 @@ const Index = () => {
           </QuestionCard>
         )}
 
-        {/* Step 15: Stress triggers */}
-        {state.currentStep === 15 && (
+        {/* Step 13: Stress triggers */}
+        {state.currentStep === 13 && (
           <QuestionCard
             key="pain_triggers"
             title="O que desencadeia o medo ou estresse?"
@@ -535,62 +495,13 @@ const Index = () => {
           </QuestionCard>
         )}
 
-        {/* Step 16: Excitement */}
-        {state.currentStep === 16 && (
-          <QuestionCard key="q16" title="Seu cão se excita facilmente?" onBack={prevStep}>
-            <MultipleChoice
-              options={[
-                { value: "yes", label: "Sim", emoji: "😬" },
-                { value: "not_always", label: "Nem sempre", emoji: "🤔" },
-                { value: "no", label: "Não", emoji: "😐" },
-              ]}
-              selected={state.answers.q16}
-              onSelect={(value) => {
-                handleAnswer("q16", value);
-                setTimeout(nextStep, 300);
-              }}
-            />
-          </QuestionCard>
-        )}
-
-        {/* Step 17: Excitement triggers */}
-        {state.currentStep === 17 && (
-          <QuestionCard
-            key="q17"
-            title="O que desencadeia a excitação do seu cão?"
-            subtitle="Escolha todos que se aplicam:"
-            onBack={prevStep}
-          >
-            <MultipleChoiceCheckbox
-              options={[
-                { value: "other_dogs", label: "Outros cães", emoji: "🐶" },
-                { value: "new_people", label: "Pessoas novas", emoji: "🙋" },
-                { value: "toys", label: "Brinquedos", emoji: "🎾" },
-                { value: "food", label: "Comida", emoji: "🍖" },
-                { value: "walks", label: "Passeios", emoji: "🏡" },
-                { value: "family", label: "Membros da família", emoji: "👨‍👩‍👧" },
-              ]}
-              selected={state.answers.q17 || []}
-              onSelect={(value) => handleAnswer("q17", value)}
-            />
-            {state.answers.q17?.length > 0 && (
-              <div className="mt-6">
-                <button onClick={nextStep} className="cta-button group">
-                  Próximo
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-              </div>
-            )}
-          </QuestionCard>
-        )}
-
-        {/* Step 18: Micro Result */}
-        {state.currentStep === 18 && (
+        {/* Step 14: Micro Result */}
+        {state.currentStep === 14 && (
           <MicroResult key="micro" triggers={getTriggers()} onContinue={nextStep} />
         )}
 
-        {/* Step 19: Vagus knowledge */}
-        {state.currentStep === 19 && (
+        {/* Step 15: Vagus knowledge */}
+        {state.currentStep === 15 && (
           <QuestionCard
             key="q19"
             title="Você já ouviu falar sobre o nervo vago de um cão?"
@@ -611,11 +522,11 @@ const Index = () => {
           </QuestionCard>
         )}
 
-        {/* Step 20: Education */}
-        {state.currentStep === 20 && <Education key="education" onContinue={nextStep} />}
+        {/* Step 16: Education */}
+        {state.currentStep === 16 && <Education key="education" onContinue={nextStep} />}
 
-        {/* Step 21: Motivation */}
-        {state.currentStep === 21 && (
+        {/* Step 17: Motivation */}
+        {state.currentStep === 17 && (
           <QuestionCard
             key="q21"
             title="Qual é a sua motivação para iniciar a jornada?"
@@ -643,8 +554,8 @@ const Index = () => {
           </QuestionCard>
         )}
 
-        {/* Step 22: Main goal */}
-        {state.currentStep === 22 && (
+        {/* Step 18: Main goal */}
+        {state.currentStep === 18 && (
           <QuestionCard
             key="q22"
             title="Vamos definir seu objetivo principal!"
@@ -666,11 +577,11 @@ const Index = () => {
           </QuestionCard>
         )}
 
-        {/* Step 23: Authority */}
-        {state.currentStep === 23 && <Authority key="authority" onContinue={nextStep} />}
+        {/* Step 19: Authority */}
+        {state.currentStep === 19 && <Authority key="authority" onContinue={nextStep} />}
 
-        {/* Step 24: Dog Name */}
-        {state.currentStep === 24 && (
+        {/* Step 20: Dog Name */}
+        {state.currentStep === 20 && (
           <InputQuestion
             key="name"
             title="Qual é o nome do seu cachorro?"
@@ -682,8 +593,8 @@ const Index = () => {
           />
         )}
 
-        {/* Step 25: ⭐ EMAIL CAPTURE - ANTES DA OFERTA! */}
-        {state.currentStep === 25 && (
+        {/* Step 21: ⭐ EMAIL CAPTURE */}
+        {state.currentStep === 21 && (
           <EmailCapture
             key="email"
             dogName={state.dogName || "seu cachorro"}
@@ -697,7 +608,6 @@ const Index = () => {
               setState((p) => ({ ...p, userEmail: email }));
               const results = calculateResults();
 
-              // Send to Google Sheets
               const dadosQuiz = {
                 email,
                 dogName: state.dogName || "",
@@ -724,7 +634,6 @@ const Index = () => {
                 setIsSubmitting(false);
               }
 
-              // Save to database
               const quizData = {
                 user_email: email,
                 dog_name: state.dogName,
@@ -759,8 +668,8 @@ const Index = () => {
           />
         )}
 
-        {/* Step 26: Diagnosis */}
-        {state.currentStep === 26 && (
+        {/* Step 22: Diagnosis */}
+        {state.currentStep === 22 && (
           <Diagnosis
             key="diagnosis"
             dogName={state.dogName || "seu cachorro"}
@@ -769,8 +678,8 @@ const Index = () => {
           />
         )}
 
-        {/* Step 27: Time available */}
-        {state.currentStep === 27 && (
+        {/* Step 23: Time available */}
+        {state.currentStep === 23 && (
           <QuestionCard
             key="time"
             title="Quanto tempo você pode dedicar por dia?"
@@ -791,8 +700,8 @@ const Index = () => {
           </QuestionCard>
         )}
 
-        {/* Step 28: Speed proof */}
-        {state.currentStep === 28 && (
+        {/* Step 24: Speed proof */}
+        {state.currentStep === 24 && (
           <SpeedProof
             key="speed"
             dogName={state.dogName || "seu cachorro"}
@@ -801,8 +710,8 @@ const Index = () => {
           />
         )}
 
-        {/* Step 29: Loading Análise com depoimentos */}
-        {state.currentStep === 29 && (
+        {/* Step 25: Loading Análise */}
+        {state.currentStep === 25 && (
           <LoadingAnalise
             key="loading-analise"
             nomeDoCao={state.dogName || "seu cachorro"}
@@ -810,11 +719,11 @@ const Index = () => {
           />
         )}
 
-        {/* Step 30: Testimonial */}
-        {state.currentStep === 30 && <Testimonial key="testimonial" onContinue={nextStep} />}
+        {/* Step 26: Testimonial */}
+        {state.currentStep === 26 && <Testimonial key="testimonial" onContinue={nextStep} />}
 
-        {/* Step 31: Chart */}
-        {state.currentStep === 31 && (
+        {/* Step 27: Chart */}
+        {state.currentStep === 27 && (
           <ProgressChart
             key="chart"
             dogName={state.dogName || "seu cachorro"}
@@ -822,13 +731,13 @@ const Index = () => {
           />
         )}
 
-        {/* Step 32: Discount reveal */}
-        {state.currentStep === 32 && (
+        {/* Step 28: Discount reveal */}
+        {state.currentStep === 28 && (
           <ScratchCard key="scratch" dogName={state.dogName || "seu cachorro"} onReveal={nextStep} />
         )}
 
-        {/* Step 33+: VSL Sales Page */}
-        {state.currentStep >= 33 && (
+        {/* Step 29+: VSL Sales Page */}
+        {state.currentStep >= 29 && (
           <VSLPage key="vsl" />
         )}
       </AnimatePresence>
