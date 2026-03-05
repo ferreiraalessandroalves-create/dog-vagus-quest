@@ -6,6 +6,7 @@ import imgFx50 from "@/assets/Image_fx_50.png";
 import imgFx51 from "@/assets/Image_fx_51.png";
 import imgFx52 from "@/assets/Image_fx_52.png";
 import imgFx53 from "@/assets/Image_fx_53.png";
+import heroBg from "@/assets/hero-2.jpeg";
 
 const CHECKOUT_URL = "https://pay.kiwify.com.br/ANFvpl3";
 
@@ -149,8 +150,12 @@ const VSLPage = () => {
       </section>
 
       {/* SEÇÃO 3: HERO COM BARRAS ANTES/DEPOIS */}
-      <section className="flex items-center justify-center px-4 py-16 bg-gray-900">
-        <div className="max-w-6xl mx-auto text-center">
+      <section className="relative flex items-center justify-center px-4 py-16 min-h-[600px] overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={heroBg} alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-black/60" />
+        </div>
+        <div className="relative max-w-6xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-8 leading-tight px-4">
             <span className="text-white block mb-2">DEIXE SEU CACHORRO</span>
             <span className="text-orange-400 block mb-2 text-5xl md:text-6xl lg:text-7xl">10X MAIS OBEDIENTE</span>
