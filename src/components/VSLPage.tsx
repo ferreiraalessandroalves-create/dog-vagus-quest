@@ -6,6 +6,7 @@ import imgFx50 from "@/assets/Image_fx_50.png";
 import imgFx51 from "@/assets/Image_fx_51.png";
 import imgFx52 from "@/assets/Image_fx_52.png";
 import imgFx53 from "@/assets/Image_fx_53.png";
+import heroBg from "@/assets/hero-2.jpeg";
 
 const CHECKOUT_URL = "https://pay.kiwify.com.br/ANFvpl3";
 
