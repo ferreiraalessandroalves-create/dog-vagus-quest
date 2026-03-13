@@ -20,7 +20,7 @@ import EmailCapture from "@/components/EmailCapture";
 import ProgressChart from "@/components/ProgressChart";
 
 import InputQuestion from "@/components/InputQuestion";
-import ExitModalBefore from "@/components/ExitModalBefore";
+
 import ExitModalAfter from "@/components/ExitModalAfter";
 import VSLPage from "@/components/VSLPage";
 import QuizHeader from "@/components/QuizHeader";
