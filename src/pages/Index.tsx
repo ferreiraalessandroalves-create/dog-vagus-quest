@@ -174,11 +174,10 @@ const Index = () => {
    * 24: LoadingAnalise
    * 25: MiniVSLGate
    * 26: EmailCapture
-   * 27: ProgressChart
-   * 28+: VSLPage
+   * 27+: VSLPage
    */
 
-  const totalSteps = 29;
+  const totalSteps = 28;
 
   return (
     <div className="min-h-screen">
