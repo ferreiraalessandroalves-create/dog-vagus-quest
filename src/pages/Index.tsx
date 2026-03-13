@@ -71,10 +71,8 @@ const Index = () => {
 
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      if (!exitIntentTriggered) {
-        const message = emailCaptured
-          ? "⚠️ ESPERE! Garantir 61% de desconto antes de sair?"
-          : "Não saia antes de receber seu plano personalizado de GRAÇA!";
+      if (!exitIntentTriggered && emailCaptured) {
+        const message = "⚠️ ESPERE! Garantir 61% de desconto antes de sair?";
         e.preventDefault();
         e.returnValue = message;
         return message;
