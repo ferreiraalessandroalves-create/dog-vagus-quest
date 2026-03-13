@@ -78,7 +78,7 @@ export default function QuizIntro({ onStart }: QuizIntroProps) {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.6 }}
-          className="flex flex-col gap-3 w-full max-w-sm"
+          className="flex flex-col gap-3 w-full max-w-sm items-center"
         >
           {benefits.map((benefit, idx) => (
             <div key={idx} className="flex items-center gap-2">
