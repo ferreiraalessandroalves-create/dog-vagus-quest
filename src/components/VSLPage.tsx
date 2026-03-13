@@ -139,15 +139,6 @@ const VSLPage = () => {
         </div>
       </section>
 
-      {/* SEÇÃO 2: MINI VSL DE TEXTO */}
-      <section className="py-12 px-6 bg-white">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 text-center">Parabéns! Identificamos o perfil do seu cachorro.</h2>
-          <p className="text-lg text-gray-600 mb-8 text-center">Antes de te dar acesso ao protocolo, preciso te explicar por que tudo que você já tentou não funcionou.</p>
-          <p className="text-gray-700 leading-relaxed mb-6">Métodos tradicionais de adestramento usam punição e repetição forçada. Isso ativa o sistema de estresse do seu cão — quanto mais você pune, mais ansioso e reativo ele fica. Por isso late mais, puxa mais e desobedece mais.</p>
-          <p className="text-gray-700 leading-relaxed">O Canino Obediente 360° ativa o nervo vago — o sistema de calma natural do seu cão. Quando o nervo vago é ativado, o comportamento muda naturalmente, sem punição e sem estresse.</p>
-        </div>
-      </section>
 
       {/* SEÇÃO 3: HERO COM BARRAS ANTES/DEPOIS */}
       <section className="relative flex items-center justify-center px-4 py-16 min-h-[600px] overflow-hidden">
