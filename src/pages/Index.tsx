@@ -181,7 +181,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      {state.currentStep > 0 && state.currentStep < 28 && (
+      {state.currentStep > 0 && state.currentStep < 27 && (
         <QuizHeader currentStep={state.currentStep} totalSteps={27} />
       )}
 
