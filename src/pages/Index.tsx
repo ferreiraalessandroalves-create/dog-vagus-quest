@@ -742,17 +742,8 @@ const Index = () => {
           />
         )}
 
-        {/* Step 27: Chart */}
-        {state.currentStep === 27 && (
-          <ProgressChart
-            key="chart"
-            dogName={state.dogName || "seu cachorro"}
-            onContinue={nextStep}
-          />
-        )}
-
-        {/* Step 28+: VSL Sales Page */}
-        {state.currentStep >= 28 && (
+        {/* Step 27+: VSL Sales Page */}
+        {state.currentStep >= 27 && (
           <VSLPage key="vsl" />
         )}
       </AnimatePresence>
