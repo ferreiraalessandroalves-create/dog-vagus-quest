@@ -96,7 +96,7 @@ const CTAButton = ({ children }: { children?: React.ReactNode }) => (
   </motion.a>
 );
 
-const HeroBar = ({ label, value, color }: { label: string; value: number; color: "red" | "green" }) => (
+const HeroBar = ({ label, value, color, animated }: { label: string; value: number; color: "red" | "green"; animated: boolean }) => (
   <div>
     <div className="flex justify-between items-center mb-1 sm:mb-2">
       <span className="text-xs sm:text-sm font-semibold text-gray-700 truncate mr-2">{label}</span>
@@ -104,8 +104,11 @@ const HeroBar = ({ label, value, color }: { label: string; value: number; color:
     </div>
     <div className="w-full bg-gray-200 rounded-full h-2.5 sm:h-4">
       <div
-        className={`h-2.5 sm:h-4 rounded-full transition-all duration-500 ${color === "red" ? "bg-gradient-to-r from-red-500 to-red-600" : "bg-gradient-to-r from-green-500 to-green-600"}`}
-        style={{ width: `${value}%` }}
+        className={`h-2.5 sm:h-4 rounded-full ${color === "red" ? "bg-gradient-to-r from-red-500 to-red-600" : "bg-gradient-to-r from-green-500 to-green-600"}`}
+        style={{
+          width: animated ? `${value}%` : "0%",
+          transition: "width 1.2s cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
       />
     </div>
   </div>
@@ -113,6 +116,12 @@ const HeroBar = ({ label, value, color }: { label: string; value: number; color:
 
 const VSLPage = () => {
   const [timeLeft, setTimeLeft] = useState(15 * 60);
+  const [barsAnimated, setBarsAnimated] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setBarsAnimated(true), 300);
+    return () => clearTimeout(timeout);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -160,7 +169,7 @@ const VSLPage = () => {
                 <div className="bg-red-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full font-bold text-sm sm:text-lg shadow-lg">❌ ANTES DE USAR</div>
               </div>
               <div className="space-y-2 sm:space-y-4">
-                {BEFORE_BARS.map((bar) => <HeroBar key={bar.label} label={bar.label} value={bar.value} color="red" />)}
+                {BEFORE_BARS.map((bar) => <HeroBar key={bar.label} label={bar.label} value={bar.value} color="red" animated={barsAnimated} />)}
               </div>
             </div>
 
@@ -169,7 +178,7 @@ const VSLPage = () => {
                 <div className="bg-green-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full font-bold text-sm sm:text-lg shadow-lg">✅ DEPOIS DE USAR</div>
               </div>
               <div className="space-y-2 sm:space-y-4">
-                {AFTER_BARS.map((bar) => <HeroBar key={bar.label} label={bar.label} value={bar.value} color="green" />)}
+                {AFTER_BARS.map((bar) => <HeroBar key={bar.label} label={bar.label} value={bar.value} color="green" animated={barsAnimated} />)}
               </div>
             </div>
           </div>
