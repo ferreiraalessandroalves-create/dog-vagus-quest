@@ -20,7 +20,7 @@ import EmailCapture from "@/components/EmailCapture";
 import ProgressChart from "@/components/ProgressChart";
 
 import InputQuestion from "@/components/InputQuestion";
-import ExitModalBefore from "@/components/ExitModalBefore";
+
 import ExitModalAfter from "@/components/ExitModalAfter";
 import VSLPage from "@/components/VSLPage";
 import QuizHeader from "@/components/QuizHeader";
@@ -56,13 +56,13 @@ const Index = () => {
   // Exit Intent States
   const [emailCaptured, setEmailCaptured] = useState(false);
   const [exitIntentTriggered, setExitIntentTriggered] = useState(false);
-  const [showExitModal, setShowExitModal] = useState<"before" | "after" | null>(null);
+  const [showExitModal, setShowExitModal] = useState<"after" | null>(null);
 
   useEffect(() => {
     const handleMouseOut = (e: MouseEvent) => {
-      if (e.clientY <= 0 && !exitIntentTriggered) {
+      if (e.clientY <= 0 && !exitIntentTriggered && emailCaptured) {
         setExitIntentTriggered(true);
-        setShowExitModal(emailCaptured ? "after" : "before");
+        setShowExitModal("after");
       }
     };
     document.addEventListener("mouseout", handleMouseOut);
@@ -71,10 +71,8 @@ const Index = () => {
 
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      if (!exitIntentTriggered) {
-        const message = emailCaptured
-          ? "⚠️ ESPERE! Garantir 61% de desconto antes de sair?"
-          : "Não saia antes de receber seu plano personalizado de GRAÇA!";
+      if (!exitIntentTriggered && emailCaptured) {
+        const message = "⚠️ ESPERE! Garantir 61% de desconto antes de sair?";
         e.preventDefault();
         e.returnValue = message;
         return message;
@@ -757,8 +755,7 @@ const Index = () => {
         )}
       </AnimatePresence>
 
-      {/* Exit Intent Modals */}
-      <ExitModalBefore isOpen={showExitModal === "before"} onClose={closeExitModal} />
+      {/* Exit Intent Modal */}
       <ExitModalAfter isOpen={showExitModal === "after"} onClose={closeExitModal} />
     </div>
   );
