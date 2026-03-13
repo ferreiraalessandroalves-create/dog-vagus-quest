@@ -51,6 +51,7 @@ const BENEFITS = [
 ];
 
 const ACCESS_LIST = [
+  "Aplicativo Canino Obediente 360°",
   "Método profissional completo",
   "Treinos de 5-10 minutos",
   "Reforço positivo comprovado",
@@ -61,7 +62,6 @@ const ACCESS_LIST = [
   "Guia PDF completo",
   "Para toda família",
   "Vínculo fortalecido",
-  "Aplicativo Canino Obediente 360°",
 ];
 
 const COMPARISONS = [
