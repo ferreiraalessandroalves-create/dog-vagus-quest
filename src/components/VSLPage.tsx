@@ -139,15 +139,6 @@ const VSLPage = () => {
         </div>
       </section>
 
-      {/* SEÇÃO 2: MINI VSL DE TEXTO */}
-      <section className="py-12 px-6 bg-white">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 text-center">Parabéns! Identificamos o perfil do seu cachorro.</h2>
-          <p className="text-lg text-gray-600 mb-8 text-center">Antes de te dar acesso ao protocolo, preciso te explicar por que tudo que você já tentou não funcionou.</p>
-          <p className="text-gray-700 leading-relaxed mb-6">Métodos tradicionais de adestramento usam punição e repetição forçada. Isso ativa o sistema de estresse do seu cão — quanto mais você pune, mais ansioso e reativo ele fica. Por isso late mais, puxa mais e desobedece mais.</p>
-          <p className="text-gray-700 leading-relaxed">O Canino Obediente 360° ativa o nervo vago — o sistema de calma natural do seu cão. Quando o nervo vago é ativado, o comportamento muda naturalmente, sem punição e sem estresse.</p>
-        </div>
-      </section>
 
       {/* SEÇÃO 3: HERO COM BARRAS ANTES/DEPOIS */}
       <section className="relative flex items-center justify-center px-4 py-16 min-h-[600px] overflow-hidden">
@@ -185,35 +176,6 @@ const VSLPage = () => {
         </div>
       </section>
 
-      {/* SEÇÃO 4: PROBLEMAS */}
-      <section className="py-8 px-6 bg-white">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold mb-6 text-gray-800">Sua vida antes de começar a usar o Canino Obediente 360°</h2>
-          <div className="space-y-3">
-            {PROBLEMS.map((p) => (
-              <div key={p} className="flex items-start gap-3">
-                <span className="text-2xl flex-shrink-0 text-red-600">❌</span>
-                <p className="text-gray-700">{p}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SEÇÃO 5: BENEFÍCIOS */}
-      <section className="py-8 px-6 bg-emerald-50">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold mb-6 text-gray-800">A vida depois de começar a usar o Canino Obediente 360°</h2>
-          <div className="space-y-3">
-            {BENEFITS.map((b) => (
-              <div key={b} className="flex items-start gap-3">
-                <span className="text-2xl flex-shrink-0 text-emerald-500">✅</span>
-                <p className="text-gray-700">{b}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* SEÇÃO 6: LISTA COMPLETA */}
       <section className="py-8 px-6 bg-white">
