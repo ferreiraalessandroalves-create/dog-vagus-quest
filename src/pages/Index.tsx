@@ -17,7 +17,7 @@ import Diagnosis from "@/components/Diagnosis";
 import SpeedProof from "@/components/SpeedProof";
 import MiniVSLGate from "@/components/MiniVSLGate";
 import EmailCapture from "@/components/EmailCapture";
-import ProgressChart from "@/components/ProgressChart";
+
 
 import InputQuestion from "@/components/InputQuestion";
 import ExitModalBefore from "@/components/ExitModalBefore";
