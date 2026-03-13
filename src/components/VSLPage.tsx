@@ -176,35 +176,6 @@ const VSLPage = () => {
         </div>
       </section>
 
-      {/* SEÇÃO 4: PROBLEMAS */}
-      <section className="py-8 px-6 bg-white">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold mb-6 text-gray-800">Sua vida antes de começar a usar o Canino Obediente 360°</h2>
-          <div className="space-y-3">
-            {PROBLEMS.map((p) => (
-              <div key={p} className="flex items-start gap-3">
-                <span className="text-2xl flex-shrink-0 text-red-600">❌</span>
-                <p className="text-gray-700">{p}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SEÇÃO 5: BENEFÍCIOS */}
-      <section className="py-8 px-6 bg-emerald-50">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold mb-6 text-gray-800">A vida depois de começar a usar o Canino Obediente 360°</h2>
-          <div className="space-y-3">
-            {BENEFITS.map((b) => (
-              <div key={b} className="flex items-start gap-3">
-                <span className="text-2xl flex-shrink-0 text-emerald-500">✅</span>
-                <p className="text-gray-700">{b}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* SEÇÃO 6: LISTA COMPLETA */}
       <section className="py-8 px-6 bg-white">
