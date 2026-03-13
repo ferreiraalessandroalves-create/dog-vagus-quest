@@ -56,13 +56,13 @@ const Index = () => {
   // Exit Intent States
   const [emailCaptured, setEmailCaptured] = useState(false);
   const [exitIntentTriggered, setExitIntentTriggered] = useState(false);
-  const [showExitModal, setShowExitModal] = useState<"before" | "after" | null>(null);
+  const [showExitModal, setShowExitModal] = useState<"after" | null>(null);
 
   useEffect(() => {
     const handleMouseOut = (e: MouseEvent) => {
-      if (e.clientY <= 0 && !exitIntentTriggered) {
+      if (e.clientY <= 0 && !exitIntentTriggered && emailCaptured) {
         setExitIntentTriggered(true);
-        setShowExitModal(emailCaptured ? "after" : "before");
+        setShowExitModal("after");
       }
     };
     document.addEventListener("mouseout", handleMouseOut);
