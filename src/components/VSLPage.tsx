@@ -116,6 +116,12 @@ const HeroBar = ({ label, value, color, animated }: { label: string; value: numb
 
 const VSLPage = () => {
   const [timeLeft, setTimeLeft] = useState(15 * 60);
+  const [barsAnimated, setBarsAnimated] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setBarsAnimated(true), 300);
+    return () => clearTimeout(timeout);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
