@@ -2,3 +2,6 @@ project_id = "sjuweykaueshyndwadzh"
 
 [functions.replicate-quiz]
 verify_jwt = false
+
+[functions.send-lead-email]
+verify_jwt = false

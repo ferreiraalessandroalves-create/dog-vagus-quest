@@ -15,7 +15,7 @@ import Education from "@/components/Education";
 import Authority from "@/components/Authority";
 import Diagnosis from "@/components/Diagnosis";
 import SpeedProof from "@/components/SpeedProof";
-import Testimonial from "@/components/Testimonial";
+import MiniVSLGate from "@/components/MiniVSLGate";
 import EmailCapture from "@/components/EmailCapture";
 import ProgressChart from "@/components/ProgressChart";
 
@@ -26,6 +26,7 @@ import VSLPage from "@/components/VSLPage";
 import QuizHeader from "@/components/QuizHeader";
 import { ArrowRight } from "lucide-react";
 import { useQuizSubmission } from "@/hooks/useQuizSubmission";
+import { supabase } from "@/integrations/supabase/client";
 import puppyImg from "@/assets/puppy.png";
 import adolescentImg from "@/assets/adolescent.png";
 import adultImg from "@/assets/adult.png";
@@ -167,19 +168,17 @@ const Index = () => {
    * 18: Main goal
    * 19: Authority
    * 20: Dog name
-   * 21: ⭐ EMAIL CAPTURE
-   * 22: Diagnosis
-   * 23: Time available
-   * 24: Speed Proof
-   * 25: LoadingAnalise
-   * 26: Testimonial
-   * 27: Chart
-   * 28: Scratch/Reveal
-   * 29+: Oferta final
+   * 21: Diagnosis
+   * 22: Time available
+   * 23: Speed Proof
+   * 24: LoadingAnalise
+   * 25: MiniVSLGate
+   * 26: EmailCapture
+   * 27: ProgressChart
+   * 28+: VSLPage
    */
 
-  const totalSteps = 30;
-  const progressPercent = (state.currentStep / totalSteps) * 100;
+  const totalSteps = 29;
 
   return (
     <div className="min-h-screen">
@@ -593,8 +592,68 @@ const Index = () => {
           />
         )}
 
-        {/* Step 21: ⭐ EMAIL CAPTURE */}
+        {/* Step 21: Diagnosis */}
         {state.currentStep === 21 && (
+          <Diagnosis
+            key="diagnosis"
+            dogName={state.dogName || "seu cachorro"}
+            {...calculateResults()}
+            onContinue={nextStep}
+          />
+        )}
+
+        {/* Step 22: Time available */}
+        {state.currentStep === 22 && (
+          <QuestionCard
+            key="time"
+            title="Quanto tempo você pode dedicar por dia?"
+            onBack={prevStep}
+          >
+            <MultipleChoice
+              options={[
+                { value: "5-10", label: "5-10 minutos", emoji: "⏱️" },
+                { value: "10-20", label: "10-20 minutos", emoji: "⏰" },
+                { value: "20+", label: "Mais de 20 minutos", emoji: "🕐" },
+              ]}
+              selected={state.answers.time}
+              onSelect={(value) => {
+                handleAnswer("time", value);
+                setTimeout(nextStep, 300);
+              }}
+            />
+          </QuestionCard>
+        )}
+
+        {/* Step 23: Speed proof */}
+        {state.currentStep === 23 && (
+          <SpeedProof
+            key="speed"
+            dogName={state.dogName || "seu cachorro"}
+            estimatedDate={getEstimatedDate()}
+            onContinue={nextStep}
+          />
+        )}
+
+        {/* Step 24: Loading Análise */}
+        {state.currentStep === 24 && (
+          <LoadingAnalise
+            key="loading-analise"
+            nomeDoCao={state.dogName || "seu cachorro"}
+            onComplete={nextStep}
+          />
+        )}
+
+        {/* Step 25: MiniVSLGate */}
+        {state.currentStep === 25 && (
+          <MiniVSLGate
+            key="mini-vsl-gate"
+            dogName={state.dogName || "seu cachorro"}
+            onContinue={nextStep}
+          />
+        )}
+
+        {/* Step 26: ⭐ EMAIL CAPTURE */}
+        {state.currentStep === 26 && (
           <EmailCapture
             key="email"
             dogName={state.dogName || "seu cachorro"}
@@ -663,64 +722,25 @@ const Index = () => {
               };
 
               await submitQuiz(quizData);
+
+              // Dispara email para o lead (assíncrono, não bloqueia)
+              try {
+                supabase.functions.invoke('send-lead-email', {
+                  body: { email, dogName: state.dogName || "seu cachorro" },
+                }).then(({ error }) => {
+                  if (error) console.error('⚠️ Erro ao enviar email (não crítico):', error);
+                  else console.log('📧 Email enviado ao lead');
+                }).catch((err) => {
+                  console.error('⚠️ Falha ao chamar send-lead-email:', err);
+                });
+              } catch (e) {
+                console.error('⚠️ Erro ao iniciar envio de email:', e);
+              }
+
               nextStep();
             }}
           />
         )}
-
-        {/* Step 22: Diagnosis */}
-        {state.currentStep === 22 && (
-          <Diagnosis
-            key="diagnosis"
-            dogName={state.dogName || "seu cachorro"}
-            {...calculateResults()}
-            onContinue={nextStep}
-          />
-        )}
-
-        {/* Step 23: Time available */}
-        {state.currentStep === 23 && (
-          <QuestionCard
-            key="time"
-            title="Quanto tempo você pode dedicar por dia?"
-            onBack={prevStep}
-          >
-            <MultipleChoice
-              options={[
-                { value: "5-10", label: "5-10 minutos", emoji: "⏱️" },
-                { value: "10-20", label: "10-20 minutos", emoji: "⏰" },
-                { value: "20+", label: "Mais de 20 minutos", emoji: "🕐" },
-              ]}
-              selected={state.answers.time}
-              onSelect={(value) => {
-                handleAnswer("time", value);
-                setTimeout(nextStep, 300);
-              }}
-            />
-          </QuestionCard>
-        )}
-
-        {/* Step 24: Speed proof */}
-        {state.currentStep === 24 && (
-          <SpeedProof
-            key="speed"
-            dogName={state.dogName || "seu cachorro"}
-            estimatedDate={getEstimatedDate()}
-            onContinue={nextStep}
-          />
-        )}
-
-        {/* Step 25: Loading Análise */}
-        {state.currentStep === 25 && (
-          <LoadingAnalise
-            key="loading-analise"
-            nomeDoCao={state.dogName || "seu cachorro"}
-            onComplete={nextStep}
-          />
-        )}
-
-        {/* Step 26: Testimonial */}
-        {state.currentStep === 26 && <Testimonial key="testimonial" onContinue={nextStep} />}
 
         {/* Step 27: Chart */}
         {state.currentStep === 27 && (
