@@ -178,7 +178,7 @@ const VSLPage = () => {
                 <div className="bg-green-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full font-bold text-sm sm:text-lg shadow-lg">✅ DEPOIS DE USAR</div>
               </div>
               <div className="space-y-2 sm:space-y-4">
-                {AFTER_BARS.map((bar) => <HeroBar key={bar.label} label={bar.label} value={bar.value} color="green" />)}
+                {AFTER_BARS.map((bar) => <HeroBar key={bar.label} label={bar.label} value={bar.value} color="green" animated={barsAnimated} />)}
               </div>
             </div>
           </div>
