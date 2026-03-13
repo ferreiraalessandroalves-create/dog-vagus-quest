@@ -755,8 +755,7 @@ const Index = () => {
         )}
       </AnimatePresence>
 
-      {/* Exit Intent Modals */}
-      <ExitModalBefore isOpen={showExitModal === "before"} onClose={closeExitModal} />
+      {/* Exit Intent Modal */}
       <ExitModalAfter isOpen={showExitModal === "after"} onClose={closeExitModal} />
     </div>
   );
