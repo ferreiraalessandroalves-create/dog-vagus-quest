@@ -96,7 +96,7 @@ const CTAButton = ({ children }: { children?: React.ReactNode }) => (
   </motion.a>
 );
 
-const HeroBar = ({ label, value, color }: { label: string; value: number; color: "red" | "green" }) => (
+const HeroBar = ({ label, value, color, animated }: { label: string; value: number; color: "red" | "green"; animated: boolean }) => (
   <div>
     <div className="flex justify-between items-center mb-1 sm:mb-2">
       <span className="text-xs sm:text-sm font-semibold text-gray-700 truncate mr-2">{label}</span>
@@ -104,8 +104,11 @@ const HeroBar = ({ label, value, color }: { label: string; value: number; color:
     </div>
     <div className="w-full bg-gray-200 rounded-full h-2.5 sm:h-4">
       <div
-        className={`h-2.5 sm:h-4 rounded-full transition-all duration-500 ${color === "red" ? "bg-gradient-to-r from-red-500 to-red-600" : "bg-gradient-to-r from-green-500 to-green-600"}`}
-        style={{ width: `${value}%` }}
+        className={`h-2.5 sm:h-4 rounded-full ${color === "red" ? "bg-gradient-to-r from-red-500 to-red-600" : "bg-gradient-to-r from-green-500 to-green-600"}`}
+        style={{
+          width: animated ? `${value}%` : "0%",
+          transition: "width 1.2s cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
       />
     </div>
   </div>
