@@ -176,57 +176,7 @@ const VSLPage = () => {
         </div>
       </section>
 
-
-      {/* SEÇÃO 6: LISTA COMPLETA */}
-      <section className="py-8 px-6 bg-white">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">NESSE PROGRAMA VOCÊ TERÁ ACESSO A:</h2>
-          <div className="space-y-3">
-            {ACCESS_LIST.map((item) => (
-              <div key={item} className="flex items-start gap-3">
-                <span className="text-xl flex-shrink-0 text-emerald-500">✅</span>
-                <p className="text-gray-700">{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SEÇÃO 7: OFERTA */}
-      <section className="py-8 px-6 bg-gray-50">
-        <div className="max-w-2xl mx-auto space-y-6">
-          <div className="rounded-2xl p-6 border-3 border-orange-400" style={{ background: "linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%)", borderWidth: 3, borderColor: "#FB923C" }}>
-            <div className="text-center font-bold py-3 px-4 rounded-lg mb-6 text-white bg-orange-500">🎁 CONDIÇÃO ESPECIAL COM 61% DE DESCONTO</div>
-            <h3 className="text-2xl font-bold text-center mb-2 text-gray-800">Canino Obediente 360°</h3>
-            <p className="text-center mb-6 text-gray-500">Acesso completo ao método + App + Suporte</p>
-            <div className="text-center mb-6">
-              <p className="text-sm line-through text-gray-400">De R$ 76,90</p>
-              <p className="text-lg mb-2 text-gray-700">Por apenas</p>
-              <p className="text-5xl font-black text-emerald-600">R$ 29,90</p>
-              <p className="text-sm mt-2 text-gray-500">ou 12x de R$ 2,90</p>
-            </div>
-            <CTAButton />
-          </div>
-        </div>
-      </section>
-
-      {/* SEÇÃO 8: GARANTIA 30 DIAS */}
-      <section className="py-8 px-6 bg-emerald-50">
-        <div className="max-w-2xl mx-auto text-center">
-          <div className="w-32 h-32 mx-auto mb-6 flex items-center justify-center">
-            <svg viewBox="0 0 120 120" className="w-full h-full">
-              <polygon points="60,5 73,40 110,40 80,62 90,98 60,78 30,98 40,62 10,40 47,40" fill="#7C3AED" stroke="#6D28D9" strokeWidth="2" />
-              <text x="60" y="58" textAnchor="middle" fill="white" fontSize="22" fontWeight="bold">30</text>
-              <text x="60" y="76" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">DIAS</text>
-            </svg>
-          </div>
-          <h2 className="text-2xl font-bold mb-4 text-gray-800">Garantia de 100% de devolução do dinheiro</h2>
-          <p className="leading-relaxed mb-6 text-gray-700">O nosso programa de adestramento é apoiado por uma garantia de 100% de devolução do dinheiro. Estamos tão confiantes de que o nosso produto vai te ajudar que garantimos um reembolso total no prazo de 30 dias após a compra, se não vir resultados visíveis no comportamento do seu cachorro.</p>
-          <CTAButton />
-        </div>
-      </section>
-
-      {/* SEÇÃO 9: COMPARATIVOS ANTES/DEPOIS COM IMAGENS */}
+      {/* SEÇÃO: COMPARATIVOS ANTES/DEPOIS COM IMAGENS */}
       <section className="py-20 px-4 bg-gradient-to-b from-white via-gray-50 to-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -273,6 +223,55 @@ const VSLPage = () => {
           <div className="mt-8 text-center max-w-md mx-auto">
             <CTAButton>🎯 Quero Transformar Meu Cachorro Agora!</CTAButton>
           </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO: LISTA COMPLETA */}
+      <section className="py-8 px-6 bg-white">
+        <div className="max-w-2xl mx-auto">
+          <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">NESSE PROGRAMA VOCÊ TERÁ ACESSO A:</h2>
+          <div className="space-y-3">
+            {ACCESS_LIST.map((item) => (
+              <div key={item} className="flex items-start gap-3">
+                <span className="text-xl flex-shrink-0 text-emerald-500">✅</span>
+                <p className="text-gray-700">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO: OFERTA */}
+      <section className="py-8 px-6 bg-gray-50">
+        <div className="max-w-2xl mx-auto space-y-6">
+          <div className="rounded-2xl p-6 border-3 border-orange-400" style={{ background: "linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%)", borderWidth: 3, borderColor: "#FB923C" }}>
+            <div className="text-center font-bold py-3 px-4 rounded-lg mb-6 text-white bg-orange-500">🎁 CONDIÇÃO ESPECIAL COM 61% DE DESCONTO</div>
+            <h3 className="text-2xl font-bold text-center mb-2 text-gray-800">Canino Obediente 360°</h3>
+            <p className="text-center mb-6 text-gray-500">Acesso completo ao método + App + Suporte</p>
+            <div className="text-center mb-6">
+              <p className="text-sm line-through text-gray-400">De R$ 76,90</p>
+              <p className="text-lg mb-2 text-gray-700">Por apenas</p>
+              <p className="text-5xl font-black text-emerald-600">R$ 29,90</p>
+              <p className="text-sm mt-2 text-gray-500">ou 12x de R$ 2,90</p>
+            </div>
+            <CTAButton />
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO: GARANTIA 30 DIAS */}
+      <section className="py-8 px-6 bg-emerald-50">
+        <div className="max-w-2xl mx-auto text-center">
+          <div className="w-32 h-32 mx-auto mb-6 flex items-center justify-center">
+            <svg viewBox="0 0 120 120" className="w-full h-full">
+              <polygon points="60,5 73,40 110,40 80,62 90,98 60,78 30,98 40,62 10,40 47,40" fill="#7C3AED" stroke="#6D28D9" strokeWidth="2" />
+              <text x="60" y="58" textAnchor="middle" fill="white" fontSize="22" fontWeight="bold">30</text>
+              <text x="60" y="76" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">DIAS</text>
+            </svg>
+          </div>
+          <h2 className="text-2xl font-bold mb-4 text-gray-800">Garantia de 100% de devolução do dinheiro</h2>
+          <p className="leading-relaxed mb-6 text-gray-700">O nosso programa de adestramento é apoiado por uma garantia de 100% de devolução do dinheiro. Estamos tão confiantes de que o nosso produto vai te ajudar que garantimos um reembolso total no prazo de 30 dias após a compra, se não vir resultados visíveis no comportamento do seu cachorro.</p>
+          <CTAButton />
         </div>
       </section>
     </div>
