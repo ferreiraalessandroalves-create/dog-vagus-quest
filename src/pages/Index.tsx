@@ -53,39 +53,6 @@ const Index = () => {
     userEmail: "",
   });
 
-  // Exit Intent States
-  const [emailCaptured, setEmailCaptured] = useState(false);
-  const [exitIntentTriggered, setExitIntentTriggered] = useState(false);
-  const [showExitModal, setShowExitModal] = useState<"after" | null>(null);
-
-  useEffect(() => {
-    const handleMouseOut = (e: MouseEvent) => {
-      if (e.clientY <= 0 && !exitIntentTriggered && emailCaptured) {
-        setExitIntentTriggered(true);
-        setShowExitModal("after");
-      }
-    };
-    document.addEventListener("mouseout", handleMouseOut);
-    return () => document.removeEventListener("mouseout", handleMouseOut);
-  }, [emailCaptured, exitIntentTriggered]);
-
-  useEffect(() => {
-    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      if (!exitIntentTriggered && emailCaptured) {
-        const message = "⚠️ ESPERE! Garantir 61% de desconto antes de sair?";
-        e.preventDefault();
-        e.returnValue = message;
-        return message;
-      }
-    };
-    window.addEventListener("beforeunload", handleBeforeUnload);
-    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
-  }, [emailCaptured, exitIntentTriggered]);
-
-  const closeExitModal = () => {
-    setShowExitModal(null);
-    setExitIntentTriggered(false);
-  };
 
   const handleAnswer = (questionId: string, value: any) => {
     setState((prev) => ({
