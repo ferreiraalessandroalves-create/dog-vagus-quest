@@ -69,18 +69,18 @@ const BonusSection = () => {
         </FadeIn>
 
         {/* 3D Carousel */}
-        <FadeIn delay={0.1} className="flex justify-center items-center mb-14" style={{ perspective: "800px" }}>
-          <div className="relative flex items-center justify-center" style={{ width: "100%", maxWidth: 500, height: 320 }}>
+        <FadeIn delay={0.1} className="flex justify-center items-center mb-14" style={{ perspective: "1200px" }}>
+          <div className="relative flex items-center justify-center" style={{ width: "100%", maxWidth: 600, height: 380 }}>
             {/* Left - Checklist */}
             <div
-              className="absolute rounded-xl overflow-hidden"
+              className="absolute rounded-xl overflow-hidden transition-transform duration-500"
               style={{
-                width: 160,
+                width: "clamp(130px, 22vw, 180px)",
                 aspectRatio: "9/16",
-                transform: "rotate(8deg) translateX(-90px)",
-                scale: "0.85",
+                transform: "translateX(clamp(-140px, -18vw, -100px)) rotateY(25deg) scale(0.85)",
                 zIndex: 1,
-                boxShadow: "0 0 20px 4px rgba(255,200,0,0.2)",
+                boxShadow: "0 0 25px 6px rgba(255,200,0,0.25)",
+                transformStyle: "preserve-3d",
               }}
             >
               <img src={checklistImg} alt="Check List" className="w-full h-full object-cover" />
@@ -90,11 +90,12 @@ const BonusSection = () => {
             <div
               className="absolute rounded-xl overflow-hidden"
               style={{
-                width: 180,
+                width: "clamp(150px, 25vw, 200px)",
                 aspectRatio: "9/16",
-                scale: "1.15",
+                transform: "translateZ(40px) scale(1.1)",
                 zIndex: 3,
-                boxShadow: "0 0 40px 10px rgba(255,200,0,0.5)",
+                boxShadow: "0 0 50px 12px rgba(255,200,0,0.5)",
+                transformStyle: "preserve-3d",
               }}
             >
               <img src={receitasImg} alt="34 Receitas" className="w-full h-full object-cover" />
@@ -102,14 +103,14 @@ const BonusSection = () => {
 
             {/* Right - Transformação */}
             <div
-              className="absolute rounded-xl overflow-hidden"
+              className="absolute rounded-xl overflow-hidden transition-transform duration-500"
               style={{
-                width: 160,
+                width: "clamp(130px, 22vw, 180px)",
                 aspectRatio: "9/16",
-                transform: "rotate(-8deg) translateX(90px)",
-                scale: "0.85",
+                transform: "translateX(clamp(100px, 18vw, 140px)) rotateY(-25deg) scale(0.85)",
                 zIndex: 1,
-                boxShadow: "0 0 20px 4px rgba(255,200,0,0.2)",
+                boxShadow: "0 0 25px 6px rgba(255,200,0,0.25)",
+                transformStyle: "preserve-3d",
               }}
             >
               <img src={transformacaoImg} alt="Transformação" className="w-full h-full object-cover" />
