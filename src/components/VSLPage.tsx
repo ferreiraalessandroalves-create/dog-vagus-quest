@@ -255,6 +255,7 @@ const VSLPage = () => {
       <BonusSection />
 
       {/* SEÇÃO: OFERTA */}
+      <section className="py-8 px-6 bg-gray-50">
         <div className="max-w-2xl mx-auto space-y-6">
           <div className="rounded-2xl p-6 border-3 border-orange-400" style={{ background: "linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%)", borderWidth: 3, borderColor: "#FB923C" }}>
             <div className="text-center font-bold py-3 px-4 rounded-lg mb-6 text-white bg-orange-500">🎁 CONDIÇÃO ESPECIAL COM 61% DE DESCONTO</div>
