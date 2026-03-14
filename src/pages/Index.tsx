@@ -21,7 +21,7 @@ import ProgressChart from "@/components/ProgressChart";
 
 import InputQuestion from "@/components/InputQuestion";
 
-import ExitModalAfter from "@/components/ExitModalAfter";
+
 import VSLPage from "@/components/VSLPage";
 import QuizHeader from "@/components/QuizHeader";
 import { ArrowRight } from "lucide-react";
