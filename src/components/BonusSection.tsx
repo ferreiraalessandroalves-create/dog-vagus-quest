@@ -26,7 +26,7 @@ const BONUSES = [
   },
 ];
 
-const FadeIn = ({ delay = 0, children, className = "" }: { delay?: number; children: React.ReactNode; className?: string }) => {
+const FadeIn = ({ delay = 0, children, className = "", style }: { delay?: number; children: React.ReactNode; className?: string; style?: React.CSSProperties }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
