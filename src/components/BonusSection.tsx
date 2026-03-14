@@ -55,6 +55,73 @@ const FadeIn = ({ delay = 0, children, className = "", style }: { delay?: number
   );
 };
 
+const COVERS = [
+  { img: checklistImg, alt: "Check List" },
+  { img: receitasImg, alt: "34 Receitas" },
+  { img: transformacaoImg, alt: "Transformação" },
+];
+
+const Carousel3D = () => {
+  const [active, setActive] = useState(1);
+
+  // Auto-rotate every 3s
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActive((prev) => (prev + 1) % 3);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const getStyle = (index: number): React.CSSProperties => {
+    const pos = (index - active + 3) % 3; // 0=left, 1=center, 2=right
+    if (pos === 1) {
+      return {
+        transform: "translateX(0) rotateY(0deg) scale(1.1)",
+        zIndex: 3,
+        boxShadow: "0 0 50px 12px rgba(255,200,0,0.5)",
+        opacity: 1,
+      };
+    }
+    if (pos === 0) {
+      return {
+        transform: "translateX(clamp(-140px, -18vw, -100px)) rotateY(25deg) scale(0.85)",
+        zIndex: 1,
+        boxShadow: "0 0 25px 6px rgba(255,200,0,0.25)",
+        opacity: 0.85,
+      };
+    }
+    return {
+      transform: "translateX(clamp(100px, 18vw, 140px)) rotateY(-25deg) scale(0.85)",
+      zIndex: 1,
+      boxShadow: "0 0 25px 6px rgba(255,200,0,0.25)",
+      opacity: 0.85,
+    };
+  };
+
+  return (
+    <div className="flex justify-center items-center mb-14" style={{ perspective: "1200px" }}>
+      <div className="relative flex items-center justify-center" style={{ width: "100%", maxWidth: 600, height: 380 }}>
+        {COVERS.map((cover, i) => (
+          <div
+            key={i}
+            onClick={() => setActive(i)}
+            className="absolute rounded-xl overflow-hidden cursor-pointer"
+            style={{
+              width: "clamp(140px, 24vw, 200px)",
+              aspectRatio: "9/16",
+              transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+              transformStyle: "preserve-3d",
+              ...getStyle(i),
+            }}
+          >
+            <img src={cover.img} alt={cover.alt} className="w-full h-full object-cover" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const BonusSection = () => {
   return (
     <section className="py-16 px-4" style={{ background: "#07071a" }}>
@@ -69,54 +136,7 @@ const BonusSection = () => {
         </FadeIn>
 
         {/* 3D Carousel */}
-        <FadeIn delay={0.1} className="flex justify-center items-center mb-14" style={{ perspective: "1200px" }}>
-          <div className="relative flex items-center justify-center" style={{ width: "100%", maxWidth: 600, height: 380 }}>
-            {/* Left - Checklist */}
-            <div
-              className="absolute rounded-xl overflow-hidden transition-transform duration-500"
-              style={{
-                width: "clamp(130px, 22vw, 180px)",
-                aspectRatio: "9/16",
-                transform: "translateX(clamp(-140px, -18vw, -100px)) rotateY(25deg) scale(0.85)",
-                zIndex: 1,
-                boxShadow: "0 0 25px 6px rgba(255,200,0,0.25)",
-                transformStyle: "preserve-3d",
-              }}
-            >
-              <img src={checklistImg} alt="Check List" className="w-full h-full object-cover" />
-            </div>
-
-            {/* Center - Receitas */}
-            <div
-              className="absolute rounded-xl overflow-hidden"
-              style={{
-                width: "clamp(150px, 25vw, 200px)",
-                aspectRatio: "9/16",
-                transform: "translateZ(40px) scale(1.1)",
-                zIndex: 3,
-                boxShadow: "0 0 50px 12px rgba(255,200,0,0.5)",
-                transformStyle: "preserve-3d",
-              }}
-            >
-              <img src={receitasImg} alt="34 Receitas" className="w-full h-full object-cover" />
-            </div>
-
-            {/* Right - Transformação */}
-            <div
-              className="absolute rounded-xl overflow-hidden transition-transform duration-500"
-              style={{
-                width: "clamp(130px, 22vw, 180px)",
-                aspectRatio: "9/16",
-                transform: "translateX(clamp(100px, 18vw, 140px)) rotateY(-25deg) scale(0.85)",
-                zIndex: 1,
-                boxShadow: "0 0 25px 6px rgba(255,200,0,0.25)",
-                transformStyle: "preserve-3d",
-              }}
-            >
-              <img src={transformacaoImg} alt="Transformação" className="w-full h-full object-cover" />
-            </div>
-          </div>
-        </FadeIn>
+        <Carousel3D />
 
         {/* Bonus Cards */}
         <div className="space-y-4 mb-10">
