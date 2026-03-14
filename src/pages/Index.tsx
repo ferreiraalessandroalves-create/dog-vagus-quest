@@ -627,7 +627,7 @@ const Index = () => {
               if (isSubmitting) return;
 
               setIsSubmitting(true);
-              setEmailCaptured(true);
+              
 
               setState((p) => ({ ...p, userEmail: email }));
               const results = calculateResults();
