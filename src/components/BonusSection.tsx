@@ -3,7 +3,7 @@ import receitasImg from "@/assets/bonuses/receitas.png";
 import checklistImg from "@/assets/bonuses/checklist.png";
 import transformacaoImg from "@/assets/bonuses/transformacao.png";
 
-const CHECKOUT_URL = "https://pay.kiwify.com.br/ANFvpl3";
+
 
 const BONUSES = [
   {
