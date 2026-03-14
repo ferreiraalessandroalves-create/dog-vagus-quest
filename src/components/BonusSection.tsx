@@ -44,6 +44,7 @@ const FadeIn = ({ delay = 0, children, className = "", style }: { delay?: number
       ref={ref}
       className={className}
       style={{
+        ...style,
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(20px)",
         transition: `opacity 0.6s ease ${delay}s, transform 0.6s ease ${delay}s`,
