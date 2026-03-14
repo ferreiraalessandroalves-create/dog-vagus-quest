@@ -3,7 +3,7 @@ import receitasImg from "@/assets/bonuses/receitas.png";
 import checklistImg from "@/assets/bonuses/checklist.png";
 import transformacaoImg from "@/assets/bonuses/transformacao.png";
 
-const CHECKOUT_URL = "https://pay.kiwify.com.br/ANFvpl3";
+
 
 const BONUSES = [
   {
@@ -194,22 +194,7 @@ const BonusSection = () => {
           </div>
         </FadeIn>
 
-        {/* CTA */}
-        <FadeIn delay={0.5} className="max-w-md mx-auto">
-          <a
-            href={CHECKOUT_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block w-full text-center font-black text-base sm:text-lg py-5 rounded-full transition-transform hover:scale-105"
-            style={{
-              background: "linear-gradient(90deg, #FFD700, #FF8C00)",
-              color: "#000",
-              animation: "pulse-gold 2s infinite",
-            }}
-          >
-            QUERO MEU ACESSO AGORA →
-          </a>
-        </FadeIn>
+
       </div>
 
       <style>{`
