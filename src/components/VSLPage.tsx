@@ -255,21 +255,56 @@ const VSLPage = () => {
       <BonusSection />
 
       {/* SEÇÃO: OFERTA */}
-      <section className="py-8 px-6 bg-gray-50">
-        <div className="max-w-2xl mx-auto space-y-6">
-          <div className="rounded-2xl p-6 border-3 border-orange-400" style={{ background: "linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%)", borderWidth: 3, borderColor: "#FB923C" }}>
-            <div className="text-center font-bold py-3 px-4 rounded-lg mb-6 text-white bg-orange-500">🎁 CONDIÇÃO ESPECIAL COM 61% DE DESCONTO</div>
-            <h3 className="text-2xl font-bold text-center mb-2 text-gray-800">Canino Obediente 360°</h3>
-            <p className="text-center mb-6 text-gray-500">Acesso completo ao método + App + Suporte</p>
-            <div className="text-center mb-6">
-              <p className="text-sm line-through text-gray-400">De R$ 76,90</p>
-              <p className="text-lg mb-2 text-gray-700">Por apenas</p>
-              <p className="text-5xl font-black text-emerald-600">R$ 29,90</p>
-              <p className="text-sm mt-2 text-gray-500">ou 12x de R$ 2,90</p>
+      <section className="py-8 px-4" style={{ background: "#07071a" }}>
+        <div className="max-w-[400px] mx-auto">
+          <div
+            className="rounded-2xl p-8 animate-fade-in"
+            style={{
+              background: "linear-gradient(135deg, #0f0f2a, #1a1a3a)",
+              border: "2px solid #FFD700",
+              boxShadow: "0 0 30px rgba(255, 200, 0, 0.25)",
+            }}
+          >
+            <div className="flex justify-center mb-6">
+              <span
+                className="inline-block text-sm font-bold px-5 py-2 rounded-full text-center"
+                style={{ background: "linear-gradient(90deg, #FFD700, #FF8C00)", color: "#000" }}
+              >
+                🎁 CONDIÇÃO ESPECIAL COM 61% DE DESCONTO
+              </span>
             </div>
-            <CTAButton />
+            <h3 className="text-2xl font-bold text-center text-white">Canino Obediente 360°</h3>
+            <p className="text-sm text-center mt-1 mb-6" style={{ color: "#9ca3af" }}>Acesso completo ao método + App + Suporte</p>
+            <div className="text-center">
+              <p className="text-sm" style={{ color: "#9ca3af", textDecoration: "line-through", textDecorationColor: "#ef4444" }}>De R$ 76,90</p>
+              <p className="text-sm mt-1" style={{ color: "#9ca3af" }}>Por apenas</p>
+              <p className="text-5xl font-black my-3" style={{ color: "#FFD700", textShadow: "0 0 20px rgba(255,200,0,0.5)" }}>R$ 29,90</p>
+              <p className="text-sm mb-8" style={{ color: "#9ca3af" }}>ou 12x de R$ 2,90</p>
+            </div>
+            <motion.a
+              href={CHECKOUT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              className="block w-full text-center font-bold py-4 rounded-full text-lg"
+              style={{
+                background: "linear-gradient(90deg, #FFD700, #FF8C00)",
+                color: "#000",
+                animation: "pulse-gold 2s infinite",
+              }}
+            >
+              Obter o Canino Obediente 360°
+            </motion.a>
           </div>
+          <p className="text-center mt-4 text-xs" style={{ color: "#6b7280" }}>🔒 Pagamento 100% seguro • Garantia de 7 dias</p>
         </div>
+        <style>{`
+          @keyframes pulse-gold {
+            0%, 100% { box-shadow: 0 0 15px rgba(255,200,0,0.4); }
+            50% { box-shadow: 0 0 35px rgba(255,200,0,0.8); }
+          }
+        `}</style>
       </section>
 
       {/* SEÇÃO: GARANTIA 30 DIAS */}
