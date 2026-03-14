@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import BonusSection from "./BonusSection";
 import imgFx48 from "@/assets/Image_fx_48.png";
 import imgFx49 from "@/assets/Image_fx_49.png";
 import imgFx50 from "@/assets/Image_fx_50.png";
@@ -249,6 +250,9 @@ const VSLPage = () => {
           </div>
         </div>
       </section>
+
+      {/* SEÇÃO: BÔNUS */}
+      <BonusSection />
 
       {/* SEÇÃO: OFERTA */}
       <section className="py-8 px-6 bg-gray-50">
