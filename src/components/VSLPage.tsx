@@ -274,7 +274,7 @@ const VSLPage = () => {
               </span>
             </div>
             <h3 className="text-2xl font-bold text-center text-white">Canino Obediente 360°</h3>
-            <p className="text-sm text-center mt-1 mb-6" style={{ color: "#9ca3af" }}>Acesso completo ao método + App + Suporte</p>
+            <p className="text-sm text-center mt-1 mb-6" style={{ color: "#9ca3af" }}>Acesso completo ao método + App</p>
             <div className="text-center">
               <p className="text-sm" style={{ color: "#9ca3af", textDecoration: "line-through", textDecorationColor: "#ef4444" }}>De R$ 76,90</p>
               <p className="text-sm mt-1" style={{ color: "#9ca3af" }}>Por apenas</p>
@@ -297,7 +297,7 @@ const VSLPage = () => {
               Obter o Canino Obediente 360°
             </motion.a>
           </div>
-          <p className="text-center mt-4 text-xs" style={{ color: "#6b7280" }}>🔒 Pagamento 100% seguro • Garantia de 7 dias</p>
+          <p className="text-center mt-4 text-xs" style={{ color: "#6b7280" }}>🔒 Pagamento 100% seguro • Garantia de 30 dias</p>
         </div>
         <style>{`
           @keyframes pulse-gold {
