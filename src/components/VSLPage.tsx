@@ -297,7 +297,7 @@ const VSLPage = () => {
               Obter o Canino Obediente 360°
             </motion.a>
           </div>
-          <p className="text-center mt-4 text-xs" style={{ color: "#6b7280" }}>🔒 Pagamento 100% seguro • Garantia de 7 dias</p>
+          <p className="text-center mt-4 text-xs" style={{ color: "#6b7280" }}>🔒 Pagamento 100% seguro • Garantia de 30 dias</p>
         </div>
         <style>{`
           @keyframes pulse-gold {
