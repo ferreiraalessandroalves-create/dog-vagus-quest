@@ -29,22 +29,17 @@ export default function QuizIntro({ onStart }: QuizIntroProps) {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-2xl md:text-3xl lg:text-4xl font-bold text-center leading-tight"
+          className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-center leading-tight"
+          style={{ color: "#2d4a5a" }}
         >
           Descubra o{" "}
-          <span style={{ color: "hsl(168 60% 54%)" }}>Plano Personalizado</span>{" "}
+          <span style={{ color: "#3a9bb5" }}>Pl</span>
+          <span style={{ color: "#5ab87a" }}>a</span>
+          <span style={{ color: "#c8c840" }}>n</span>
+          <span style={{ color: "#3a9bb5" }}>o</span>{" "}
+          <span style={{ color: "#5ab87a" }}>Personalizado</span>{" "}
           para Transformar o Comportamento do Seu Cachorro
         </motion.h1>
-
-        {/* Subheadline */}
-        <motion.p
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="text-base md:text-lg text-muted-foreground text-center"
-        >
-          Baseado no revolucionário método de Equilíbrio do Nervo Vago
-        </motion.p>
 
         {/* Hero Image */}
         <motion.div
