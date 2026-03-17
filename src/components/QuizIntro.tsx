@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import heroImage from "@/assets/happy-dog.jpg";
 
-
 interface QuizIntroProps {
   onStart: () => void;
 }
@@ -21,26 +20,62 @@ export default function QuizIntro({ onStart }: QuizIntroProps) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       className="min-h-screen flex flex-col items-center px-4 py-8 md:py-12"
+      style={{ background: "linear-gradient(180deg, #ffffff 0%, #f5f7fa 100%)" }}
     >
       <div className="w-full max-w-lg mx-auto flex flex-col items-center space-y-6">
+
+        {/* Label */}
+        <motion.span
+          initial={{ y: -10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.1 }}
+          style={{
+            color: "#3B82F6",
+            fontWeight: 600,
+            fontSize: "14px",
+            letterSpacing: "0.05em",
+            textTransform: "uppercase",
+          }}
+        >
+          Canino Obediente 360°
+        </motion.span>
 
         {/* Headline */}
         <motion.h1
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-center leading-tight"
-          style={{ color: "#000000" }}
+          className="font-extrabold text-center"
+          style={{
+            color: "#1a1a2e",
+            fontSize: "clamp(2rem, 5vw, 3.5rem)",
+            lineHeight: 1.2,
+          }}
         >
           Descubra o{" "}
-          <span style={{ color: "#1a3a5c" }}>P</span>
-          <span style={{ color: "#2a5a8c" }}>l</span>
-          <span style={{ color: "#3a7ab5" }}>a</span>
-          <span style={{ color: "#4a9ad0" }}>n</span>
-          <span style={{ color: "#5ab8e8" }}>o</span>{" "}
-          <span style={{ background: "linear-gradient(90deg, #1a3a5c, #5ab8e8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Personalizado</span>{" "}
+          <span style={{ color: "#3B82F6" }}>Plano</span>{" "}
+          <span
+            style={{
+              background: "linear-gradient(90deg, #4DB8B8, #D4A017)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
+            Personalizado
+          </span>{" "}
           para Transformar o Comportamento do Seu Cachorro
         </motion.h1>
+
+        {/* Subtítulo */}
+        <motion.p
+          initial={{ y: 15, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          style={{ color: "#666", fontSize: "17px" }}
+          className="text-center max-w-md"
+        >
+          Responda algumas perguntas rápidas e receba um plano exclusivo baseado no perfil do seu cão.
+        </motion.p>
 
         {/* Hero Image */}
         <motion.div
