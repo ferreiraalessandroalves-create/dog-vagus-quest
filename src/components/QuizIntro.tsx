@@ -30,7 +30,9 @@ export default function QuizIntro({ onStart }: QuizIntroProps) {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.1 }}
           style={{
-            color: "#3B82F6",
+            background: "linear-gradient(90deg, #1a3a8a, #60b0f4)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
             fontWeight: 600,
             fontSize: "14px",
             letterSpacing: "0.05em",
