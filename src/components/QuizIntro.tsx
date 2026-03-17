@@ -30,14 +30,15 @@ export default function QuizIntro({ onStart }: QuizIntroProps) {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
           className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-center leading-tight"
-          style={{ color: "#2d4a5a" }}
+          style={{ color: "#000000" }}
         >
           Descubra o{" "}
-          <span style={{ color: "#3a9bb5" }}>Pl</span>
-          <span style={{ color: "#5ab87a" }}>a</span>
-          <span style={{ color: "#c8c840" }}>n</span>
-          <span style={{ color: "#3a9bb5" }}>o</span>{" "}
-          <span style={{ color: "#5ab87a" }}>Personalizado</span>{" "}
+          <span style={{ color: "#1a3a5c" }}>P</span>
+          <span style={{ color: "#2a5a8c" }}>l</span>
+          <span style={{ color: "#3a7ab5" }}>a</span>
+          <span style={{ color: "#4a9ad0" }}>n</span>
+          <span style={{ color: "#5ab8e8" }}>o</span>{" "}
+          <span style={{ background: "linear-gradient(90deg, #1a3a5c, #5ab8e8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Personalizado</span>{" "}
           para Transformar o Comportamento do Seu Cachorro
         </motion.h1>
 
