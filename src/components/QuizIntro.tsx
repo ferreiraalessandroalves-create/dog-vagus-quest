@@ -53,7 +53,13 @@ export default function QuizIntro({ onStart }: QuizIntroProps) {
           }}
         >
           Descubra o{" "}
-          <span style={{ color: "#3B82F6" }}>Plano</span>{" "}
+          <span
+            style={{
+              background: "linear-gradient(90deg, #1a3a8a, #60b0f4)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >Plano</span>{" "}
           <span
             style={{
               background: "linear-gradient(90deg, #4DB8B8, #D4A017)",
