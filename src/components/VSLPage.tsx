@@ -318,7 +318,7 @@ const VSLPage = () => {
             </svg>
           </div>
           <h2 className="text-2xl font-bold mb-4 text-gray-800">Garantia de 100% de devolução do dinheiro</h2>
-          <p className="leading-relaxed mb-6 text-gray-700">O nosso programa de adestramento é apoiado por uma garantia de 100% de devolução do dinheiro. Estamos tão confiantes de que o nosso produto vai te ajudar que garantimos um reembolso total no prazo de 30 dias após a compra, se não vir resultados visíveis no comportamento do seu cachorro.</p>
+          <p className="leading-relaxed mb-6 text-gray-700">O Canino Obediente 360° tem garantia incondicional de 30 dias. Se por qualquer motivo você não ficar satisfeito, é só enviar um e-mail para <a href="mailto:suporte@caninoobediente360.lat" className="underline">suporte@caninoobediente360.lat</a> e devolvemos 100% do seu dinheiro. Sem perguntas, sem burocracia.</p>
           <CTAButton />
         </div>
       </section>
