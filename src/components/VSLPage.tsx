@@ -158,10 +158,9 @@ const VSLPage = () => {
         </div>
         <div className="relative max-w-6xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-8 leading-tight px-4">
-            <span className="text-white block mb-2">DEIXE SEU CACHORRO</span>
-            <span className="text-orange-400 block mb-2 text-5xl md:text-6xl lg:text-7xl">10X MAIS OBEDIENTE</span>
-            <span className="text-white block text-3xl md:text-4xl lg:text-5xl">EM APENAS 21 DIAS COM O</span>
-            <span className="text-white block text-3xl md:text-4xl lg:text-5xl">MÉTODO DE EQUILÍBRIO DO NERVO VAGO</span>
+            <span className="text-white block mb-2">DEIXE SEU CACHORRO 10X MAIS OBEDIENTE</span>
+            <span className="text-orange-400 block mb-2 text-5xl md:text-6xl lg:text-7xl">ABRINDO O PORTÃO VAGAL</span>
+            <span className="text-white block text-3xl md:text-4xl lg:text-5xl">EM 21 DIAS — COM TREINOS DE 5 A 10 MINUTOS POR DIA</span>
           </h1>
 
           <div className="grid md:grid-cols-2 gap-8 mt-12">
