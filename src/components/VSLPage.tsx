@@ -149,6 +149,26 @@ const VSLPage = () => {
         </div>
       </section>
 
+      {/* BOTÃO CTA ABAIXO DA REDLINE */}
+      <section className="py-4 px-4 bg-white">
+        <div className="max-w-md mx-auto">
+          <motion.a
+            href={CHECKOUT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="block w-full text-center font-bold py-4 px-6 rounded-full text-lg"
+            style={{
+              background: "linear-gradient(90deg, #FFD700, #FF8C00)",
+              color: "#000",
+              animation: "pulse-gold 2s infinite",
+            }}
+          >
+            Obter o Canino 360°
+          </motion.a>
+        </div>
+      </section>
 
       {/* SEÇÃO 3: HERO COM BARRAS ANTES/DEPOIS */}
       <section className="relative flex items-center justify-center px-4 py-16 min-h-[600px] overflow-hidden">
