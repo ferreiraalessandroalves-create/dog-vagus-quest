@@ -48,9 +48,9 @@ export default function MiniVSLGate({ dogName, onContinue }: MiniVSLGateProps) {
           </p>
         </div>
 
-        {/* Panda Video Player */}
+        {/* Panda Video Player - 9:16 vertical mobile */}
         <div
-          className="w-full aspect-video rounded-2xl overflow-hidden mb-6"
+          className="w-full max-w-[360px] mx-auto aspect-[9/16] rounded-2xl overflow-hidden mb-6"
           style={{ background: "hsl(210 20% 98%)", border: "1px solid hsl(220 13% 91%)" }}
         >
           <iframe
