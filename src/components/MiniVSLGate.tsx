@@ -7,8 +7,10 @@ interface MiniVSLGateProps {
   onContinue: () => void;
 }
 
+const VIDEO_DURATION = 191; // 3:11
+
 export default function MiniVSLGate({ dogName, onContinue }: MiniVSLGateProps) {
-  const [secondsLeft, setSecondsLeft] = useState(120);
+  const [secondsLeft, setSecondsLeft] = useState(VIDEO_DURATION);
   const unlocked = secondsLeft <= 0;
 
   useEffect(() => {
@@ -41,18 +43,22 @@ export default function MiniVSLGate({ dogName, onContinue }: MiniVSLGateProps) {
             pronto!
           </h2>
           <p className="question-subtitle">
-            Antes de revelar, assista esse vídeo de 2 minutos que preparei
+            Antes de revelar, assista esse vídeo que preparei
             especialmente para você
           </p>
         </div>
 
-        {/* YouTube Player */}
-        <div className="w-full aspect-video rounded-2xl overflow-hidden mb-6" style={{ background: "hsl(210 20% 98%)", border: "1px solid hsl(220 13% 91%)" }}>
+        {/* Panda Video Player */}
+        <div
+          className="w-full aspect-video rounded-2xl overflow-hidden mb-6"
+          style={{ background: "hsl(210 20% 98%)", border: "1px solid hsl(220 13% 91%)" }}
+        >
           <iframe
+            id="panda-07b4fe95-fe15-44cb-937d-7685eaa34338"
+            src="https://player-vz-8994d1f1-14f.tv.pandavideo.com.br/embed/?v=07b4fe95-fe15-44cb-937d-7685eaa34338"
             className="w-full h-full"
-            src="https://www.youtube.com/embed/SEU_VIDEO_ID"
-            title="Vídeo especial"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            style={{ border: "none" }}
+            allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
             allowFullScreen
           />
         </div>
