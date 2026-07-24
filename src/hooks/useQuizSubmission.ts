@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { useToast } from '@/hooks/use-toast';
 
 export interface QuizSubmission {
   user_email: string;
@@ -32,7 +31,6 @@ export interface QuizSubmission {
 
 export function useQuizSubmission() {
   const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
 
   const submitQuiz = async (quizData: QuizSubmission) => {
     setIsLoading(true);
@@ -71,11 +69,6 @@ export function useQuizSubmission() {
       return { success: true, data: result };
     } catch (error) {
       console.error('Erro ao salvar:', error);
-      toast({
-        title: "❌ Erro",
-        description: "Não foi possível salvar seus dados.",
-        variant: "destructive",
-      });
       return { success: false, error };
     } finally {
       setIsLoading(false);
