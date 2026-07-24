@@ -71,11 +71,6 @@ export function useQuizSubmission() {
       return { success: true, data: result };
     } catch (error) {
       console.error('Erro ao salvar:', error);
-      toast({
-        title: "❌ Erro",
-        description: "Não foi possível salvar seus dados.",
-        variant: "destructive",
-      });
       return { success: false, error };
     } finally {
       setIsLoading(false);

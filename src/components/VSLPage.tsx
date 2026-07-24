@@ -140,11 +140,11 @@ const VSLPage = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* SEÇÃO 1: TIMER NO TOPO */}
-      <section className="py-4 px-6 bg-red-50 sticky top-0 z-50 shadow-sm">
-        <div className="max-w-2xl mx-auto">
-          <div className="rounded-xl p-4 text-center border-2 border-red-200">
-            <p className="text-sm font-semibold mb-2 text-red-800">⏰ Oferta disponível por:</p>
-            <div className="text-4xl font-black text-red-600" style={{ fontVariantNumeric: "tabular-nums" }}>{minutes}:{seconds}</div>
+      <section className="py-2 px-4 bg-red-50 sticky top-0 z-50 shadow-sm">
+        <div className="max-w-md mx-auto">
+          <div className="rounded-lg p-2 text-center border border-red-200">
+            <p className="text-xs font-medium mb-1 text-red-800">⏰ Oferta disponível por:</p>
+            <div className="text-2xl font-bold text-red-600" style={{ fontVariantNumeric: "tabular-nums" }}>{minutes}:{seconds}</div>
           </div>
         </div>
       </section>
