@@ -94,7 +94,7 @@ export default function LoadingAnalise({ nomeDoCao, onComplete }: LoadingAnalise
       </div>
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col items-center px-6 pt-12 pb-8 max-w-[480px] mx-auto w-full gap-8">
+      <div className="flex-1 flex flex-col items-center justify-center px-6 py-8 max-w-[480px] mx-auto w-full gap-8">
         {/* Title & subtitle */}
         <div className="text-center">
           <h1 className="text-2xl md:text-[28px] font-bold leading-tight" style={{ color: "#1F2937" }}>
