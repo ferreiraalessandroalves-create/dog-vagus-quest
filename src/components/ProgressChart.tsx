@@ -2,12 +2,14 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 
+const CHECKOUT_URL = "https://pay.kiwify.com.br/ANFvpl3";
+
 interface ProgressChartProps {
   dogName: string;
-  onContinue: () => void;
 }
 
-export default function ProgressChart({ dogName, onContinue }: ProgressChartProps) {
+
+export default function ProgressChart({ dogName }: ProgressChartProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -127,10 +129,15 @@ export default function ProgressChart({ dogName, onContinue }: ProgressChartProp
         <div className="flex-1" />
 
         {/* CTA */}
-        <button onClick={onContinue} className="cta-button group">
+        <a
+          href={CHECKOUT_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="cta-button group"
+        >
           Continuar
           <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-        </button>
+        </a>
       </div>
     </motion.div>
   );
