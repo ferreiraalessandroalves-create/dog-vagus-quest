@@ -38,21 +38,19 @@ export function useQuizSubmission() {
     try {
       const { data: result, error } = await supabase
         .from('quiz_submissions')
-        .insert([quizData])
-        .select()
-        .single();
+        .insert([quizData]);
 
       if (error) {
         console.error('Erro ao salvar no banco:', error);
         throw error;
       }
 
-      console.log('✅ Dados salvos com sucesso:', result);
+      console.log('✅ Dados salvos com sucesso');
 
       // Replicar para Supabase externo (assíncrono, não bloqueia)
       try {
         supabase.functions.invoke('replicate-quiz', {
-          body: { record: result },
+          body: { record: quizData },
         }).then(({ error: replicateError }) => {
           if (replicateError) {
             console.error('⚠️ Erro na replicação (não crítico):', replicateError);
@@ -66,7 +64,7 @@ export function useQuizSubmission() {
         console.error('⚠️ Erro ao iniciar replicação:', e);
       }
 
-      return { success: true, data: result };
+      return { success: true, data: quizData };
     } catch (error) {
       console.error('Erro ao salvar:', error);
       return { success: false, error };
