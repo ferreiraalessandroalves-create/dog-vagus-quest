@@ -22,7 +22,7 @@ import ProgressChart from "@/components/ProgressChart";
 import InputQuestion from "@/components/InputQuestion";
 
 
-import VSLPage from "@/components/VSLPage";
+
 import QuizHeader from "@/components/QuizHeader";
 import { ArrowRight } from "lucide-react";
 import { useQuizSubmission } from "@/hooks/useQuizSubmission";
@@ -140,10 +140,11 @@ const Index = () => {
    * 25: MiniVSLGate
    * 26: EmailCapture
    * 27: ProgressChart
-   * 28+: VSLPage
+   * 27: ProgressChart (checkout link)
    */
 
-  const totalSteps = 29;
+  const totalSteps = 28;
+
 
   return (
     <div className="min-h-screen">
@@ -712,13 +713,7 @@ const Index = () => {
           <ProgressChart
             key="chart"
             dogName={state.dogName || "seu cachorro"}
-            onContinue={nextStep}
           />
-        )}
-
-        {/* Step 28+: VSL Sales Page */}
-        {state.currentStep >= 28 && (
-          <VSLPage key="vsl" />
         )}
       </AnimatePresence>
 
