@@ -43,8 +43,8 @@ interface QuizState {
 }
 
 const Index = () => {
-  const { submitQuiz, isLoading } = useQuizSubmission();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [state, setState] = useState<QuizState>({
     currentStep: 0,
     answers: {},
