@@ -134,6 +134,11 @@ export default function EmailCapture({
 
         {/* CTA Button */}
         <div className="mt-8">
+          {errorMessage && (
+            <p className="text-sm text-center mb-3" style={{ color: "hsl(0 72% 51%)" }}>
+              {errorMessage}
+            </p>
+          )}
           <button
             onClick={handleSubmit}
             disabled={disabled || !email || !email.includes("@")}
@@ -143,6 +148,7 @@ export default function EmailCapture({
             {!disabled && <ArrowRight className="w-5 h-5" />}
           </button>
         </div>
+
       </div>
     </motion.div>
   );
