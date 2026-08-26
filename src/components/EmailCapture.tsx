@@ -7,14 +7,16 @@ import { Lock, ArrowRight } from "lucide-react";
 
 interface EmailCaptureProps {
   dogName: string;
-  onSubmit: (email: string) => void;
+  onSubmit: (email: string, ownerName: string) => void;
   disabled?: boolean;
+  errorMessage?: string | null;
 }
 
 export default function EmailCapture({
   dogName,
   onSubmit,
   disabled = false,
+  errorMessage = null,
 }: EmailCaptureProps) {
   const [email, setEmail] = useState("");
   const [ownerName, setOwnerName] = useState("");
@@ -30,9 +32,10 @@ export default function EmailCapture({
 
   const handleSubmit = () => {
     if (email && email.includes("@")) {
-      onSubmit(email);
+      onSubmit(email, ownerName);
     }
   };
+
 
   return (
     <motion.div
