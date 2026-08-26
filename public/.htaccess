@@ -1,0 +1,23 @@
+<IfModule mod_headers.c>
+  # HTML sempre revalidado (evita site desatualizado após deploy)
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+
+  # Assets com hash no nome podem ser cacheados por 1 ano
+  <FilesMatch "\.(js|css|png|jpg|jpeg|svg|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
+
+# Rotas da SPA
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
