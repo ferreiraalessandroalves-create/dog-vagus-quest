@@ -49,7 +49,7 @@ jobs:
           protocol: ftp
           port: 21
           local-dir: ./dist/
-          server-dir: ./
+          server-dir: /home/u857302642/domains/caninoobediente360.lat/public_html/
           dangerous-clean-slate: false
           log-level: verbose
           exclude: |
