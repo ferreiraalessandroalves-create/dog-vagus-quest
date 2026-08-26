@@ -25,8 +25,8 @@ import InputQuestion from "@/components/InputQuestion";
 
 import QuizHeader from "@/components/QuizHeader";
 import { ArrowRight } from "lucide-react";
-import { useQuizSubmission } from "@/hooks/useQuizSubmission";
-import { supabase } from "@/integrations/supabase/client";
+
+
 import puppyImg from "@/assets/puppy.png";
 import adolescentImg from "@/assets/adolescent.png";
 import adultImg from "@/assets/adult.png";
