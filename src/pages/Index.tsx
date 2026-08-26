@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { enviarParaGoogleSheets } from "@/lib/googleSheets";
+import { salvarLead } from "@/lib/saveLead";
 import QuizIntro from "@/components/QuizIntro";
 import QuestionCard from "@/components/QuestionCard";
 import MultipleChoice from "@/components/MultipleChoice";
