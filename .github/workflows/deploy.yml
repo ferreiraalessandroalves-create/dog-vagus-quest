@@ -30,12 +30,15 @@ jobs:
       - name: Build do projeto
         run: npm run build
 
-      - name: Garantir .htaccess no build
+      - name: Garantir .htaccess e pasta api no build
         run: |
           if [ ! -f ./dist/.htaccess ]; then
             cp ./public/.htaccess ./dist/.htaccess
           fi
-          ls -la ./dist
+          mkdir -p ./dist/api
+          cp ./public/api/*.php ./dist/api/ 2>/dev/null || true
+          rm -f ./dist/api/config.php
+          ls -la ./dist ./dist/api
 
       - name: Deploy FTP para Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -47,9 +50,11 @@ jobs:
           port: 21
           local-dir: ./dist/
           server-dir: ./
-          dangerous-clean-slate: true
+          dangerous-clean-slate: false
           log-level: verbose
           exclude: |
             **/.git*
             **/.git*/**
             **/node_modules/**
+            **/api/config.php
+

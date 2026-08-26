@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { enviarParaGoogleSheets } from "@/lib/googleSheets";
+import { salvarLead } from "@/lib/saveLead";
 import QuizIntro from "@/components/QuizIntro";
 import QuestionCard from "@/components/QuestionCard";
 import MultipleChoice from "@/components/MultipleChoice";
@@ -25,8 +25,8 @@ import InputQuestion from "@/components/InputQuestion";
 
 import QuizHeader from "@/components/QuizHeader";
 import { ArrowRight } from "lucide-react";
-import { useQuizSubmission } from "@/hooks/useQuizSubmission";
-import { supabase } from "@/integrations/supabase/client";
+
+
 import puppyImg from "@/assets/puppy.png";
 import adolescentImg from "@/assets/adolescent.png";
 import adultImg from "@/assets/adult.png";
@@ -43,8 +43,8 @@ interface QuizState {
 }
 
 const Index = () => {
-  const { submitQuiz, isLoading } = useQuizSubmission();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [state, setState] = useState<QuizState>({
     currentStep: 0,
     answers: {},
@@ -624,43 +624,17 @@ const Index = () => {
             key="email"
             dogName={state.dogName || "seu cachorro"}
             disabled={isSubmitting}
-            onSubmit={async (email) => {
+            errorMessage={submitError}
+            onSubmit={async (email, ownerName) => {
               if (isSubmitting) return;
 
               setIsSubmitting(true);
-              
+              setSubmitError(null);
 
-              setState((p) => ({ ...p, userEmail: email }));
+              setState((p) => ({ ...p, userEmail: email, ownerName }));
               const results = calculateResults();
 
-              const dadosQuiz = {
-                email,
-                dogName: state.dogName || "",
-                dogAge: state.answers.dog_age,
-                dogGender: state.answers.dog_gender,
-                dogBreed: state.answers.dog_breed,
-                painPulling: state.answers.pain_pulling,
-                painBarking: state.answers.pain_barking,
-                painStartles: state.answers.pain_startles,
-                painOtherDogs: state.answers.pain_other_dogs,
-                painUnexplained: state.answers.pain_unexplained,
-                tensionLevel: results.tensionLevel,
-                mainProblems: results.mainProblems,
-                mainGoal: state.answers.q22,
-                timeAvailable: state.answers.time,
-                commitment: state.answers.commitment,
-              };
-
-              try {
-                await enviarParaGoogleSheets(dadosQuiz);
-              } catch (error) {
-                console.error("Erro ao enviar:", error);
-              } finally {
-                setIsSubmitting(false);
-              }
-
-              const quizData = {
-                user_email: email,
+              const respostas = {
                 dog_name: state.dogName,
                 dog_age: state.answers.dog_age,
                 dog_gender: state.answers.dog_gender,
@@ -687,26 +661,27 @@ const Index = () => {
                 main_problems: results.mainProblems,
               };
 
-              await submitQuiz(quizData);
-
-              // Dispara email para o lead (assíncrono, não bloqueia)
               try {
-                supabase.functions.invoke('send-lead-email', {
-                  body: { email, dogName: state.dogName || "seu cachorro" },
-                }).then(({ error }) => {
-                  if (error) console.error('⚠️ Erro ao enviar email (não crítico):', error);
-                  else console.log('📧 Email enviado ao lead');
-                }).catch((err) => {
-                  console.error('⚠️ Falha ao chamar send-lead-email:', err);
+                await salvarLead({
+                  nome: ownerName?.trim() || email.split("@")[0],
+                  email,
+                  nome_cao: state.dogName || "",
+                  respostas,
+                  origem: "quiz",
                 });
-              } catch (e) {
-                console.error('⚠️ Erro ao iniciar envio de email:', e);
+                setIsSubmitting(false);
+                nextStep();
+              } catch (error) {
+                console.error("Erro ao salvar lead:", error);
+                setIsSubmitting(false);
+                setSubmitError(
+                  "Não conseguimos salvar seus dados agora. Verifique sua conexão e tente novamente."
+                );
               }
-
-              nextStep();
             }}
           />
         )}
+
 
         {/* Step 27: Chart */}
         {state.currentStep === 27 && (

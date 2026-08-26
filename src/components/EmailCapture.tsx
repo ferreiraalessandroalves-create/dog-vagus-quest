@@ -7,14 +7,16 @@ import { Lock, ArrowRight } from "lucide-react";
 
 interface EmailCaptureProps {
   dogName: string;
-  onSubmit: (email: string) => void;
+  onSubmit: (email: string, ownerName: string) => void;
   disabled?: boolean;
+  errorMessage?: string | null;
 }
 
 export default function EmailCapture({
   dogName,
   onSubmit,
   disabled = false,
+  errorMessage = null,
 }: EmailCaptureProps) {
   const [email, setEmail] = useState("");
   const [ownerName, setOwnerName] = useState("");
@@ -30,9 +32,10 @@ export default function EmailCapture({
 
   const handleSubmit = () => {
     if (email && email.includes("@")) {
-      onSubmit(email);
+      onSubmit(email, ownerName);
     }
   };
+
 
   return (
     <motion.div
@@ -131,6 +134,11 @@ export default function EmailCapture({
 
         {/* CTA Button */}
         <div className="mt-8">
+          {errorMessage && (
+            <p className="text-sm text-center mb-3" style={{ color: "hsl(0 72% 51%)" }}>
+              {errorMessage}
+            </p>
+          )}
           <button
             onClick={handleSubmit}
             disabled={disabled || !email || !email.includes("@")}
@@ -140,6 +148,7 @@ export default function EmailCapture({
             {!disabled && <ArrowRight className="w-5 h-5" />}
           </button>
         </div>
+
       </div>
     </motion.div>
   );

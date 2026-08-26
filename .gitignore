@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Credenciais locais do endpoint PHP (nao versionar)
+api/config.php
+public/api/config.php
+dist/api/config.php
