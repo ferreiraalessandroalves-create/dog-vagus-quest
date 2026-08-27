@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,23 +10,38 @@
     <meta property="og:title" content="Canino Obediente 360 - Quiz Personalizado" />
     <meta property="og:description" content="Descubra o plano personalizado para transformar o comportamento do seu cachorro." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/src/assets/canino-logo-icon.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="/src/assets/canino-logo-icon.png" />
 
-    <!-- Facebook Pixel Code -->
+    <!-- LCP image preload -->
+    <link rel="preload" as="image" href="/hero-happy-dog.webp" fetchpriority="high" />
+    <link rel="preconnect" href="https://connect.facebook.net" crossorigin />
+
+    <!-- Facebook Pixel Code (carregado sem bloquear a renderização) -->
     <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '1087016016494841');
-      fbq('track', 'PageView');
+      window.fbq = window.fbq || function () { (window.fbq.queue = window.fbq.queue || []).push(arguments); };
+      function loadMetaPixel() {
+        if (window.__pixelLoaded) return;
+        window.__pixelLoaded = true;
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq&&f.fbq.loaded)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=(window.fbq&&window.fbq.queue)||[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1087016016494841');
+        fbq('track', 'PageView');
+      }
+      if (document.readyState === 'complete') {
+        setTimeout(loadMetaPixel, 1200);
+      } else {
+        window.addEventListener('load', function () { setTimeout(loadMetaPixel, 1200); });
+      }
+      ['scroll','pointerdown','keydown','touchstart'].forEach(function (evt) {
+        window.addEventListener(evt, loadMetaPixel, { once: true, passive: true });
+      });
     </script>
     <!-- End Facebook Pixel Code -->
   </head>
