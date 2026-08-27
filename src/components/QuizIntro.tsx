@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import heroImage from "@/assets/happy-dog.jpg";
+import heroImage from "@/assets/happy-dog.webp";
 
 interface QuizIntroProps {
   onStart: () => void;

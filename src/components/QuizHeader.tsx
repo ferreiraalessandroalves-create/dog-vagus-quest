@@ -1,4 +1,4 @@
-import logoIcon from "@/assets/canino-logo-icon.png";
+import logoIcon from "@/assets/canino-logo-icon.webp";
 
 interface QuizHeaderProps {
   currentStep: number;

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import receitasImg from "@/assets/bonuses/receitas.png";
-import checklistImg from "@/assets/bonuses/checklist.png";
-import transformacaoImg from "@/assets/bonuses/transformacao.png";
+import receitasImg from "@/assets/bonuses/receitas.webp";
+import checklistImg from "@/assets/bonuses/checklist.webp";
+import transformacaoImg from "@/assets/bonuses/transformacao.webp";
 
 
 

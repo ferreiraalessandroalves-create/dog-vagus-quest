@@ -27,10 +27,10 @@ import QuizHeader from "@/components/QuizHeader";
 import { ArrowRight } from "lucide-react";
 
 
-import puppyImg from "@/assets/puppy.png";
-import adolescentImg from "@/assets/adolescent.png";
-import adultImg from "@/assets/adult.png";
-import seniorImg from "@/assets/senior.png";
+import puppyImg from "@/assets/puppy.webp";
+import adolescentImg from "@/assets/adolescent.webp";
+import adultImg from "@/assets/adult.webp";
+import seniorImg from "@/assets/senior.webp";
 import ofertaLimitada from "@/assets/oferta-desconto.png";
 import ofertaMobile from "@/assets/imagem_final.png";
 

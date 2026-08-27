@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import vagusNerveIllustration from "@/assets/vagus-nerve-illustration.jpg";
+import vagusNerveIllustration from "@/assets/vagus-nerve-illustration.webp";
 
 
 interface EducationProps {
