@@ -1,4 +1,4 @@
-import { SMTPClient } from "https://deno.land/x/denomailer@1.6.0/mod.ts";
+const GATEWAY_URL = "https://connector-gateway.lovable.dev/google_mail/gmail/v1";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
