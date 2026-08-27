@@ -44,9 +44,16 @@ try {
         PDO::ATTR_EMULATE_PREPARES   => false,
     ]);
 
+    // Garante a coluna de auditoria de envio de e-mail
+    try {
+        $pdo->exec('ALTER TABLE leads_quiz ADD COLUMN email_enviado TINYINT NOT NULL DEFAULT 0');
+    } catch (Throwable $e) {
+        // coluna ja existe
+    }
+
     $stmt = $pdo->prepare(
-        'INSERT INTO leads_quiz (nome, email, nome_cao, respostas, origem, ip, criado_em)
-         VALUES (:nome, :email, :nome_cao, :respostas, :origem, :ip, NOW())'
+        'INSERT INTO leads_quiz (nome, email, nome_cao, respostas, origem, ip, email_enviado, criado_em)
+         VALUES (:nome, :email, :nome_cao, :respostas, :origem, :ip, 0, NOW())'
     );
 
     $stmt->execute([
@@ -58,8 +65,21 @@ try {
         ':ip'        => $_SERVER['REMOTE_ADDR'] ?? '',
     ]);
 
+    $leadId = (int)$pdo->lastInsertId();
+
+    // Envio do e-mail: nunca pode quebrar a resposta
+    try {
+        require_once __DIR__ . '/enviar-email.php';
+        if (co360_enviar_email($config, $nome, $email, $nomeCao, $respostas)) {
+            $upd = $pdo->prepare('UPDATE leads_quiz SET email_enviado = 1 WHERE id = :id');
+            $upd->execute([':id' => $leadId]);
+        }
+    } catch (Throwable $e) {
+        error_log('[salvar.php][email] ' . $e->getMessage());
+    }
+
     http_response_code(200);
-    echo json_encode(['ok' => true, 'id' => (int)$pdo->lastInsertId()], JSON_UNESCAPED_UNICODE);
+    echo json_encode(['ok' => true, 'id' => $leadId], JSON_UNESCAPED_UNICODE);
 } catch (Throwable $e) {
     error_log('[salvar.php] ' . $e->getMessage());
     http_response_code(500);
