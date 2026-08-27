@@ -23,6 +23,7 @@ export async function salvarLead(payload: SaveLeadPayload) {
   const r = payload.respostas ?? {};
 
   const row = {
+    id: crypto.randomUUID(),
     user_email: payload.email,
     dog_name: payload.nome_cao || toStr(r.dog_name),
     dog_age: toStr(r.dog_age),
