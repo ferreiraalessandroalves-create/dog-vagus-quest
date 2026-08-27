@@ -21,14 +21,8 @@ export default defineConfig(({ mode }) => ({
     assetsInlineLimit: 4096,
     rollupOptions: {
       output: {
-        manualChunks(id: string) {
-          if (!id.includes("node_modules")) return;
-          if (id.includes("react-dom") || id.includes("/react/") || id.includes("scheduler")) {
-            return "vendor-react";
-          }
-          if (id.includes("framer-motion")) return "vendor-motion";
-          if (id.includes("@supabase")) return "vendor-supabase";
-          return "vendor";
+        manualChunks: {
+          "vendor-supabase": ["@supabase/supabase-js"],
         },
       },
     },
