@@ -66,5 +66,18 @@ export async function salvarLead(payload: SaveLeadPayload) {
     // silencioso
   }
 
+  // E-mail de diagnóstico (não bloqueia o fluxo do usuário)
+  try {
+    void supabase.functions.invoke("send-lead-email", {
+      body: {
+        email: payload.email,
+        dogName: payload.nome_cao || row.dog_name || "",
+        respostas: { ...r, ...row },
+      },
+    });
+  } catch {
+    // silencioso
+  }
+
   return { ok: true as const };
 }
