@@ -36,7 +36,7 @@ jobs:
             cp ./public/.htaccess ./dist/.htaccess
           fi
           mkdir -p ./dist/api
-          cp ./public/api/*.php ./dist/api/ 2>/dev/null || true
+          cp -r ./public/api/. ./dist/api/ 2>/dev/null || true
           rm -f ./dist/api/config.php
           ls -la ./dist ./dist/api
 
