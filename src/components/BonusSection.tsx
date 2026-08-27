@@ -114,7 +114,7 @@ const Carousel3D = () => {
               ...getStyle(i),
             }}
           >
-            <img src={cover.img} alt={cover.alt} className="w-full h-full object-cover" />
+            <img src={cover.img} alt={cover.alt} width={700} height={1283} loading="lazy" decoding="async" className="w-full h-full object-cover" />
           </div>
         ))}
       </div>
