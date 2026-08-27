@@ -59,6 +59,7 @@ export default function MiniVSLGate({ dogName, onContinue }: MiniVSLGateProps) {
             className="w-full h-full"
             style={{ border: "none" }}
             allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
+            loading="lazy"
             allowFullScreen
           />
         </div>
