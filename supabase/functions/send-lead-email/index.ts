@@ -147,6 +147,26 @@ function template(dogName: string, nivel: number, classe: string, cor: string, l
 </html>`;
 }
 
+function b64url(bytes: Uint8Array): string {
+  let bin = "";
+  for (const b of bytes) bin += String.fromCharCode(b);
+  return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+function buildRaw(to: string, subject: string, html: string): string {
+  const enc = new TextEncoder();
+  const subjectEncoded = `=?UTF-8?B?${btoa(String.fromCharCode(...enc.encode(subject)))}?=`;
+  const message = [
+    `To: ${to}`,
+    `Subject: ${subjectEncoded}`,
+    "MIME-Version: 1.0",
+    'Content-Type: text/html; charset="UTF-8"',
+    "",
+    html,
+  ].join("\r\n");
+  return b64url(enc.encode(message));
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -165,11 +185,11 @@ Deno.serve(async (req) => {
       });
     }
 
-    const smtpUser = Deno.env.get("SMTP_USER") ?? FROM;
-    const smtpPass = Deno.env.get("SMTP_PASS");
-    if (!smtpPass) {
-      console.error("SMTP_PASS não configurado");
-      return new Response(JSON.stringify({ error: "SMTP não configurado" }), {
+    const lovableKey = Deno.env.get("LOVABLE_API_KEY");
+    const gmailKey = Deno.env.get("GOOGLE_MAIL_API_KEY");
+    if (!lovableKey || !gmailKey) {
+      console.error("Credenciais do Gmail ausentes");
+      return new Response(JSON.stringify({ error: "Gmail não configurado" }), {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
@@ -178,24 +198,26 @@ Deno.serve(async (req) => {
     const nivel = calcularTensao(respostas);
     const [classe, cor] = classificacao(nivel);
     const html = template(dogName, nivel, classe, cor, desafios(respostas));
+    const subject = `🐕 Plano Personalizado para ${dogName || "seu cachorro"} - Reset do Nervo Vago`;
 
-    const client = new SMTPClient({
-      connection: {
-        hostname: Deno.env.get("SMTP_HOST") ?? "smtp.hostinger.com",
-        port: Number(Deno.env.get("SMTP_PORT") ?? 465),
-        tls: true,
-        auth: { username: smtpUser, password: smtpPass },
+    const res = await fetch(`${GATEWAY_URL}/users/me/messages/send`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${lovableKey}`,
+        "X-Connection-Api-Key": gmailKey,
+        "Content-Type": "application/json",
       },
+      body: JSON.stringify({ raw: buildRaw(email, subject, html) }),
     });
 
-    await client.send({
-      from: `Canino Obediente 360° <${FROM}>`,
-      to: email,
-      subject: `🐕 Plano Personalizado para ${dogName || "seu cachorro"} - Reset do Nervo Vago`,
-      content: `Plano Personalizado. Nível de Tensão do Nervo Vago: ${nivel}/10 (${classe}). Comece: ${CHECKOUT_URL}`,
-      html,
-    });
-    await client.close();
+    if (!res.ok) {
+      const details = await res.text();
+      console.error(`Falha ao enviar via Gmail [${res.status}]: ${details}`);
+      return new Response(JSON.stringify({ error: "Falha no envio", status: res.status, details }), {
+        status: res.status,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
     console.log("E-mail de diagnóstico enviado para", email);
 
@@ -211,3 +233,4 @@ Deno.serve(async (req) => {
     });
   }
 });
+
