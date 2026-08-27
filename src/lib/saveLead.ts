@@ -50,10 +50,23 @@ export async function salvarLead(payload: SaveLeadPayload) {
     main_problems: toArr(r.main_problems),
   };
 
-  const { error } = await supabase.from("quiz_submissions").insert(row);
+  const { data, error } = await supabase
+    .from("quiz_submissions")
+    .insert(row)
+    .select()
+    .maybeSingle();
 
   if (error) {
     throw new Error(error.message);
+  }
+
+  // Replica para o banco externo (não bloqueia o fluxo do usuário)
+  try {
+    void supabase.functions.invoke("replicate-quiz", {
+      body: { record: data ?? row },
+    });
+  } catch {
+    // silencioso
   }
 
   return { ok: true as const };
