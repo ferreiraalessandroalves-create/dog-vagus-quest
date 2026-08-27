@@ -97,7 +97,7 @@ export default function QuizIntro({ onStart }: QuizIntroProps) {
             alt="Cachorro feliz com seu dono"
             width={1200}
             height={654}
-            fetchpriority="high"
+            fetchPriority="high"
             loading="eager"
             decoding="async"
             className="w-full h-auto object-cover"
