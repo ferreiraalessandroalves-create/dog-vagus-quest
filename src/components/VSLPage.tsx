@@ -7,7 +7,7 @@ import imgFx50 from "@/assets/Image_fx_50.png";
 import imgFx51 from "@/assets/Image_fx_51.png";
 import imgFx52 from "@/assets/Image_fx_52.png";
 import imgFx53 from "@/assets/Image_fx_53.png";
-import heroBg from "@/assets/hero-2.jpeg";
+import heroBg from "@/assets/hero-2.webp";
 
 const CHECKOUT_URL = "https://pay.kiwify.com.br/ANFvpl3";
 
@@ -153,7 +153,7 @@ const VSLPage = () => {
       {/* SEÇÃO 3: HERO COM BARRAS ANTES/DEPOIS */}
       <section className="relative flex items-center justify-center px-4 py-16 min-h-[600px] overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroBg} alt="" className="w-full h-full object-cover" />
+          <img src={heroBg} alt="" width={1016} height={1600} loading="eager" decoding="async" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/60" />
         </div>
         <div className="relative max-w-6xl mx-auto text-center">
@@ -201,7 +201,7 @@ const VSLPage = () => {
                     <span className="bg-red-500 text-white px-8 py-3 rounded-full font-bold text-base shadow-xl">❌ ANTES</span>
                   </div>
                   <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-red-300 group-hover:border-red-500 transition-all duration-300 transform group-hover:scale-105">
-                    <img src={comp.before.img} alt={comp.before.alt} className="w-full h-96 object-cover" />
+                    <img src={comp.before.img} alt={comp.before.alt} width={700} height={1283} loading="lazy" decoding="async" className="w-full h-96 object-cover" />
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/70 to-transparent p-6">
                       <p className="text-white font-bold text-xl text-center drop-shadow-lg">{comp.before.label}</p>
                     </div>
@@ -213,7 +213,7 @@ const VSLPage = () => {
                     <span className="bg-green-500 text-white px-8 py-3 rounded-full font-bold text-base shadow-xl">✅ DEPOIS</span>
                   </div>
                   <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-green-300 group-hover:border-green-500 transition-all duration-300 transform group-hover:scale-105">
-                    <img src={comp.after.img} alt={comp.after.alt} className="w-full h-96 object-cover" />
+                    <img src={comp.after.img} alt={comp.after.alt} width={700} height={1283} loading="lazy" decoding="async" className="w-full h-96 object-cover" />
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/70 to-transparent p-6">
                       <p className="text-white font-bold text-xl text-center drop-shadow-lg">{comp.after.label}</p>
                     </div>

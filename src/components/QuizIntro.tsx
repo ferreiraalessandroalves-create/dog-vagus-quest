@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import heroImage from "@/assets/happy-dog.jpg";
+const heroImage = "/hero-happy-dog.webp";
 
 interface QuizIntroProps {
   onStart: () => void;
@@ -95,6 +95,11 @@ export default function QuizIntro({ onStart }: QuizIntroProps) {
           <img
             src={heroImage}
             alt="Cachorro feliz com seu dono"
+            width={1200}
+            height={654}
+            fetchpriority="high"
+            loading="eager"
+            decoding="async"
             className="w-full h-auto object-cover"
           />
         </motion.div>

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import awardSeal from "@/assets/award-seal.png";
+import awardSeal from "@/assets/award-seal.webp";
 
 
 interface SocialProofProps {
@@ -67,6 +67,10 @@ export default function SocialProof({ onContinue }: SocialProofProps) {
           <img
             src={awardSeal}
             alt="Selo Acadêmico"
+            width={64}
+            height={64}
+            loading="lazy"
+            decoding="async"
             className="w-16 h-16 object-contain"
           />
           <div>

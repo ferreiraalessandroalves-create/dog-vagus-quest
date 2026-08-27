@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import drCarlosImage from "@/assets/dr-carlos-mendes.png";
+import drCarlosImage from "@/assets/dr-carlos-mendes.webp";
 
 
 interface AuthorityProps {
