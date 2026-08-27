@@ -20,6 +20,10 @@ export default function QuizHeader({ currentStep, totalSteps }: QuizHeaderProps)
         <img
           src={logoIcon}
           alt="Canino Obediente 360°"
+          width={48}
+          height={48}
+          loading="eager"
+          decoding="async"
           className="w-12 h-12 rounded-full object-cover"
           style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.1)" }}
         />

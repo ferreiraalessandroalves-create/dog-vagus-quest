@@ -38,6 +38,10 @@ export default function Education({ onContinue }: EducationProps) {
           <img
             src={vagusNerveIllustration}
             alt="Ilustração do nervo vago em cachorro"
+            width={1000}
+            height={545}
+            loading="lazy"
+            decoding="async"
             className="w-full rounded-2xl shadow-lg"
           />
         </motion.div>

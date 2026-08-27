@@ -42,6 +42,10 @@ export default function MultipleChoice({
                 <img
                   src={option.image}
                   alt={option.label}
+                  width={60}
+                  height={60}
+                  loading="lazy"
+                  decoding="async"
                   className="option-image"
                 />
               )}

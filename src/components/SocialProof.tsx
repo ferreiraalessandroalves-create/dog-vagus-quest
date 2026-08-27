@@ -67,6 +67,10 @@ export default function SocialProof({ onContinue }: SocialProofProps) {
           <img
             src={awardSeal}
             alt="Selo Acadêmico"
+            width={64}
+            height={64}
+            loading="lazy"
+            decoding="async"
             className="w-16 h-16 object-contain"
           />
           <div>
