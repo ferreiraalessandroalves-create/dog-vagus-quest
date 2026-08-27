@@ -79,7 +79,7 @@ export default function LoadingAnalise({ nomeDoCao, onComplete }: LoadingAnalise
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen flex flex-col"
+      className="min-h-screen min-h-[100dvh] flex flex-col"
       style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #F8FAFB 100%)" }}
     >
       {/* Orange progress bar at top */}
@@ -94,7 +94,7 @@ export default function LoadingAnalise({ nomeDoCao, onComplete }: LoadingAnalise
       </div>
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-6 py-8 max-w-[480px] mx-auto w-full gap-8">
+      <div className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-6 md:py-8 max-w-[480px] mx-auto w-full gap-6 md:gap-8">
         {/* Title & subtitle */}
         <div className="text-center">
           <h1 className="text-2xl md:text-[28px] font-bold leading-tight" style={{ color: "#1F2937" }}>
@@ -181,8 +181,8 @@ export default function LoadingAnalise({ nomeDoCao, onComplete }: LoadingAnalise
           </motion.div>
         </AnimatePresence>
 
-        {/* Progress messages */}
-        <div className="w-full flex flex-col gap-2">
+        {/* Progress messages — reservado para não empurrar o conteúdo de cima */}
+        <div className="w-full flex flex-col gap-2 min-h-[96px]">
           {PROGRESS_MESSAGES.map(
             (msg) =>
               progress > msg.threshold && (
