@@ -23,6 +23,7 @@ export async function salvarLead(payload: SaveLeadPayload) {
   const r = payload.respostas ?? {};
 
   const row = {
+    id: crypto.randomUUID(),
     user_email: payload.email,
     dog_name: payload.nome_cao || toStr(r.dog_name),
     dog_age: toStr(r.dog_age),
@@ -54,6 +55,15 @@ export async function salvarLead(payload: SaveLeadPayload) {
 
   if (error) {
     throw new Error(error.message);
+  }
+
+  // Replica para o banco externo (não bloqueia o fluxo do usuário)
+  try {
+    void supabase.functions.invoke("replicate-quiz", {
+      body: { record: row },
+    });
+  } catch {
+    // silencioso
   }
 
   return { ok: true as const };
