@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { rastrear } from "@/lib/tracking";
 
 
 const CHECKOUT_URL = "https://pay.kiwify.com.br/ANFvpl3";
@@ -134,6 +135,7 @@ export default function ProgressChart({ dogName }: ProgressChartProps) {
           target="_blank"
           rel="noopener noreferrer"
           className="cta-button group"
+          onClick={() => rastrear("clique_checkout")}
         >
           Continuar
           <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

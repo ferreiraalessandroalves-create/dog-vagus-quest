@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ArrowRight, Lock } from "lucide-react";
+import { rastrear } from "@/lib/tracking";
 
 interface MiniVSLGateProps {
   dogName: string;
@@ -12,6 +13,11 @@ const VIDEO_DURATION = 191; // 3:11
 export default function MiniVSLGate({ dogName, onContinue }: MiniVSLGateProps) {
   const [secondsLeft, setSecondsLeft] = useState(VIDEO_DURATION);
   const unlocked = secondsLeft <= 0;
+  const tracked50 = useRef(false);
+
+  useEffect(() => {
+    rastrear("vsl_iniciada");
+  }, []);
 
   useEffect(() => {
     if (secondsLeft <= 0) return;
@@ -19,6 +25,17 @@ export default function MiniVSLGate({ dogName, onContinue }: MiniVSLGateProps) {
       setSecondsLeft((prev) => Math.max(0, prev - 1));
     }, 1000);
     return () => clearInterval(interval);
+  }, [secondsLeft]);
+
+  useEffect(() => {
+    if (!tracked50.current && secondsLeft <= VIDEO_DURATION / 2 && secondsLeft > 0) {
+      tracked50.current = true;
+      rastrear("vsl_50");
+    }
+    if (secondsLeft <= 0) {
+      rastrear("vsl_100");
+      rastrear("botao_liberado");
+    }
   }, [secondsLeft]);
 
   const formatTime = (s: number) => {
