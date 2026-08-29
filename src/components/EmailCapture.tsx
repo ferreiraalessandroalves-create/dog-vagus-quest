@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Lock, ArrowRight } from "lucide-react";
+import { rastrear } from "@/lib/tracking";
 
 
 interface EmailCaptureProps {
@@ -22,6 +23,10 @@ export default function EmailCapture({
   const [ownerName, setOwnerName] = useState("");
   const [acceptTips, setAcceptTips] = useState(true);
   const [showSuggestions, setShowSuggestions] = useState(false);
+
+  useEffect(() => {
+    rastrear("quiz_email_exibido");
+  }, []);
 
   const emailDomains = ["@gmail.com", "@yahoo.com", "@hotmail.com", "@outlook.com"];
 
