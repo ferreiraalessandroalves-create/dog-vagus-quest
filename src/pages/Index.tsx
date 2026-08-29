@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { salvarLead } from "@/lib/saveLead";
+import { rastrear } from "@/lib/tracking";
 import QuizIntro from "@/components/QuizIntro";
 import QuestionCard from "@/components/QuestionCard";
 import MultipleChoice from "@/components/MultipleChoice";
@@ -62,7 +63,10 @@ const Index = () => {
   };
 
   const nextStep = () => {
-    setState((prev) => ({ ...prev, currentStep: prev.currentStep + 1 }));
+    setState((prev) => {
+      rastrear(`quiz_etapa_${prev.currentStep}`);
+      return { ...prev, currentStep: prev.currentStep + 1 };
+    });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -154,7 +158,9 @@ const Index = () => {
 
       <AnimatePresence mode="wait">
         {/* Step 0: Intro */}
-        {state.currentStep === 0 && <QuizIntro key="intro" onStart={nextStep} />}
+        {state.currentStep === 0 && (
+          <QuizIntro key="intro" onStart={() => { rastrear("quiz_iniciado"); nextStep(); }} />
+        )}
 
         {/* Step 1: Dog age */}
         {state.currentStep === 1 && (
@@ -669,10 +675,14 @@ const Index = () => {
                   respostas,
                   origem: "quiz",
                 });
+                rastrear("quiz_email_enviado");
                 setIsSubmitting(false);
                 nextStep();
               } catch (error) {
                 console.error("Erro ao salvar lead:", error);
+                rastrear("quiz_email_erro", {
+                  mensagem: error instanceof Error ? error.message : String(error),
+                });
                 setIsSubmitting(false);
                 setSubmitError(
                   "Não conseguimos salvar seus dados agora. Verifique sua conexão e tente novamente."
