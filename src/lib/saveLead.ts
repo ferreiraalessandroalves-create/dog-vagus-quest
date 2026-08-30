@@ -57,27 +57,37 @@ export async function salvarLead(payload: SaveLeadPayload) {
     throw new Error(error.message);
   }
 
-  // Replica para o banco externo (não bloqueia o fluxo do usuário)
-  try {
-    void supabase.functions.invoke("replicate-quiz", {
-      body: { record: row },
-    });
-  } catch {
-    // silencioso
-  }
+  // Replica para o banco externo — aguardamos (com 1 retry) para garantir a gravação
+  const replicar = async () => {
+    for (let i = 0; i < 2; i++) {
+      try {
+        const { data, error: fnError } = await supabase.functions.invoke("replicate-quiz", {
+          body: { record: row },
+        });
+        if (!fnError && (data as { success?: boolean } | null)?.success) return true;
+      } catch {
+        // tenta novamente
+      }
+    }
+    return false;
+  };
 
-  // E-mail de diagnóstico (não bloqueia o fluxo do usuário)
-  try {
-    void supabase.functions.invoke("send-lead-email", {
-      body: {
-        email: payload.email,
-        dogName: payload.nome_cao || row.dog_name || "",
-        respostas: { ...r, ...row },
-      },
-    });
-  } catch {
-    // silencioso
-  }
+  const enviarEmail = async () => {
+    try {
+      await supabase.functions.invoke("send-lead-email", {
+        body: {
+          email: payload.email,
+          dogName: payload.nome_cao || row.dog_name || "",
+          respostas: { ...r, ...row },
+        },
+      });
+    } catch {
+      // silencioso
+    }
+  };
+
+  await Promise.allSettled([replicar(), enviarEmail()]);
 
   return { ok: true as const };
 }
+
