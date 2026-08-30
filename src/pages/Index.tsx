@@ -73,9 +73,21 @@ const Index = () => {
   const prevStep = () => {
     setState((prev) => ({
       ...prev,
-      currentStep: Math.max(0, prev.currentStep - 1),
+      currentStep: prev.currentStep === 2 ? 0 : Math.max(0, prev.currentStep - 1),
     }));
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleFirstAnswer = (value: string) => {
+    rastrear("quiz_iniciado");
+    rastrear("quiz_pergunta1_respondida", { resposta: value });
+    handleAnswer("dog_age", value);
+
+    window.setTimeout(() => {
+      rastrear("quiz_etapa_1");
+      setState((prev) => ({ ...prev, currentStep: 2 }));
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 300);
   };
 
   const calculateResults = () => {
@@ -159,7 +171,11 @@ const Index = () => {
       <AnimatePresence mode="wait">
         {/* Step 0: Intro */}
         {state.currentStep === 0 && (
-          <QuizIntro key="intro" onStart={() => { rastrear("quiz_iniciado"); nextStep(); }} />
+          <QuizIntro
+            key="intro"
+            selected={state.answers.dog_age}
+            onAnswer={handleFirstAnswer}
+          />
         )}
 
         {/* Step 1: Dog age */}
