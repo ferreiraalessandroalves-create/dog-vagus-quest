@@ -1,17 +1,30 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
-const heroImage = "/hero-happy-dog.webp";
+import { CheckCircle2 } from "lucide-react";
+import logoIcon from "@/assets/canino-logo-icon.webp";
+import puppyImg from "@/assets/puppy.webp";
+import adolescentImg from "@/assets/adolescent.webp";
+import adultImg from "@/assets/adult.webp";
+import seniorImg from "@/assets/senior.webp";
+import { cn } from "@/lib/utils";
 
 interface QuizIntroProps {
-  onStart: () => void;
+  selected?: string;
+  onAnswer: (value: string) => void;
 }
 
-export default function QuizIntro({ onStart }: QuizIntroProps) {
+export default function QuizIntro({ selected, onAnswer }: QuizIntroProps) {
   const benefits = [
     "Método cientificamente comprovado",
     "Personalizado para seu cachorro",
     "Resultados em 21 dias",
+  ];
+
+  const options = [
+    { value: "puppy", label: "Filhote (< 6 meses)", image: puppyImg },
+    { value: "adolescent", label: "Adolescente (6-18 meses)", image: adolescentImg },
+    { value: "adult", label: "Adulto (1,5-7 anos)", image: adultImg },
+    { value: "senior", label: "Idoso (7+ anos)", image: seniorImg },
   ];
 
   return (
@@ -19,125 +32,111 @@ export default function QuizIntro({ onStart }: QuizIntroProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen flex flex-col items-center px-4 py-8 md:py-12"
-      style={{ background: "linear-gradient(180deg, #ffffff 0%, #f5f7fa 100%)" }}
+      className="min-h-screen bg-background flex flex-col items-center px-4 py-4 md:py-8"
     >
-      <div className="w-full max-w-lg mx-auto flex flex-col items-center space-y-6">
-
-        {/* Label */}
-        <motion.span
+      <div className="w-full max-w-lg mx-auto flex flex-col items-center">
+        <motion.div
           initial={{ y: -10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.1 }}
-          style={{
-            background: "linear-gradient(90deg, #1a3a8a, #60b0f4)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            fontWeight: 600,
-            fontSize: "14px",
-            letterSpacing: "0.05em",
-            textTransform: "uppercase",
-          }}
+          className="mb-3 flex w-full items-center gap-3"
         >
-          Canino Obediente 360°
-        </motion.span>
+          <img
+            src={logoIcon}
+            alt="Canino Obediente 360°"
+            width={40}
+            height={40}
+            loading="eager"
+            decoding="async"
+            className="h-10 w-10 shrink-0 rounded-full object-cover shadow-sm"
+          />
+          <div className="flex-1" aria-label="Progresso: pergunta 1 de 6">
+            <div className="mb-1 flex items-center justify-between text-xs font-semibold text-muted-foreground">
+              <span>Avaliação rápida</span>
+              <span>1 de 6</span>
+            </div>
+            <div className="h-1.5 overflow-hidden rounded-full bg-muted">
+              <div className="h-full w-1/6 rounded-full bg-primary" />
+            </div>
+          </div>
+        </motion.div>
 
-        {/* Headline */}
         <motion.h1
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="font-extrabold text-center"
-          style={{
-            color: "#1a1a2e",
-            fontSize: "clamp(2rem, 5vw, 3.5rem)",
-            lineHeight: 1.2,
-          }}
+          className="text-center text-[29px] font-extrabold leading-[1.08] text-foreground md:text-5xl md:leading-[1.08]"
         >
-          Descubra o{" "}
-          <span
-            style={{
-              background: "linear-gradient(90deg, #1a3a8a, #60b0f4)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-          >Plano</span>{" "}
-          <span
-            style={{
-              background: "linear-gradient(90deg, #4DB8B8, #D4A017)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
-            Personalizado
-          </span>{" "}
-          para Transformar o Comportamento do Seu Cachorro
+          <span className="block">Por que ele obedece o adestrador</span>
+          <span className="mt-1 block bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            e ignora VOCÊ?
+          </span>
         </motion.h1>
 
-        {/* Subtítulo */}
         <motion.p
           initial={{ y: 15, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3 }}
-          style={{ color: "#666", fontSize: "17px" }}
-          className="text-center max-w-md"
+          className="mt-3 max-w-md text-center text-sm leading-relaxed text-muted-foreground md:text-base"
         >
-          Responda algumas perguntas rápidas e receba um plano exclusivo baseado no perfil do seu cão.
+          Não é falta de autoridade. É o estado do sistema nervoso dele. Responda 6 perguntas e descubra o nível de tensão do seu cão.
         </motion.p>
 
-        {/* Hero Image */}
         <motion.div
-          initial={{ y: 30, opacity: 0 }}
+          initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="w-full max-w-sm rounded-2xl overflow-hidden shadow-xl"
+          className="mt-4 w-full"
         >
-          <img
-            src={heroImage}
-            alt="Cachorro feliz com seu dono"
-            width={1200}
-            height={654}
-            fetchPriority="high"
-            loading="eager"
-            decoding="async"
-            className="w-full h-auto object-cover"
-          />
+          <p className="mb-2 text-center text-sm font-bold text-foreground">
+            Para começar, qual a idade do seu cachorro?
+          </p>
+          <div className="grid grid-cols-2 gap-2">
+            {options.map((option) => (
+              <Button
+                key={option.value}
+                type="button"
+                variant="outline"
+                onClick={() => onAnswer(option.value)}
+                className={cn(
+                  "h-[68px] justify-start gap-2 whitespace-normal rounded-lg px-3 py-2 text-left text-xs font-semibold leading-tight shadow-sm",
+                  selected === option.value && "border-primary bg-primary/10 text-foreground ring-1 ring-primary",
+                )}
+              >
+                <img
+                  src={option.image}
+                  alt=""
+                  width={44}
+                  height={44}
+                  loading="eager"
+                  decoding="async"
+                  className="h-11 w-11 shrink-0 object-contain"
+                />
+                <span>{option.label}</span>
+              </Button>
+            ))}
+          </div>
         </motion.div>
 
-        {/* CTA Button */}
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="w-full max-w-sm"
-        >
-          <button onClick={onStart} className="cta-button group">
-            Começar Avaliação Gratuita
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </motion.div>
-
-        {/* Benefits */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className="flex flex-col gap-3 w-full max-w-sm items-center"
+          className="mt-4 flex w-full flex-col items-center gap-2"
         >
           {benefits.map((benefit, idx) => (
             <div key={idx} className="flex items-center gap-2">
-              <CheckCircle2 className="w-5 h-5 flex-shrink-0" style={{ color: "hsl(158 64% 52%)" }} />
-              <span className="text-sm">{benefit}</span>
+              <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-success" />
+              <span className="text-xs md:text-sm">{benefit}</span>
             </div>
           ))}
         </motion.div>
 
-        {/* Trust badge */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.7 }}
-          className="text-center text-xs text-muted-foreground"
+          transition={{ delay: 0.6 }}
+          className="mt-4 text-center text-xs text-muted-foreground"
         >
           Junte-se a mais de 25.000 donos de cães que transformaram a vida de seus pets
         </motion.p>
