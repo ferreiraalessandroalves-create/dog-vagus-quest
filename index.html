@@ -27,42 +27,29 @@
     </script>
     <!-- End Microsoft Clarity -->
 
-    <!-- Facebook Pixel Code (carregado sem bloquear a renderização) -->
+    <!-- Meta Pixel Code -->
     <script>
-      window.fbq = window.fbq || function () { (window.fbq.queue = window.fbq.queue || []).push(arguments); };
-      function loadMetaPixel() {
-        if (window.__pixelLoaded) return;
-        window.__pixelLoaded = true;
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq&&f.fbq.loaded)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=(window.fbq&&window.fbq.queue)||[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '1087016016494841');
-        fbq('track', 'PageView');
-      }
-      if (document.readyState === 'complete') {
-        setTimeout(loadMetaPixel, 1200);
-      } else {
-        window.addEventListener('load', function () { setTimeout(loadMetaPixel, 1200); });
-      }
-      ['scroll','pointerdown','keydown','touchstart'].forEach(function (evt) {
-        window.addEventListener(evt, loadMetaPixel, { once: true, passive: true });
-      });
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1072631052358670');
+      fbq('track', 'PageView');
     </script>
-    <!-- End Facebook Pixel Code -->
+    <!-- End Meta Pixel Code -->
   </head>
 
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <!-- Facebook Pixel noscript fallback -->
+    <!-- Meta Pixel noscript fallback -->
     <noscript>
       <img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=1087016016494841&ev=PageView&noscript=1"/>
+        src="https://www.facebook.com/tr?id=1072631052358670&ev=PageView&noscript=1"/>
     </noscript>
   </body>
 </html>
